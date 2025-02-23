@@ -1,7 +1,8 @@
+import ReduxProvider from "@/redux/ReduxProvider";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Toaster } from "sonner";
 import "./globals.css";
-import ConditionalMarkup from "./components/shared/ConditionalMarkup";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,8 +30,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ConditionalMarkup>{children}</ConditionalMarkup>
-        
+        <ReduxProvider>{children}</ReduxProvider>
+        <Toaster />
       </body>
     </html>
   );

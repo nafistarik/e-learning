@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import LoginPage from "./_components/LoginPage"
+import LoginPage from "./_login_components/LoginPage"
 
 export const metadata: Metadata = {
   title: "Login - E-Learning Platform",

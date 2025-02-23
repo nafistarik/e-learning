@@ -1,4 +1,4 @@
-import { About } from "../home/About";
+import { About } from "./_about_components/About";
 
 
 

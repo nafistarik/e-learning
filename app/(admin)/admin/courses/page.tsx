@@ -1,4 +1,4 @@
-import AdminCoursesComponent from "./_components/AdminCoursesComponent";
+import AdminCoursesComponent from "./_admin_course_components/AdminCoursesComponent";
 
 export default function AdminCoursesPage() {
     return (

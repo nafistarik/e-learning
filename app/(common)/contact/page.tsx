@@ -1,9 +1,10 @@
-import { Contact } from "../home/Contact";
+import { ContactPage } from "./_contact_components/ContactPage";
 
-export default function ContactPage() {
+
+export default function Contact() {
   return (
     <div className="container">
-      <Contact/>
+      <ContactPage/>
     </div>
   )
 }

@@ -1,10 +1,13 @@
 import React from "react";
-import DashboardLayout from "./_dashboard/DashboardLayout";
+import DashboardLayout from "../../../components/dashboard/DashboardLayout";
+import AuthGuard from "@/components/shared/AuthGuard";
 
 const layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <DashboardLayout>{children}</DashboardLayout>
+      <AuthGuard role="admin">
+        <DashboardLayout>{children}</DashboardLayout>
+      </AuthGuard>
     </>
   );
 };

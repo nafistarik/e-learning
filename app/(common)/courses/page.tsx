@@ -1,11 +1,9 @@
-import CoursesComponent from "./_components/CoursesComponent";
-
+import CoursesComponent from "./_courses_components/CoursesComponent";
 
 export default function CoursesPage() {
   return (
     <div className="container">
-      <CoursesComponent/>
+      <CoursesComponent />
     </div>
-  )
+  );
 }
-
