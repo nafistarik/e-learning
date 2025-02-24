@@ -5,7 +5,6 @@ import { CategoryCard } from "./CategoryCard";
 import SlideInRight from "@/components/motion/SlideInRight";
 import StaggerList from "@/components/motion/StaggerList";
 import Flip from "@/components/motion/Flip";
-import Pulse from "@/components/motion/Pulse";
 
 export function Categories() {
   return (
@@ -30,11 +29,9 @@ export function Categories() {
         </StaggerList>
 
         {/* Button with Pulse Effect */}
-        <Pulse>
           <Button asChild className="px-6 py-3 text-lg font-semibold rounded shadow-md">
             <Link href="/courses">All Courses</Link>
           </Button>
-        </Pulse>
       </div>
     </section>
   );

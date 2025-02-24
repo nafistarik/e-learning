@@ -1,6 +1,6 @@
 import { StatsCards } from "./StatsCards";
 import { RecentEnrollments } from "./RecentEnrollments";
-import { EnrollmentChart } from "../users/_admin_users_components/EnrollmentChart";
+import { EnrollmentChart } from "./EnrollmentChart";
 
 export default function AdminDashboardHome() {
 

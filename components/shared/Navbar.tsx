@@ -3,7 +3,16 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ShoppingCart, User, Home, BookOpen, Info, Phone } from "lucide-react";
+import {
+  Menu,
+  X,
+  ShoppingCart,
+  User,
+  Home,
+  BookOpen,
+  Info,
+  Phone,
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -29,7 +38,13 @@ export default function Navbar() {
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <Image src={logo} width={1000} height={1000} className="w-auto h-8 sm:h-12" alt="logo" />
+          <Image
+            src={logo}
+            width={1000}
+            height={1000}
+            className="w-auto h-8 sm:h-12"
+            alt="logo"
+          />
         </Link>
 
         {/* Navigation - Desktop */}
@@ -54,7 +69,9 @@ export default function Navbar() {
         <div className="flex items-center gap-4">
           {user?.user?.email === "abc@admin.com" ? (
             <Link href="/admin">
-              <Button className="text-black bg-gray-100 hover:bg-white p-3 rounded-md border-2 border-gray-200 shadow-md transition-all duration-300 ease-in-out">Dashboard</Button>
+              <Button className="text-black bg-white/20 backdrop-blur-lg hover:bg-white/30 hover:scale-101 hover:-translate-y-[2px] hover:shadow-xl p-3 rounded-md border-2 border-gray-300/50 hover:border-gray-400/50 shadow-lg transition-all duration-500 ease-in-out">
+                Dashboard
+              </Button>
             </Link>
           ) : user?.user ? (
             <div className="flex items-center justify-center gap-3">
@@ -79,7 +96,9 @@ export default function Navbar() {
             </div>
           ) : (
             <Link href="/login">
-              <Button className="bg-gray-100 hover:bg-white text-black p-3 rounded-md border-2 border-gray-200 shadow-md transition-all duration-300 ease-in-out">Sign In</Button>
+              <Button className="text-black bg-white/20 backdrop-blur-lg hover:bg-white/30 hover:scale-101 hover:-translate-y-[2px] hover:shadow-xl p-3 px-4 rounded-md border-2 border-gray-300/50 hover:border-gray-400/50 shadow-lg transition-all duration-500 ease-in-out">
+                Sign In
+              </Button>
             </Link>
           )}
 

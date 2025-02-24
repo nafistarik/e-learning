@@ -6,11 +6,11 @@ import { ReactNode } from "react";
 const Pulse = ({ children }: { children: ReactNode }) => {
   return (
     <motion.div
-      animate={{ scale: [1, 1.05, 1] }}
+      animate={{ scale: [1, 1.03, 1], opacity: [0.8, 1, 0.8] }}
       transition={{
         repeat: Infinity,
         repeatType: "reverse",
-        duration: 1.5,
+        duration: 3,
       }}
     >
       {children}
