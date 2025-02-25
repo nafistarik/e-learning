@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const BASEAPI = "http://localhost:5000/api"
+const BASEAPI = "https://course-platform-api-kkbn.onrender.com/api"
 
 // Define a service using a base URL and expected endpoints
 export const baseApi = createApi({
@@ -18,7 +18,8 @@ export const baseApi = createApi({
   endpoints: () => ({}),
   tagTypes: [
     "Auth",
-    "Courses"
+    "Courses",
+    "Users"
   ],
 });
 export const {} = baseApi;

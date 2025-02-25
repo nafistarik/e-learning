@@ -4,12 +4,15 @@ import { Card } from "@/components/ui/card";
 import { Book, DollarSign, Users } from "lucide-react";
 import { useGetCoursesQuery } from "@/redux/api/courseApi";
 import { motion } from "framer-motion";
+import { useGetAllUsersQuery } from "@/redux/api/userApi";
 
 export function StatsCards() {
   const { data: courses, isLoading: isCoursesLoading } = useGetCoursesQuery({});
+  
+    const { data : users} = useGetAllUsersQuery({});
 
   const totalCourses = courses?.courses?.length || 0;
-  const totalUsers = 5;
+  const totalUsers = users?.length;
   const totalRevenue = courses?.courses?.reduce(
     (acc: number, course: { price: number }) => acc + course.price,
     0

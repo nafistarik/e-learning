@@ -32,7 +32,7 @@ export function EnrollmentChart() {
                 <CartesianGrid strokeDasharray="4 4" strokeOpacity={0.2} />
                 <XAxis dataKey="name" tick={{ fill: "#666" }} />
                 <YAxis tick={{ fill: "#666" }} />
-                <Tooltip contentStyle={{ background: "#222", color: "#fff", borderRadius: "8px" }} />
+                <Tooltip contentStyle={{ background: "#111", color: "#fff", borderRadius: "8px" }} />
                 <Bar
                   dataKey="enrollments"
                   fill="#222"

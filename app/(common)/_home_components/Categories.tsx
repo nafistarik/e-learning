@@ -10,12 +10,10 @@ export function Categories() {
   return (
     <section className="container py-16">
       <div className="space-y-10 text-center">
-        {/* Title Animation */}
         <SlideInRight>
           <h2 className="text-4xl font-bold tracking-tight">Popular Categories</h2>
         </SlideInRight>
 
-        {/* Category Cards with Staggered Effect */}
         <StaggerList>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             {categories.slice(0, 4).map((category, index) => (
@@ -28,7 +26,6 @@ export function Categories() {
           </div>
         </StaggerList>
 
-        {/* Button with Pulse Effect */}
           <Button asChild className="px-6 py-3 text-lg font-semibold rounded shadow-md">
             <Link href="/courses">All Courses</Link>
           </Button>

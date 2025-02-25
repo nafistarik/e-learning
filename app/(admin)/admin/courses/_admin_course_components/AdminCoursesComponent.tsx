@@ -59,6 +59,8 @@ export default function AdminCoursesPage() {
         transition={{ duration: 0.5 }}
         className="rounded-lg border shadow-md bg-white p-4"
       >
+
+        
         {isLoading ? (
           <div className="text-center py-6 animate-pulse">
             <p className="text-muted-foreground">Loading courses...</p>
