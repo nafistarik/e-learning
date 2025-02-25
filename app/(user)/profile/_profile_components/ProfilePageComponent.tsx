@@ -17,8 +17,8 @@ export default function ProfilePage() {
   // const [isEditing, setIsEditing] = useState(false);
 
   const { user } = useSelector(selectUser);
-const router = useRouter()
-const dispatch = useDispatch()
+  const router = useRouter();
+  const dispatch = useDispatch();
 
   // const handleProfileUpdate = (data: any) => {
   //   console.log("Updating profile:", data);
@@ -26,8 +26,8 @@ const dispatch = useDispatch()
   // };
 
   const handleLogout = () => {
-    dispatch(removeUser()); 
-    router.push("/login"); 
+    dispatch(removeUser());
+    router.push("/login");
   };
 
   return (
@@ -63,30 +63,37 @@ const dispatch = useDispatch()
           <h2 className="text-2xl font-semibold">My Courses</h2>
           <div className="grid gap-4">
             {enrolledCourses.map((course) => (
-                          <Card key={course.id} className="flex flex-col items-center gap-4 p-4 sm:flex-row">
-                          <Image
-                            src={course.image || "/placeholder.svg"}
-                            alt={course.title}
-                            width={200}
-                            height={120}
-                            className="rounded-lg object-cover sm:w-48"
-                          />
-                                                    <div className="flex flex-1 flex-col justify-between">
-                            <div>
-                              <h3 className="font-semibold">{course.title}</h3>
-                              <p className="mt-2 text-sm text-muted-foreground">Description: {course.description}</p>
+              <Card
+                key={course.id}
+                className="flex flex-col items-center gap-4 p-4 sm:flex-row"
+              >
+                <Image
+                  src={course.image || "/placeholder.svg"}
+                  alt={course.title}
+                  width={200}
+                  height={120}
+                  className="rounded-lg object-cover sm:w-48"
+                />
+                <div className="flex flex-1 flex-col justify-between">
+                  <div>
+                    <h3 className="font-semibold">{course.title}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground">
+                      Description: {course.description}
+                    </p>
 
-                              <div className="flex items-center justify-between">
-                              <p className="mt-2 text-sm text-muted-foreground">Category: {course.category}</p>
-
-                              </div>
-                              <div className="flex items-center justify-between">
-                                <span className="text-sm text-muted-foreground">Price: {course.price}</span>
-
-                              </div>
-                            </div>
-                          </div>
-                        </Card>
+                    <div className="flex items-center justify-between">
+                      <p className="mt-2 text-sm text-muted-foreground">
+                        Category: {course.category}
+                      </p>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-muted-foreground">
+                        Price: {course.price}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </Card>
             ))}
           </div>
         </div> */}

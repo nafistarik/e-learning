@@ -8,8 +8,8 @@ import { Heart } from "lucide-react"
 
 interface CourseCardProps {
   course: Course
-  onFavorite?: (courseId: string) => void // Made optional
-  onEnroll?: (courseId: string) => void // Made optional
+  onFavorite?: (courseId: string) => void 
+  onEnroll?: (courseId: string) => void 
 }
 
 export function CourseCard({ course }: CourseCardProps) {
@@ -18,7 +18,6 @@ export function CourseCard({ course }: CourseCardProps) {
     console.log(`Favorite course ID: ${courseId}`)
   }
 
-  // Simply log the course ID when enrolling
   const onEnroll = (courseId: string) => {
     console.log(`Enrolled in course ID: ${courseId}`)
   }

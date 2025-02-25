@@ -9,19 +9,20 @@ import Hamburger from "./Hamburger";
 import SideBar from "./SideBar";
 import { LucideNotepadText, User } from "lucide-react";
 
-// import TopBar from "../navigationBar/TopBar";
-
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null as unknown as HTMLDivElement);
 
+
   useEffect(() => {
+    if (typeof document === "undefined") return; // Prevents server-side execution
+  
     function handleClickOutside(event: MouseEvent) {
       if (navRef.current && !navRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     }
-
+  
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);

@@ -7,11 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { IoLogOut } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { toast } from "sonner";
-import logo from "@/app/assets/images/shared/logo.png"
-// import { IoLogOut } from "react-icons/io5";
-// import { toast } from "sonner";
-// import Image from "next/image";
-// import logo from "@/app/assets/images/home/course3.jpg";
+import logo from "@/app/assets/images/shared/logo.png";
 export default function MainNavLink({
   navLink,
 }: {
@@ -30,9 +26,6 @@ export default function MainNavLink({
     if (cleanHref === "/admin") {
       return cleanPathname === "/admin";
     }
-    // if (cleanHref === "/admin-dashboard") {
-    //   return cleanPathname === "/admin-dashboard";
-    // }
 
     return cleanPathname.startsWith(cleanHref);
   };
@@ -47,14 +40,14 @@ export default function MainNavLink({
 
   return (
     <div className="flex flex-col min-h-screen py-6 bg-customOrange relative bg-gray-100">
-      {/* <Link href={"/"} className="border-b-2 px-8 h-[61px]">
-        <Image src={logo} alt="logo" width={70} height={70} />
-      </Link> */}
       <Link href="/" id="image" className="rounded-full flex gap-2 p-8 py-2">
-        {/* <Image src={logo} alt="logo_image" className="h-7 w-8"></Image> */}
-        {/* <Link href="/" className="flex items-center gap-2"> */}
-          <Image src={logo} width={1000} height={1000} className="w-auto h-10" alt="logo" />
-        {/* </Link> */}
+        <Image
+          src={logo}
+          width={1000}
+          height={1000}
+          className="w-auto h-10"
+          alt="logo"
+        />
       </Link>
       <nav className="flex-1 p-4">
         <div className="space-y-3 px-4">
