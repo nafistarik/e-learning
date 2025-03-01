@@ -22,7 +22,7 @@ export default function CoursesComponent() {
   const { data: courses, isLoading, isError } = useGetCoursesQuery({});
 
   return (
-    <div className="pt-16 pb-24 min-h-[calc(100vh-70px)] flex flex-col justify-center">
+    <div className="pt-28 pb-12 lg:pt-32 lg:pb-24  min-h-[calc(100vh-70px)] flex flex-col justify-center">
       {/* Header & Filters */}
       <SlideInRight>
         <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">

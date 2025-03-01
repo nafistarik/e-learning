@@ -19,7 +19,7 @@ import { cn } from "@/lib/utils";
 import { useSelector } from "react-redux";
 import { selectUser } from "@/redux/slice/userSlice";
 import Image from "next/image";
-import logo from "@/app/assets/images/shared/logo.png";
+import logo from "@/app/assets/images/shared/Logo_Final.png";
 
 const navigation = [
   { name: "Home", href: "/", icon: <Home className="h-5 w-5" /> },
@@ -34,7 +34,7 @@ export default function Navbar() {
   const user = useSelector(selectUser);
 
   return (
-    <nav className="sticky top-0 z-50 w-full bg-white shadow-md py-3 border-b">
+    <nav className="fixed top-0 z-50 w-full bg-white/20 backdrop-blur-md  shadow-md py-3  ">
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
@@ -42,7 +42,7 @@ export default function Navbar() {
             src={logo}
             width={1000}
             height={1000}
-            className="w-auto h-8 sm:h-12"
+            className="w-auto h-16 sm:h-20 "
             alt="logo"
           />
         </Link>
@@ -57,7 +57,7 @@ export default function Navbar() {
                 "flex items-center gap-2 transition-all duration-300 px-4 py-[6px] rounded-lg relative",
                 pathname === item.href
                   ? "text-black after:absolute after:left-1/2 after:-translate-x-1/2 after:bottom-[1px] after:w-3/4 after:h-[2px] after:bg-black after:rounded-full"
-                  : "text-gray-600 hover:text-black hover:bg-gray-100"
+                  : "text-gray-600 hover:text-black hover:bg-white"
               )}
             >
               {item.icon} {item.name}

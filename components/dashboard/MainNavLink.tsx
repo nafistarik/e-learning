@@ -7,7 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { IoLogOut } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { toast } from "sonner";
-import logo from "@/app/assets/images/shared/logo.png";
+import logo from "@/app/assets/images/shared/Logo_Final.png";
 export default function MainNavLink({
   navLink,
 }: {
@@ -45,7 +45,7 @@ export default function MainNavLink({
           src={logo}
           width={1000}
           height={1000}
-          className="w-auto h-10"
+          className="w-auto h-[72px]"
           alt="logo"
         />
       </Link>

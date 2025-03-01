@@ -8,7 +8,7 @@ import Flip from "@/components/motion/Flip";
 
 export function Categories() {
   return (
-    <section className="container py-16">
+    <section className="container py-16 bg-gradient-to-b from-[#FEFBF4]">
       <div className="space-y-10 text-center">
         <SlideInRight>
           <h2 className="text-4xl font-bold tracking-tight">Popular Categories</h2>

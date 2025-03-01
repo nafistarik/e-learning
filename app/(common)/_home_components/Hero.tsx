@@ -6,11 +6,19 @@ import home from "@/app/assets/images/home/home.png";
 import Link from "next/link";
 import FadeUp from "@/components/motion/FadeUp";
 import ScaleUp from "@/components/motion/ScaleUp";
+import background from "@/app/assets/images/home/background.jpg"
 
 export function Hero() {
+  
   return (
-    <section className="container min-h-[calc(100vh-70px)] flex flex-col justify-center">
-      <div className="grid items-center gap-12 md:grid-cols-2">
+    <section className="container min-h-screen flex flex-col justify-center pt-[120px] pb-[20px]" 
+    style={{
+      backgroundImage: `url(${background.src})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }}
+    >
+      <div className="grid items-center gap-12 md:grid-cols-2 ">
         
         {/* Left Text Section */}
         <div className="space-y-5">

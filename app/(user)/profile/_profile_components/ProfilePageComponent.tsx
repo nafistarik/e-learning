@@ -31,7 +31,7 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className=" py-8">
+    <div className=" pt-28 pb-12 lg:pt-32 lg:pb-24 min-h-screen">
       <div className="mb-8">
         <h1 className="text-3xl font-bold">My Profile</h1>
         <p className="text-muted-foreground">Manage your account settings</p>

@@ -8,8 +8,12 @@ export default function MainLayout({
 }) {
   return (
     <>
+      <main className="relative">
+      <div className="absolute top-0  w-full">
       <Navbar />
-      <main>{children}</main>
+      </div>
+        {children}
+      </main>
       <Footer />
     </>
   );

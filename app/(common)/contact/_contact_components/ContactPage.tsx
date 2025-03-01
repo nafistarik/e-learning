@@ -8,7 +8,7 @@ import SlideInRight from "@/components/motion/SlideInRight";
 
 export function ContactPage() {
   return (
-    <section className="bg-white text-black flex items-center justify-center pt-12 pb-20">
+    <section className=" text-black flex items-center justify-center pt-28 pb-12 lg:pt-32 lg:pb-24 ">
       <div className="w-full items-center grid gap-12 lg:grid-cols-2">
         {/* Contact Info */}
         <FadeUp>
@@ -50,7 +50,7 @@ export function ContactPage() {
         </FadeUp>
         {/* Contact Form */}
         <SlideInRight>
-          <div className="bg-white p-8 rounded-2xl shadow-lg space-y-6 border border-gray-200">
+          <div className="bg-white p-8 rounded-2xl shadow-lg space-y-6 border border-gray-200 bg-white/20 backdrop-blur-md">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <label htmlFor="name">Name</label>

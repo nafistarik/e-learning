@@ -13,7 +13,7 @@ export function PopularCourses() {
   const { data: courses, isLoading, isError } = useGetCoursesQuery({});
 
   return (
-    <section className="container py-16">
+    <section className="container py-16 ">
       <div className="space-y-8">
         <SlideInRight>
           <div className="text-center">

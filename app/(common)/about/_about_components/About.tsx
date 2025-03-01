@@ -2,10 +2,15 @@ import Image from "next/image";
 import heroImage from "@/app/assets/images/home/Book-lover-bro.png";
 import FadeUp from "@/components/motion/FadeUp";
 import ScaleUp from "@/components/motion/ScaleUp";
+import background from "@/app/assets/images/home/background.jpg"
 
 export function About() {
   return (
-    <section className="pt-8 pb-12 lg:pt-16 lg:pb-24 flex flex-col justify-center">
+    <section className="pt-28 pb-12 lg:pt-32 lg:pb-24 flex flex-col justify-center container min-h-screen" style={{
+      backgroundImage: `url(${background.src})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }}>
       <div className="grid gap-8 grid-cols-1 lg:grid-cols-[11fr,12fr] lg:gap-12 lg:items-center">
         
         <FadeUp>
