@@ -8,6 +8,7 @@ import { Heart } from "lucide-react";
 import { useAddToFavouriteMutation } from "@/redux/api/favouriteApi";
 import { toast } from "sonner";
 import { useEnrollCourseMutation } from "@/redux/api/enrollApi";
+import Link from "next/link";
 
 interface CourseCardProps {
   course: Course;
@@ -25,7 +26,7 @@ export function CourseCard({ course }: CourseCardProps) {
     const body = { courseId: courseId };
 
     try {
-      const response = await addToFavourite(body).unwrap(); 
+      const response = await addToFavourite(body).unwrap();
       if (response) {
         toast.success("Course added to favorite successfully!");
       }
@@ -74,11 +75,21 @@ export function CourseCard({ course }: CourseCardProps) {
         <p className="mt-1 text-sm text-muted-foreground line-clamp-2">
           {course.description}
         </p>
-        <div className="mt-4 flex items-center justify-between">
-          <div>
-            <p className="text-lg font-bold">${course.price}</p>
-          </div>
-          <Button onClick={() => onEnroll(course._id)}>Enroll Now</Button>
+        <div>
+          <p className="mt-2 text-lg font-bold">${course.price}</p>
+        </div>
+        <div className="mt-4 flex items-center gap-4 justify-between">
+          <Link href={`/courses/${course._id}`} className="flex-1">
+            <Button
+              variant="outline"
+              className="w-full flex items-center gap-2 border-gray-300 shadow-md transition-all duration-300 hover:bg-gray-100"
+            >
+              View Details
+            </Button>
+          </Link>
+          <Button className="flex-1" onClick={() => onEnroll(course._id)}>
+            Enroll Now
+          </Button>
         </div>
         {favoriteLoading && <p className="font-bold pt-2">Loading...</p>}
         {favoriteError && (
@@ -88,7 +99,9 @@ export function CourseCard({ course }: CourseCardProps) {
         )}
         {enrollLoading && <p className="font-bold pt-2">Loading...</p>}
         {enrollError && (
-          <p className="text-red-500 font-bold pt-2">Failed to enroll in course</p>
+          <p className="text-red-500 font-bold pt-2">
+            Failed to enroll in course
+          </p>
         )}
       </div>
     </Card>

@@ -11,7 +11,14 @@ const courseApi = baseApi.injectEndpoints({
       providesTags: ["Courses"],
     }),
 
-    // Create a new course (FormData handled in the component)
+    getSingleCourse: build.query({
+      query: (courseId) => ({
+        url: `/courses/${courseId}`,
+        method: "GET",
+      }),
+      providesTags: ["Courses"],
+    }),
+
     createCourse: build.mutation({
       query: (data) => ({
         url: "/courses/new",
@@ -21,7 +28,6 @@ const courseApi = baseApi.injectEndpoints({
       invalidatesTags: ["Courses"],
     }),
 
-    // Update an existing course
     updateCourse: build.mutation({
       query: ({ id, data }) => ({
         url: `/courses/update/${id}`,
@@ -31,7 +37,6 @@ const courseApi = baseApi.injectEndpoints({
       invalidatesTags: ["Courses"],
     }),
 
-    // Delete a course
     deleteCourse: build.mutation({
       query: (id) => ({
         url: `/courses/delete/${id}`,
@@ -44,6 +49,7 @@ const courseApi = baseApi.injectEndpoints({
 
 export const {
   useGetCoursesQuery,
+  useGetSingleCourseQuery,
   useCreateCourseMutation,
   useUpdateCourseMutation,
   useDeleteCourseMutation,
