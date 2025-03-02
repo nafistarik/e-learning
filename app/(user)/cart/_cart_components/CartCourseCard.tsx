@@ -4,7 +4,9 @@ import type { Course } from "@/lib/data/courses"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
-import { Trash2 } from "lucide-react"
+// import { Trash2 } from "lucide-react"
+import { useEnrollCourseMutation } from "@/redux/api/enrollApi"
+import { toast } from "sonner"
 
 interface CartCourseCardProps {
   course: Course
@@ -12,13 +14,27 @@ interface CartCourseCardProps {
 
 export function CartCourseCard({ course }: CartCourseCardProps) {
 
-  const onRemove = (courseId: string) => {
-    console.log(`Deleted course ID: ${courseId}`)
-  }
+  const [enrollCourse, { isLoading: enrollLoading, isError: enrollError }] =
+  useEnrollCourseMutation();
 
-  const onEnroll = (courseId: string) => {
-    console.log(`Enrolled in course ID: ${courseId}`)
-  }
+  const onEnroll = async (courseId: string) => {
+    console.log(`Enrolled in course ID: ${courseId}`);
+    const body = { courseId: courseId };
+
+    try {
+      const response = await enrollCourse(body).unwrap();
+      if (response) {
+        toast.success("Course enrolled successfully!");
+      }
+    } catch (err) {
+      console.error("Failed to enroll in course:", err);
+      toast.error("Failed to enroll in course. Please try again.");
+    }
+  };
+
+  // const onRemove = (courseId: string) => {
+  //   console.log(`Deleted course ID: ${courseId}`)
+  // }
 
   return (
     <Card className="flex flex-col gap-4 p-4 sm:flex-row">
@@ -38,10 +54,16 @@ export function CartCourseCard({ course }: CartCourseCardProps) {
         <div className="flex items-center justify-between">
           <p className="text-lg font-bold">${course.price}</p>
           <div className="flex gap-2">
-            <Button variant="destructive" size="icon" onClick={() => onRemove(course._id)}>
+          {enrollLoading && <p className="font-bold pt-2">Loading...</p>}
+        {enrollError && (
+          <p className="text-red-500 font-bold pt-2">Failed to enroll in course</p>
+        )}
+            {/* <Button variant="destructive" size="icon" onClick={() => onRemove(course._id)}>
               <Trash2 className="h-4 w-4" />
-            </Button>
+            </Button> */}
             <Button onClick={() => onEnroll(course._id)}>Enroll Now</Button>
+            
+      
           </div>
         </div>
       </div>

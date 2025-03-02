@@ -12,14 +12,13 @@ import StaggerList from "@/components/motion/StaggerList";
 import ZoomIn from "@/components/motion/ZoomIn";
 
 export default function UserCartPage() {
-  const user = useSelector(selectUser);
-  const userId = user?.user?.id;
+  const {user} = useSelector(selectUser);
 
   const {
     data: favouritesData,
     isLoading,
     isError,
-  } = useGetUserFavouritesQuery(userId);
+  } = useGetUserFavouritesQuery(user?.id);
   const userFavouriteCourses = favouritesData?.favorites;
 
   if (isLoading) return <Loader />;

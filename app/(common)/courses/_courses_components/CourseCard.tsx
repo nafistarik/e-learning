@@ -7,6 +7,7 @@ import Image from "next/image";
 import { Heart } from "lucide-react";
 import { useAddToFavouriteMutation } from "@/redux/api/favouriteApi";
 import { toast } from "sonner";
+import { useEnrollCourseMutation } from "@/redux/api/enrollApi";
 
 interface CourseCardProps {
   course: Course;
@@ -16,12 +17,15 @@ export function CourseCard({ course }: CourseCardProps) {
   const [addToFavourite, { isLoading: favoriteLoading, error: favoriteError }] =
     useAddToFavouriteMutation();
 
+  const [enrollCourse, { isLoading: enrollLoading, isError: enrollError }] =
+    useEnrollCourseMutation();
+
   const onFavorite = async (courseId: string) => {
     console.log(`Favorite course ID: ${courseId}`);
-    const body = { "courseId": courseId};
+    const body = { courseId: courseId };
 
     try {
-      const response = await addToFavourite(body).unwrap(); // ✅ Ensures API request succeeds
+      const response = await addToFavourite(body).unwrap(); 
       if (response) {
         toast.success("Course added to favorite successfully!");
       }
@@ -31,8 +35,19 @@ export function CourseCard({ course }: CourseCardProps) {
     }
   };
 
-  const onEnroll = (courseId: string) => {
+  const onEnroll = async (courseId: string) => {
     console.log(`Enrolled in course ID: ${courseId}`);
+    const body = { courseId: courseId };
+
+    try {
+      const response = await enrollCourse(body).unwrap();
+      if (response) {
+        toast.success("Course enrolled successfully!");
+      }
+    } catch (err) {
+      console.error("Failed to enroll in course:", err);
+      toast.error("Failed to enroll in course. Please try again.");
+    }
   };
 
   return (
@@ -67,10 +82,15 @@ export function CourseCard({ course }: CourseCardProps) {
         </div>
         {favoriteLoading && <p className="font-bold pt-2">Loading...</p>}
         {favoriteError && (
-          <p className="text-red-500 font-bold pt-2">Failed to favorite course</p>
+          <p className="text-red-500 font-bold pt-2">
+            Failed to favorite course
+          </p>
+        )}
+        {enrollLoading && <p className="font-bold pt-2">Loading...</p>}
+        {enrollError && (
+          <p className="text-red-500 font-bold pt-2">Failed to enroll in course</p>
         )}
       </div>
-      
     </Card>
   );
 }

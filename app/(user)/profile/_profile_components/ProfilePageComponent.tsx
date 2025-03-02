@@ -10,8 +10,9 @@ import defaultPropic from "@/app/assets/images/home/profile-picture-vector.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser, removeUser } from "@/redux/slice/userSlice";
 import { useRouter } from "next/navigation";
-
-// const enrolledCourses = courses.filter((course) => currentUser.enrolledCourses.includes(course.id))
+import { useGetAllEnrollmentsQuery } from "@/redux/api/enrollApi";
+import { Course } from "@/lib/data/courses";
+import Loader from "@/components/shared/Loader";
 
 export default function ProfilePage() {
   // const [isEditing, setIsEditing] = useState(false);
@@ -19,6 +20,15 @@ export default function ProfilePage() {
   const { user } = useSelector(selectUser);
   const router = useRouter();
   const dispatch = useDispatch();
+
+  const {
+    data: allEnrollmentsData,
+    isLoading: enrollmentLoading,
+    isError: enrollmentError,
+  } = useGetAllEnrollmentsQuery(user?.id);
+
+  if (enrollmentLoading) return <Loader/>;
+  if (enrollmentError) return <p>Error fetching enrollments!</p>;
 
   // const handleProfileUpdate = (data: any) => {
   //   console.log("Updating profile:", data);
@@ -59,36 +69,36 @@ export default function ProfilePage() {
           </div>
         </Card>
 
-        {/* <div className="space-y-6">
+        <div className="space-y-6">
           <h2 className="text-2xl font-semibold">My Courses</h2>
           <div className="grid gap-4">
-            {enrolledCourses.map((course) => (
+            {allEnrollmentsData?.enrolledCourses.map((course : Course) => (
               <Card
-                key={course.id}
-                className="flex flex-col items-center gap-4 p-4 sm:flex-row"
+                key={course._id}
+                className="flex flex-col items-center gap-4 p-4 sm:flex-row md:flex-col xl:flex-row"
               >
                 <Image
                   src={course.image || "/placeholder.svg"}
                   alt={course.title}
                   width={200}
                   height={120}
-                  className="rounded-lg object-cover sm:w-48"
+                  className="rounded-lg object-cover w-full sm:w-56 md:w-full xl:w-64 aspect-[4/3]"
                 />
                 <div className="flex flex-1 flex-col justify-between">
-                  <div>
-                    <h3 className="font-semibold">{course.title}</h3>
+                  <div className="font-bold">
+                    <h3>{course.title}</h3>
                     <p className="mt-2 text-sm text-muted-foreground">
-                      Description: {course.description}
+                      Description: <span className="font-normal">{course.description}</span>
                     </p>
 
                     <div className="flex items-center justify-between">
-                      <p className="mt-2 text-sm text-muted-foreground">
-                        Category: {course.category}
+                      <p className="mt-2 text-sm text-muted-foreground ">
+                        Category: <span className="font-normal">{course.category}</span>
                       </p>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-muted-foreground">
-                        Price: {course.price}
+                      <span className="mt-1 text-sm text-muted-foreground">
+                        Price: <span className="font-normal">${course.price}</span>
                       </span>
                     </div>
                   </div>
@@ -96,7 +106,7 @@ export default function ProfilePage() {
               </Card>
             ))}
           </div>
-        </div> */}
+        </div>
       </div>
 
       {/* <ProfileEditForm
