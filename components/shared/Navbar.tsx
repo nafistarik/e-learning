@@ -34,8 +34,8 @@ export default function Navbar() {
   const user = useSelector(selectUser);
 
   return (
-    <nav className="fixed top-0 z-50 w-full bg-white/20 backdrop-blur-md  shadow-md py-3  ">
-      <div className="container flex h-16 items-center justify-between">
+    <nav className="fixed top-0 z-50 w-full   ">
+      <div className="container flex h-24 items-center justify-between bg-white/20 backdrop-blur-md  shadow-md ">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image
@@ -48,7 +48,7 @@ export default function Navbar() {
         </Link>
 
         {/* Navigation - Desktop */}
-        <div className="hidden lg:flex gap-8 mx-auto">
+        <div className="hidden lg:flex gap-8 mx-auto ">
           {navigation.map((item) => (
             <Link
               key={item.href}

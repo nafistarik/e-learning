@@ -6,12 +6,13 @@ import background from "@/app/assets/images/home/background.jpg"
 
 export function About() {
   return (
-    <section className="pt-28 pb-12 lg:pt-32 lg:pb-24 flex flex-col justify-center container min-h-screen" style={{
+    <section className="pt-28 pb-12 lg:pt-32 lg:pb-24 flex flex-col justify-center min-h-screen" style={{
       backgroundImage: `url(${background.src})`,
       backgroundSize: "cover",
       backgroundPosition: "center",
+      objectFit: "cover",
     }}>
-      <div className="grid gap-8 grid-cols-1 lg:grid-cols-[11fr,12fr] lg:gap-12 lg:items-center">
+      <div className="grid gap-8 grid-cols-1 lg:grid-cols-[11fr,12fr] lg:gap-12 lg:items-center container">
         
         <FadeUp>
           <div className="space-y-4">

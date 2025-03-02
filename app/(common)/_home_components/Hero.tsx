@@ -6,20 +6,20 @@ import home from "@/app/assets/images/home/home.png";
 import Link from "next/link";
 import FadeUp from "@/components/motion/FadeUp";
 import ScaleUp from "@/components/motion/ScaleUp";
-import background from "@/app/assets/images/home/background.jpg"
+import background from "@/app/assets/images/home/background.jpg";
 
 export function Hero() {
-  
   return (
-    <section className="container min-h-screen flex flex-col justify-center pt-[120px] pb-[20px]" 
-    style={{
-      backgroundImage: `url(${background.src})`,
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-    }}
+    <section
+      className=" min-h-screen flex flex-col justify-center pt-28 pb-12 lg:pt-32 lg:pb-24"
+      style={{
+        backgroundImage: `url(${background.src})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        objectFit: "cover",
+      }}
     >
-      <div className="grid items-center gap-12 md:grid-cols-2 ">
-        
+      <div className="grid items-center gap-12 md:grid-cols-2 container">
         {/* Left Text Section */}
         <div className="space-y-5">
           <FadeUp>
@@ -29,7 +29,8 @@ export function Hero() {
           </FadeUp>
           <FadeUp delay={0.1}>
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl leading-tight">
-              Accessible Online Courses <br /> <span className="text-primary">For All</span>
+              Accessible Online Courses <br />{" "}
+              <span className="text-primary">For All</span>
             </h1>
           </FadeUp>
           <FadeUp delay={0.2}>
