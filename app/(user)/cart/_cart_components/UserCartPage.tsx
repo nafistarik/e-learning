@@ -1,19 +1,56 @@
-// import { CartCourseCard } from "./CartCourseCard";
+"use client";
+
+import { useSelector } from "react-redux";
+import { selectUser } from "@/redux/slice/userSlice";
+import { useGetUserFavouritesQuery } from "@/redux/api/favouriteApi";
+import Loader from "@/components/shared/Loader";
+import { CartCourseCard } from "./CartCourseCard";
+import { Course } from "@/lib/data/courses";
+import EmptyStateMessage from "@/components/shared/EmptyStateMessage";
+import FadeUp from "@/components/motion/FadeUp";
+import StaggerList from "@/components/motion/StaggerList";
+import ZoomIn from "@/components/motion/ZoomIn";
 
 export default function UserCartPage() {
+  const user = useSelector(selectUser);
+  const userId = user?.user?.id;
+
+  const {
+    data: favouritesData,
+    isLoading,
+    isError,
+  } = useGetUserFavouritesQuery(userId);
+  const userFavouriteCourses = favouritesData?.favorites;
+
+  if (isLoading) return <Loader />;
+  if (isError) return <p>Error fetching data!</p>;
+
   return (
     <>
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold">My Favorites</h1>
-        <p className="text-muted-foreground">
-          Courses you&apos;ve saved for later
-        </p>
-      </div>
-      <div className="grid gap-6">
-        {/* {courses.map((course) => (
-          <CartCourseCard course={course} key={course.id} />
-        ))} */}
-      </div>
+      {/* Fade up for title & subtitle */}
+      <ZoomIn>
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold">My Favorites</h1>
+          <p className="text-muted-foreground">
+            Courses you&apos;ve saved for later
+          </p>
+        </div>
+      </ZoomIn>
+
+      {/* Staggered list for favorite courses */}
+      <StaggerList>
+        <div className="grid gap-6">
+          {userFavouriteCourses.length > 0 ? (
+            userFavouriteCourses.map((course: Course) => (
+              <FadeUp key={course._id}>
+                <CartCourseCard course={course} />
+              </FadeUp>
+            ))
+          ) : (
+            <EmptyStateMessage message="You haven't added any courses to your favorites yet!" />
+          )}
+        </div>
+      </StaggerList>
     </>
   );
 }

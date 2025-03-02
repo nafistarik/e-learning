@@ -27,7 +27,7 @@ export function CartCourseCard({ course }: CartCourseCardProps) {
         alt={course.title}
         width={200}
         height={120}
-        className="rounded-lg object-cover sm:w-48"
+        className="rounded-lg object-cover w-full sm:w-56 aspect-[4/3]"
       />
       <div className="flex flex-1 flex-col justify-between gap-4">
         <div>

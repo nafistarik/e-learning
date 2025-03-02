@@ -28,11 +28,9 @@ export function CourseAddForm({ open, onOpenChange }: CourseAddFormProps) {
   const { register, handleSubmit, setValue, reset } = useForm<CourseAddFormData>();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  // Initialize the createCourse mutation
   const [createCourse, { isLoading, error }] = useCreateCourseMutation();
 
   const handleFormSubmit = async (data: CourseAddFormData) => {
-    console.log("🚀 Raw Form Data:", data);
 
     const formData = new FormData();
     formData.append("title", data.title);

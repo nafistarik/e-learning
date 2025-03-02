@@ -1,9 +1,9 @@
 
 export interface Course {
-  _id: string; // Change to string to match `_id`
+  _id: string;
   title: string;
   description: string;
-  image: string; // Change to string for Cloudinary URL
+  image: string;
   price: number;
   category: string;
   instructor: string;

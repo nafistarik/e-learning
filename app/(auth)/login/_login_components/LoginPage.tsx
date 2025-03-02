@@ -26,7 +26,7 @@ export default function LoginPage() {
   const { register, handleSubmit } = useForm<LoginFormData>();
   const [loginUser, { isLoading }] = useLoginUserMutation();
   const dispatch = useDispatch();
-  const router = useRouter(); // ✅ Initialize useRouter
+  const router = useRouter();
 
   const onSubmit = async (data: LoginFormData) => {
     console.log("data", data);

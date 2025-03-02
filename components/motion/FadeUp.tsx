@@ -5,26 +5,26 @@ import { ReactNode } from "react";
 
 const FadeUp = ({
   children,
-  delay = 0,
-  duration = 0.6,
+  delay = .2,
+  duration = .8,
 }: {
   children: ReactNode;
   delay?: number;
   duration?: number;
 }) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }} // Triggers when 30% is in view
+    <motion.tr
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{
         delay,
         duration,
-        ease: [0.25, 0.46, 0.45, 0.94], // Smoother ease-out curve
+        ease: [0.25, 0.46, 0.45, 0.94], // Smooth ease-out curve
       }}
+      className=" transition-colors"
     >
       {children}
-    </motion.div>
+    </motion.tr>
   );
 };
 
