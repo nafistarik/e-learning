@@ -8,6 +8,7 @@ import Link from "next/link";
 import { CourseCard } from "../courses/_courses_components/CourseCard";
 import SlideInRight from "@/components/motion/SlideInRight";
 import ZoomIn from "@/components/motion/ZoomIn";
+import EmptyStateMessage from "@/components/shared/EmptyStateMessage";
 
 export function PopularCourses() {
   const { data: courses, isLoading, isError } = useGetCoursesQuery({});
@@ -55,9 +56,7 @@ export function PopularCourses() {
               </ZoomIn>
             ))
           ) : (
-            <p className="text-center col-span-full text-gray-500">
-              No courses available.
-            </p>
+            <EmptyStateMessage message="No courses are here at the moment" />
           )}
         </div>
 

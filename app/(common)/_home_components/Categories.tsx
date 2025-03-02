@@ -5,6 +5,7 @@ import { CategoryCard } from "./CategoryCard";
 import SlideInRight from "@/components/motion/SlideInRight";
 import StaggerList from "@/components/motion/StaggerList";
 import Flip from "@/components/motion/Flip";
+import EmptyStateMessage from "@/components/shared/EmptyStateMessage";
 
 export function Categories() {
   return (
@@ -16,13 +17,16 @@ export function Categories() {
 
         <StaggerList>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {categories.slice(0, 4).map((category, index) => (
+            {categories.length > 0 ? categories.slice(0, 4).map((category, index) => (
               <Flip key={index}>
                 <div className="p-6 bg-white shadow-lg rounded-2xl hover:scale-105 transition-transform duration-300">
                   <CategoryCard category={category} />
                 </div>
               </Flip>
-            ))}
+            )) : 
+            
+          <EmptyStateMessage message="No categories are here at the moment!" />
+            }
           </div>
         </StaggerList>
 

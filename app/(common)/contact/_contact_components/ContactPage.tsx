@@ -20,28 +20,28 @@ export function ContactPage() {
             <p className="text-gray-600">
               You can reach out to us through email, phone, or visit our office. We aim to respond to all inquiries within 24 hours.
             </p>
-            <div className="space-y-4">
+            <div className="space-y-4 text-sm">
               <ScaleUp>
                 <div className="flex items-center gap-3">
-                  <Mail className="h-6 w-6 text-black" />
+                  <Mail className="h-5 w-5 text-black" />
                   <span>info@example.com</span>
                 </div>
               </ScaleUp>
               <ScaleUp>
                 <div className="flex items-center gap-3">
-                  <Phone className="h-6 w-6 text-black" />
+                  <Phone className="h-5 w-5 text-black" />
                   <span>+1 (555) 000-0000</span>
                 </div>
               </ScaleUp>
               <ScaleUp>
                 <div className="flex items-center gap-3">
-                  <MapPin className="h-6 w-6 text-black" />
+                  <MapPin className="h-5 w-5 text-black" />
                   <span>123 Education St, Learning City, 12345</span>
                 </div>
               </ScaleUp>
               <ScaleUp>
                 <div className="flex items-center gap-3">
-                  <Clock className="h-6 w-6 text-black" />
+                  <Clock className="h-5 w-5 text-black" />
                   <span>Monday - Friday: 9:00 AM - 6:00 PM</span>
                 </div>
               </ScaleUp>

@@ -4,7 +4,7 @@ import { removeUser } from "@/redux/slice/userSlice";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { IoLogOut } from "react-icons/io5";
+import { IoLogOutOutline } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { toast } from "sonner";
 import logo from "@/app/assets/images/shared/Logo_Final.png";
@@ -75,12 +75,12 @@ export default function MainNavLink({
           )}
         </div>
       </nav>
-      <div className="mt-auto px-12 py-8 space-y-1">
+      <div className="mt-auto px-8 py-8 space-y-1">
         <button
           onClick={handleLogout}
-          className="flex items-center gap-3 px-3 py-3 rounded-md cursor-pointer text-whiteDarker bg-whiteDarker/10 w-full font-medium text-base"
+          className="flex  items-center gap-3 px-4 py-3 rounded-md cursor-pointer text-whiteDarker bg-whiteDarker/10 w-full font-medium text-base"
         >
-          <IoLogOut className="min-w-8 min-h-8" />
+          <IoLogOutOutline className="min-w-8 min-h-8" />
           Log Out
         </button>
       </div>

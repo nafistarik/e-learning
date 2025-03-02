@@ -9,7 +9,7 @@ import { Course } from "@/lib/data/courses";
 import EmptyStateMessage from "@/components/shared/EmptyStateMessage";
 import FadeUp from "@/components/motion/FadeUp";
 import StaggerList from "@/components/motion/StaggerList";
-import ZoomIn from "@/components/motion/ZoomIn";
+import SlideInLeft from "@/components/motion/SlideInLeft";
 
 export default function UserCartPage() {
   const {user} = useSelector(selectUser);
@@ -27,14 +27,14 @@ export default function UserCartPage() {
   return (
     <>
       {/* Fade up for title & subtitle */}
-      <ZoomIn>
+      <SlideInLeft>
         <div className="mb-8">
           <h1 className="text-3xl font-bold">My Favorites</h1>
           <p className="text-muted-foreground">
             Courses you&apos;ve saved for later
           </p>
         </div>
-      </ZoomIn>
+      </SlideInLeft>
 
       {/* Staggered list for favorite courses */}
       <StaggerList>

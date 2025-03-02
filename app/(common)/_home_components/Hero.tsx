@@ -21,7 +21,7 @@ export function Hero() {
     >
       <div className="grid items-center gap-12 md:grid-cols-2 container">
         {/* Left Text Section */}
-        <div className="space-y-5">
+        <div className="flex flex-col gap-2 md:gap-4">
           <FadeUp>
             <p className="text-sm font-semibold uppercase tracking-wide text-primary">
               Online Learning Platform
