@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-// import { useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
-// import { ProfileEditForm } from "@/app/(common)/profile/_profile_components/ProfileEditForm";
 import defaultPropic from "@/app/assets/images/home/profile-picture-vector.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser, removeUser } from "@/redux/slice/userSlice";
@@ -17,9 +16,10 @@ import EmptyStateMessage from "@/components/shared/EmptyStateMessage";
 import SlideInRight from "@/components/motion/SlideInRight";
 import FadeUp from "@/components/motion/FadeUp";
 import SlideInLeft from "@/components/motion/SlideInLeft";
+import { ProfileEditForm } from "./ProfileEditForm";
 
 export default function ProfilePage() {
-  // const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   const { user } = useSelector(selectUser);
   const router = useRouter();
@@ -33,11 +33,6 @@ export default function ProfilePage() {
 
   if (enrollmentLoading) return <Loader />;
   if (enrollmentError) return <p>Error fetching enrollments!</p>;
-
-  // const handleProfileUpdate = (data: any) => {
-  //   console.log("Updating profile:", data);
-  //   setIsEditing(false);
-  // };
 
   const handleLogout = () => {
     dispatch(removeUser());
@@ -70,7 +65,7 @@ export default function ProfilePage() {
                 <p className="text-sm text-muted-foreground">{user?.email}</p>
               </div>
               <div className="flex justify-between w-full">
-                {/* <Button onClick={() => setIsEditing(true)}>Edit Profile</Button> */}
+                <Button onClick={() => setIsEditing(true)}>Edit Profile</Button>
                 <Button onClick={handleLogout}>Logout</Button>
               </div>
             </div>
@@ -131,12 +126,11 @@ export default function ProfilePage() {
         </SlideInRight>
       </div>
 
-      {/* <ProfileEditForm
+      <ProfileEditForm
         user={user}
-        onSubmit={handleProfileUpdate}
         open={isEditing}
         onOpenChange={setIsEditing}
-      /> */}
+      />
     </div>
   );
 }

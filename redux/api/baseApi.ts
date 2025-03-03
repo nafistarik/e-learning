@@ -19,8 +19,8 @@ export const baseApi = createApi({
   tagTypes: [
     "Auth",
     "Courses",
-    "Users",
-    "Favourite"
+    "Favourite",
+    "Enroll"
   ],
 });
 export const {} = baseApi;

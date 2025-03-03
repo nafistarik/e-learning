@@ -1,38 +1,64 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
-import { Course } from "@/lib/data/courses";
-import { useGetCoursesQuery } from "@/redux/api/courseApi";
-import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 import { motion } from "framer-motion";
+import { useGetAllEnrollmentsByAdminQuery } from "@/redux/api/enrollApi";
+import Loader from "@/components/shared/Loader";
+
+interface CourseEnrollments {
+  title: string;
+  enrollmentCount: number;
+  courseId: string;
+}
 
 export function EnrollmentChart() {
-  const { data: courses, isLoading } = useGetCoursesQuery({});
+  const { data: allEnrollments, isLoading: enrollmentsLoading } =
+    useGetAllEnrollmentsByAdminQuery({});
 
   const enrollmentData =
-    courses?.courses?.map((course: Course) => ({
-      name: course.title,
-      enrollments: Math.floor(Math.random() * 100), // Simulated data
+    allEnrollments?.map((course: CourseEnrollments) => ({
+      name:
+        course.title.length > 5
+          ? course.title.substring(0, 5) + ".."
+          : course.title,
+      enrollments: course.enrollmentCount,
     })) || [];
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 2 }}
     >
       <Card className="p-6 shadow-lg border border-muted rounded-2xl">
-        <h2 className="mb-4 text-xl font-semibold text-foreground">Course Enrollments</h2>
+        <h2 className="mb-4 text-xl font-semibold text-foreground">
+          Course Enrollments
+        </h2>
         <div className="h-[300px]">
-          {isLoading ? (
-            <p className="text-muted-foreground text-center">Loading chart...</p>
+          {enrollmentsLoading ? (
+            <Loader />
           ) : (
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={enrollmentData}>
                 <CartesianGrid strokeDasharray="4 4" strokeOpacity={0.2} />
                 <XAxis dataKey="name" tick={{ fill: "#666" }} />
                 <YAxis tick={{ fill: "#666" }} />
-                <Tooltip contentStyle={{ background: "#111", color: "#fff", borderRadius: "8px" }} />
+                <Tooltip
+                  contentStyle={{
+                    background: "#111",
+                    color: "#fff",
+                    borderRadius: "8px",
+                  }}
+                />
                 <Bar
                   dataKey="enrollments"
                   fill="#222"

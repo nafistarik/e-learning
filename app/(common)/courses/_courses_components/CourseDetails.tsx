@@ -118,7 +118,7 @@ export default function CourseDetails() {
                 onClick={() => onEnroll(singleCourseData._id)}
                 className="flex-1"
               >
-                Enroll Now
+                {enrollLoading ? "Enrolling..." : "Enroll Now"}
               </Button>
 
               <Button
@@ -127,16 +127,14 @@ export default function CourseDetails() {
                 onClick={() => onFavorite(singleCourseData._id)}
               >
                 <Heart className="h-5 w-5" />
-                Add to Favorites
+                {favoriteLoading ? "Adding..." : "Add to Favorites"}
               </Button>
             </div>
-            {favoriteLoading && <p className="font-bold pt-2">Loading...</p>}
             {favoriteError && (
               <p className="text-red-500 font-bold pt-2">
                 Failed to favorite course
               </p>
             )}
-            {enrollLoading && <p className="font-bold pt-2">Loading...</p>}
             {enrollError && (
               <p className="text-red-500 font-bold pt-2">
                 Failed to enroll in course

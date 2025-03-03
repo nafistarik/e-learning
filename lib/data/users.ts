@@ -1,5 +1,5 @@
 export interface User {
-    id: number
+    id: string
     name: string
     email: string
     image: string
@@ -9,7 +9,7 @@ export interface User {
   
   export const users: User[] = [
     {
-      id: 1,
+      id: "1",
       name: "John Doe",
       email: "john@example.com",
       image: "/placeholder.svg",

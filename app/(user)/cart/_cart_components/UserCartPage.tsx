@@ -39,8 +39,8 @@ export default function UserCartPage() {
       {/* Staggered list for favorite courses */}
       <StaggerList>
         <div className="grid gap-6">
-          {userFavouriteCourses.length > 0 ? (
-            userFavouriteCourses.map((course: Course) => (
+          {userFavouriteCourses?.length > 0 ? (
+            userFavouriteCourses?.map((course: Course) => (
               <FadeUp key={course._id}>
                 <CartCourseCard course={course} />
               </FadeUp>

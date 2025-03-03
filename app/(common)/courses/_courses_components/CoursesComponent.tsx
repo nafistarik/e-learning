@@ -20,6 +20,7 @@ import ZoomIn from "@/components/motion/ZoomIn";
 import EmptyStateMessage from "@/components/shared/EmptyStateMessage";
 
 export default function CoursesComponent() {
+  
   const { data: courses, isLoading, isError } = useGetCoursesQuery({});
 
   return (

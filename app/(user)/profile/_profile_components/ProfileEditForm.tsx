@@ -6,6 +6,10 @@ import { Input } from "@/components/ui/input"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import Image from "next/image"
 import type { User } from "@/lib/data/users"
+import { useUpdateUserProfileMutation } from "@/redux/api/userApi"
+import { toast } from "sonner"
+import { useDispatch } from "react-redux"
+import { setUser } from "@/redux/slice/userSlice"
 
 interface ProfileEditFormData {
   name: string
@@ -14,25 +18,46 @@ interface ProfileEditFormData {
 
 interface ProfileEditFormProps {
   user: User
-  onSubmit: (data: ProfileEditFormData) => void
   open: boolean
   onOpenChange: (open: boolean) => void
 }
 
-export function ProfileEditForm({ user, onSubmit, open, onOpenChange }: ProfileEditFormProps) {
+export function ProfileEditForm({ user, open, onOpenChange }: ProfileEditFormProps) {
   const { register, handleSubmit, watch } = useForm<ProfileEditFormData>({
     defaultValues: {
-      name: user.name,
+      name: user?.name,
     },
   })
 
-  const imageFile = watch("image")?.[0]
-  const imagePreview = imageFile ? URL.createObjectURL(imageFile) : user.image
+  console.log(user)
 
-  const handleFormSubmit = (data: ProfileEditFormData) => {
-    console.log("Profile edit form data:", data)
-    onSubmit(data)
+  const imageFile = watch("image")?.[0]
+  const imagePreview = imageFile ? URL.createObjectURL(imageFile) : user?.image
+
+  const [updateUserProfile, { isLoading }] = useUpdateUserProfileMutation()
+
+  const dispatch = useDispatch();
+
+const handleFormSubmit = async (data: ProfileEditFormData) => {
+  const formData = new FormData();
+  formData.append("name", data.name);
+
+  if (data.image && data.image.length > 0) {
+    formData.append("image", data.image[0]);
   }
+
+  try {
+    const response = await updateUserProfile({ userId: user?.id, data: formData }).unwrap();
+
+    dispatch(setUser(response.user));
+    toast("✅ Profile updated successfully!");
+  } catch (err) {
+    console.error("Failed to update profile:", err);
+    toast("❌ Failed to update profile. Please try again.");
+  }
+  onOpenChange(false);
+};
+  
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -57,11 +82,10 @@ export function ProfileEditForm({ user, onSubmit, open, onOpenChange }: ProfileE
             <Input id="name" {...register("name")} />
           </div>
           <Button type="submit" className="w-full">
-            Save Changes
+            {isLoading ? "Saving..." : "Save Changes"}
           </Button>
         </form>
       </DialogContent>
     </Dialog>
   )
 }
-

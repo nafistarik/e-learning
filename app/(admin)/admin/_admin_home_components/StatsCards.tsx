@@ -5,18 +5,36 @@ import { Book, DollarSign, Users } from "lucide-react";
 import { useGetCoursesQuery } from "@/redux/api/courseApi";
 import { motion } from "framer-motion";
 import { useGetAllUsersQuery } from "@/redux/api/userApi";
+import { useGetAllEnrollmentsByAdminQuery } from "@/redux/api/enrollApi";
 
 export function StatsCards() {
+  const { data: users } = useGetAllUsersQuery({});
+
   const { data: courses, isLoading: isCoursesLoading } = useGetCoursesQuery({});
-  
-    const { data : users} = useGetAllUsersQuery({});
+
+  const { data: allEnrollments } = useGetAllEnrollmentsByAdminQuery({});
+
+  const priceMap: { [key: string]: number } = {};
+  courses?.courses?.forEach((course: { _id: string; price: number }) => {
+    priceMap[course._id] = course.price;
+  });
+
+  const totalRevenue = allEnrollments?.reduce(
+    (
+      sum: number,
+      enrollment: {
+        courseId: string;
+        enrollmentCount: number;
+      }
+    ) => {
+      const price: number = priceMap[enrollment.courseId];
+      return sum + (price ? price * enrollment.enrollmentCount : 0);
+    },
+    0
+  );
 
   const totalCourses = courses?.courses?.length || 0;
   const totalUsers = users?.length;
-  const totalRevenue = courses?.courses?.reduce(
-    (acc: number, course: { price: number }) => acc + course.price,
-    0
-  ) || 0;
 
   const stats = [
     { name: "Total Courses", value: totalCourses, icon: Book },
@@ -29,7 +47,7 @@ export function StatsCards() {
       {stats.map((stat, index) => {
         const Icon = stat.icon;
         return (
-          <motion.div 
+          <motion.div
             key={index}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -42,7 +60,7 @@ export function StatsCards() {
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">{stat.name}</p>
-                  <motion.p 
+                  <motion.p
                     className="text-3xl font-semibold text-foreground"
                     key={isCoursesLoading ? "loading" : stat.value}
                     initial={{ opacity: 0.5, y: -5 }}

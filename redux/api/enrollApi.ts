@@ -8,7 +8,7 @@ const enrollApi = baseApi.injectEndpoints({
         url: `/users/enrolled/${userId}`,
         method: "GET",
       }),
-      providesTags: ["Favourite"],
+      providesTags: ["Enroll"],
     }),
 
     enrollCourse: build.mutation({
@@ -17,7 +17,15 @@ const enrollApi = baseApi.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["Favourite"],
+      invalidatesTags: ["Enroll"],
+    }),
+
+    getAllEnrollmentsByAdmin: build.query({
+      query: () => ({
+        url: "users/course-enrollments",
+        method: "GET",
+      }),
+      providesTags: ["Enroll"],
     }),
 
   }),
@@ -26,4 +34,5 @@ const enrollApi = baseApi.injectEndpoints({
 export const {
     useGetAllEnrollmentsQuery,
     useEnrollCourseMutation,
+    useGetAllEnrollmentsByAdminQuery,
 } = enrollApi;

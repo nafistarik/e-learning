@@ -1,5 +1,5 @@
 import { StatsCards } from "./StatsCards";
-import { RecentEnrollments } from "./RecentEnrollments";
+// import { RecentEnrollments } from "./RecentEnrollments";
 import { EnrollmentChart } from "./EnrollmentChart";
 
 export default function AdminDashboardHome() {
@@ -15,7 +15,7 @@ export default function AdminDashboardHome() {
 
       <EnrollmentChart/>
 
-      <RecentEnrollments />
+      {/* <RecentEnrollments /> */}
     </div>
   );
 }
