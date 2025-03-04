@@ -6,13 +6,14 @@ import { useGetCoursesQuery } from "@/redux/api/courseApi";
 import { motion } from "framer-motion";
 import { useGetAllUsersQuery } from "@/redux/api/userApi";
 import { useGetAllEnrollmentsByAdminQuery } from "@/redux/api/enrollApi";
+import LoadingWave from "@/components/shared/LoadingWave";
 
 export function StatsCards() {
   const { data: users } = useGetAllUsersQuery({});
 
   const { data: courses, isLoading: isCoursesLoading } = useGetCoursesQuery({});
 
-  const { data: allEnrollments } = useGetAllEnrollmentsByAdminQuery({});
+  const { data: allEnrollments, isLoading : enrollmentsLoading } = useGetAllEnrollmentsByAdminQuery({});
 
   const priceMap: { [key: string]: number } = {};
   courses?.courses?.forEach((course: { _id: string; price: number }) => {
@@ -67,7 +68,7 @@ export function StatsCards() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                   >
-                    {isCoursesLoading ? "..." : stat.value}
+                    {isCoursesLoading || enrollmentsLoading ? <LoadingWave/> : stat.value}
                   </motion.p>
                 </div>
               </div>

@@ -41,14 +41,11 @@ export function ProfileEditForm({ user, open, onOpenChange }: ProfileEditFormPro
 const handleFormSubmit = async (data: ProfileEditFormData) => {
   const formData = new FormData();
   formData.append("name", data.name);
-
   if (data.image && data.image.length > 0) {
     formData.append("image", data.image[0]);
   }
-
   try {
     const response = await updateUserProfile({ userId: user?.id, data: formData }).unwrap();
-
     dispatch(setUser(response.user));
     toast("✅ Profile updated successfully!");
   } catch (err) {
@@ -58,7 +55,6 @@ const handleFormSubmit = async (data: ProfileEditFormData) => {
   onOpenChange(false);
 };
   
-
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
