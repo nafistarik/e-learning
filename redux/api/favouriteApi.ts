@@ -21,8 +21,8 @@ const favouriteApi = baseApi.injectEndpoints({
     }),
 
     removeFromFavourite: build.mutation({
-      query: (id) => ({
-        url: `/courses/delete/${id}`,
+      query: (courseId) => ({
+        url: `/users/favorites/${courseId}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Favourite"],
