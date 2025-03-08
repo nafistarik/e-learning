@@ -38,22 +38,24 @@ export function ProfileEditForm({ user, open, onOpenChange }: ProfileEditFormPro
 
   const dispatch = useDispatch();
 
-const handleFormSubmit = async (data: ProfileEditFormData) => {
-  const formData = new FormData();
-  formData.append("name", data.name);
-  if (data.image && data.image.length > 0) {
-    formData.append("image", data.image[0]);
-  }
-  try {
-    const response = await updateUserProfile({ userId: user?.id, data: formData }).unwrap();
-    dispatch(setUser(response.user));
-    toast("✅ Profile updated successfully!");
-  } catch (err) {
-    console.error("Failed to update profile:", err);
-    toast("❌ Failed to update profile. Please try again.");
-  }
-  onOpenChange(false);
-};
+  const handleFormSubmit = async (data: ProfileEditFormData) => {
+    const formData = new FormData();
+    formData.append("name", data.name);
+    if (data.image && data.image.length > 0) {
+      formData.append("image", data.image[0]);
+    }
+    try {
+      const response = await updateUserProfile({ userId: user?.id, data: formData }).unwrap();
+      console.log("API Response:", response);
+      dispatch(setUser({ data: response.user }));
+      console.log("Redux State after dispatch:", response.user); // Log the updated state
+      toast("✅ Profile updated successfully!");
+    } catch (err) {
+      console.error("Failed to update profile:", err);
+      toast("❌ Failed to update profile. Please try again.");
+    }
+    onOpenChange(false);
+  };
   
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
