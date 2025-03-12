@@ -38,7 +38,7 @@ export function CourseAddForm({ open, onOpenChange }: CourseAddFormProps) {
     formData.append("price", data.price);
     formData.append("category", selectedCategory || "Data Science"); 
     formData.append("categoryId", "1"); 
-    formData.append("instructor", "Hassan Shuvo"); 
+    formData.append("instructor", "Amisha Nandi");
 
     if (data.image && data.image.length > 0) {
       formData.append("image", data.image[0]); // Append image file
