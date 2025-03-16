@@ -75,9 +75,9 @@ export function CourseCard({ course }: CourseCardProps) {
         <p className="mt-1 text-sm text-muted-foreground line-clamp-2">
           {course.description}
         </p>
-        <div>
+        {/* <div>
           <p className="mt-2 text-lg font-bold">${course.price}</p>
-        </div>
+        </div> */}
         <div className="mt-4 flex items-center gap-4 justify-between">
           <Link href={`/courses/${course._id}`} className="flex-1">
             <Button

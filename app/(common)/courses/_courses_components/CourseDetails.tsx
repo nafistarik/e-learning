@@ -95,9 +95,9 @@ export default function CourseDetails() {
                 <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
                   {singleCourseData.category}
                 </span>
-                <span className="ml-4 text-lg font-bold">
+                {/* <span className="ml-4 text-lg font-bold">
                   ${singleCourseData.price}
-                </span>
+                </span> */}
               </div>
 
               <div className="mb-2">

@@ -1,11 +1,11 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
-import { Book, DollarSign, Users } from "lucide-react";
+import { Book, Users } from "lucide-react";
 import { useGetCoursesQuery } from "@/redux/api/courseApi";
 import { motion } from "framer-motion";
 import { useGetAllUsersQuery } from "@/redux/api/userApi";
-import { useGetAllEnrollmentsByAdminQuery } from "@/redux/api/enrollApi";
+// import { useGetAllEnrollmentsByAdminQuery } from "@/redux/api/enrollApi";
 import LoadingWave from "@/components/shared/LoadingWave";
 
 export function StatsCards() {
@@ -13,26 +13,26 @@ export function StatsCards() {
 
   const { data: courses, isLoading: isCoursesLoading } = useGetCoursesQuery({});
 
-  const { data: allEnrollments, isLoading : enrollmentsLoading } = useGetAllEnrollmentsByAdminQuery({});
+  // const { data: allEnrollments, isLoading : enrollmentsLoading } = useGetAllEnrollmentsByAdminQuery({});
 
   const priceMap: { [key: string]: number } = {};
   courses?.courses?.forEach((course: { _id: string; price: number }) => {
     priceMap[course._id] = course.price;
   });
 
-  const totalRevenue = allEnrollments?.reduce(
-    (
-      sum: number,
-      enrollment: {
-        courseId: string;
-        enrollmentCount: number;
-      }
-    ) => {
-      const price: number = priceMap[enrollment.courseId];
-      return sum + (price ? price * enrollment.enrollmentCount : 0);
-    },
-    0
-  );
+  // const totalRevenue = allEnrollments?.reduce(
+  //   (
+  //     sum: number,
+  //     enrollment: {
+  //       courseId: string;
+  //       enrollmentCount: number;
+  //     }
+  //   ) => {
+  //     const price: number = priceMap[enrollment.courseId];
+  //     return sum + (price ? price * enrollment.enrollmentCount : 0);
+  //   },
+  //   0
+  // );
 
   const totalCourses = courses?.courses?.length || 0;
   const totalUsers = users?.length;
@@ -40,11 +40,11 @@ export function StatsCards() {
   const stats = [
     { name: "Total Courses", value: totalCourses, icon: Book },
     { name: "Total Users", value: totalUsers, icon: Users },
-    { name: "Total Revenue", value: `$${totalRevenue}`, icon: DollarSign },
+    // { name: "Total Revenue", value: `$${totalRevenue}`, icon: DollarSign },
   ];
 
   return (
-    <div className="grid gap-6 md:grid-cols-3">
+    <div className="grid gap-6 md:grid-cols-2">
       {stats.map((stat, index) => {
         const Icon = stat.icon;
         return (
@@ -68,7 +68,7 @@ export function StatsCards() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                   >
-                    {isCoursesLoading || enrollmentsLoading ? <LoadingWave/> : stat.value}
+                     {isCoursesLoading /* || enrollmentsLoading */ ? <LoadingWave/> : stat.value}
                   </motion.p>
                 </div>
               </div>

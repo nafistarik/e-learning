@@ -41,7 +41,7 @@ export function CourseAddForm({ open, onOpenChange }: CourseAddFormProps) {
     formData.append("instructor", "Amisha Nandi");
 
     if (data.image && data.image.length > 0) {
-      formData.append("image", data.image[0]); // Append image file
+      formData.append("image", data.image[0]);
     } else {
       console.error("❌ No image selected!");
       return;
