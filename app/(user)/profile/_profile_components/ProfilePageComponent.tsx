@@ -52,7 +52,7 @@ export default function ProfilePage() {
         <SlideInLeft>
           <Card className="p-6">
             <div className="flex flex-col items-center gap-4">
-              <div className="relative h-32 w-32 rounded-full overflow-hidden bg-gray-200">
+              <div className="relative h-36 w-36 rounded-full overflow-hidden bg-gray-200">
                 <Image
                   src={user?.image || defaultPropic}
                   alt="Profile"
@@ -105,14 +105,14 @@ export default function ProfilePage() {
                               </span>
                             </p>
                           </div>
-                          <div className="flex items-center justify-between">
+                          {/* <div className="flex items-center justify-between">
                             <span className="mt-1 text-sm text-muted-foreground">
                               Price:{" "}
                               <span className="font-normal">
                                 ${course.price}
                               </span>
                             </span>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     </Card>

@@ -1,10 +1,12 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+// import { Button } from "@/components/ui/button";
+// import { Input } from "@/components/ui/input";
+// import { Textarea } from "@/components/ui/textarea";
 import { Mail, MapPin, Phone, Clock } from "lucide-react";
 import FadeUp from "@/components/motion/FadeUp";
 import ScaleUp from "@/components/motion/ScaleUp";
 import SlideInRight from "@/components/motion/SlideInRight";
+import Image from "next/image";
+import contactImage from "@/app/assets/images/home/Contact.png";
 
 export function ContactPage() {
   return (
@@ -14,35 +16,38 @@ export function ContactPage() {
         <FadeUp>
           <div className="space-y-6">
             <h2 className="text-4xl font-bold">Get in Touch</h2>
+            {/* <p className="text-gray-600">
+              Have any questions or feedback? We’d love to hear from you!
+              Whether you need assistance, have a suggestion, or just want to
+              say hello, our team is here to help.
+            </p> */}
             <p className="text-gray-600">
-              Have any questions or feedback? We’d love to hear from you! Whether you need assistance, have a suggestion, or just want to say hello, our team is here to help.
-            </p>
-            <p className="text-gray-600">
-              You can reach out to us through email, phone, or visit our office. We aim to respond to all inquiries within 24 hours.
+              You can reach out to us through email, phone, or visit our office.
+              We aim to respond to all inquiries within 24 hours.
             </p>
             <div className="space-y-4 text-sm">
               <ScaleUp>
                 <div className="flex items-center gap-3">
                   <Mail className="h-5 w-5 text-black" />
-                  <span>info@example.com</span>
+                  <span>info@elearning.com</span>
                 </div>
               </ScaleUp>
               <ScaleUp>
                 <div className="flex items-center gap-3">
                   <Phone className="h-5 w-5 text-black" />
-                  <span>+1 (555) 000-0000</span>
+                  <span>01234567890</span>
                 </div>
               </ScaleUp>
               <ScaleUp>
                 <div className="flex items-center gap-3">
                   <MapPin className="h-5 w-5 text-black" />
-                  <span>123 Education St, Learning City, 12345</span>
+                  <span>Dhaka,Bangladesh</span>
                 </div>
               </ScaleUp>
               <ScaleUp>
                 <div className="flex items-center gap-3">
                   <Clock className="h-5 w-5 text-black" />
-                  <span>Monday - Friday: 9:00 AM - 6:00 PM</span>
+                  <span>Sunday - Thursday: 9:00 AM - 6:00 PM</span>
                 </div>
               </ScaleUp>
             </div>
@@ -50,7 +55,7 @@ export function ContactPage() {
         </FadeUp>
         {/* Contact Form */}
         <SlideInRight>
-          <div className="bg-white p-8 rounded-2xl shadow-lg space-y-6 border border-gray-200 bg-white/20 backdrop-blur-md">
+          {/* <div className="bg-white p-8 rounded-2xl shadow-lg space-y-6 border border-gray-200 bg-white/20 backdrop-blur-md">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <label htmlFor="name">Name</label>
@@ -70,6 +75,15 @@ export function ContactPage() {
               <Textarea id="message" placeholder="Your message" className="border-gray-300 min-h-[150px]" />
             </div>
             <Button className="w-full bg-black text-white hover:bg-gray-800">Send Message</Button>
+          </div> */}
+          <div>
+            <Image
+              src={contactImage}
+              alt="contact image"
+              width={500}
+              height={500}
+              className="w-full h-auto"
+            ></Image>
           </div>
         </SlideInRight>
       </div>

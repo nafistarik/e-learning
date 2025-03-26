@@ -65,7 +65,7 @@ export function ProfileEditForm({ user, open, onOpenChange }: ProfileEditFormPro
         </DialogHeader>
         <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-4">
           <div className="flex flex-col items-center gap-4">
-            <div className="relative h-32 w-32">
+            <div className="relative h-36 w-36">
               <Image
                 src={imagePreview || "/placeholder.svg"}
                 alt="Profile"

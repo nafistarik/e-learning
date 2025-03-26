@@ -62,7 +62,7 @@ export function CartCourseCard({ course }: CartCourseCardProps) {
           <p className="mt-2 text-sm text-muted-foreground">by {course.instructor}</p>
         </div>
         <div className="flex items-center justify-between">
-          <p className="text-lg font-bold">${course.price}</p>
+          {/* <p className="text-lg font-bold">${course.price}</p> */}
           <div className="flex gap-2">
           {enrollLoading && <p className="font-bold pt-2">Loading...</p>}
         {enrollError && (
