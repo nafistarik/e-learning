@@ -71,7 +71,7 @@ export default function AdminCoursesPage() {
               <TableRow className="bg-gray-100">
                 <TableHead className="font-bold">Course</TableHead>
                 <TableHead className="font-bold">Category</TableHead>
-                <TableHead className="text-right font-bold">Price</TableHead>
+                {/* <TableHead className="text-right font-bold">Price</TableHead> */}
                 <TableHead className="text-right font-bold">Actions</TableHead>
               </TableRow>
             </TableHeader>
@@ -86,7 +86,7 @@ export default function AdminCoursesPage() {
                 >
                   <TableCell className="font-medium">{course.title}</TableCell>
                   <TableCell>{course.category}</TableCell>
-                  <TableCell className="text-right">${course.price.toFixed(2)}</TableCell>
+                  {/* <TableCell className="text-right">${course.price.toFixed(2)}</TableCell> */}
                   <TableCell className="text-right space-x-2">
                     <Button
                       variant="ghost"
