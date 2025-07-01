@@ -5,7 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Course } from "@/lib/data/courses";
 import { useGetCoursesQuery } from "@/redux/api/courseApi";
 import Link from "next/link";
-import { CourseCard } from "../courses/_courses_components/CourseCard";
+import { CourseCard } from "../courses/_components/CourseCard";
 import SlideInRight from "@/components/motion/SlideInRight";
 import ZoomIn from "@/components/motion/ZoomIn";
 import EmptyStateMessage from "@/components/shared/EmptyStateMessage";

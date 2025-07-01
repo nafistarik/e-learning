@@ -1,4 +1,4 @@
-import UserCartPage from "./_cart_components/UserCartPage";
+import UserCartPage from "./_components/UserCartPage";
 
 export default function Page() {
   return (

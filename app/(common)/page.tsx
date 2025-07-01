@@ -1,6 +1,6 @@
-import { Hero } from "./_home_components/Hero"
-import { Categories } from "./_home_components/Categories"
-import { PopularCourses } from "./_home_components/PopularCourses"
+import { Hero } from "./_components/Hero"
+import { Categories } from "./_components/Categories"
+import { PopularCourses } from "./_components/PopularCourses"
 
 export default function Home() {
   return (

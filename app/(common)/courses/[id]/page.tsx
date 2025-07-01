@@ -1,4 +1,4 @@
-import CourseDetails from "../_courses_components/CourseDetails";
+import CourseDetails from "../_components/CourseDetails";
 
 
 export default function CourseDetailsPage() {
