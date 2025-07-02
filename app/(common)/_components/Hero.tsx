@@ -23,7 +23,7 @@ export function Hero() {
           </FadeUp>
           <FadeUp delay={0.1}>
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl leading-tight">
-              Accessible Online Courses <br />{" "}
+              Online Courses <br />{" "}
               <span className="text-primary">For All</span>
             </h1>
           </FadeUp>

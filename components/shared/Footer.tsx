@@ -20,7 +20,7 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer className="border-t text-muted-foreground">
+    <footer className="border-t bg-[#E1EDF9] text-muted-foreground">
       <div className="container py-10">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           

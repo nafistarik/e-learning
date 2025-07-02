@@ -104,40 +104,39 @@ body {
   }
 }
 
-/* Default scrollbar for the website */
+/* Global scrollbar for light-blue background (#E9F3FF) */
 ::-webkit-scrollbar {
   width: 12px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #E9F3FF; /* Matches your background */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #f4d691 ;
+  background: #aac8e4; /* Soft mid-blue thumb */
   border-radius: 8px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #8c8c8c;
+  background: #7ba9d6; /* Darker for hover effect */
 }
 
-
-/* Custom scrollbar for specific elements (e.g., shadcn Card) */
+/* Custom scrollbar for specific scrollable components */
 .custom-scrollbar::-webkit-scrollbar {
   width: 10px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: white;
+  background: #E9F3FF;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, black, gray, white);
+  background: linear-gradient(to bottom, #93bde9, #689ed4, #d6e9f9);
   border-radius: 6px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, gray, black, white);
+  background: linear-gradient(to bottom, #689ed4, #4f89c3, #bdddf5);
 }
