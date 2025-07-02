@@ -19,7 +19,7 @@ import { cn } from "@/lib/utils";
 import { useSelector } from "react-redux";
 import { selectUser } from "@/redux/slice/userSlice";
 import Image from "next/image";
-import logo from "@/app/assets/images/shared/Logo_Final.png";
+import logo from "@/app/assets/images/shared/logo.png";
 
 const navigation = [
   { name: "Home", href: "/", icon: <Home className="h-5 w-5" /> },
@@ -43,7 +43,7 @@ export default function Navbar() {
               src={logo}
               width={1000}
               height={1000}
-              className="w-auto h-16 sm:h-20 "
+              className="w-auto h-8 sm:h-12 "
               alt="logo"
             />
           </Link>
