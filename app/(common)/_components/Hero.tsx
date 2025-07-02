@@ -11,13 +11,7 @@ import background from "@/app/assets/images/home/background.jpg";
 export function Hero() {
   return (
     <section
-      className=" min-h-screen flex flex-col justify-center pt-28 pb-12 lg:pt-32 lg:pb-24"
-      style={{
-        backgroundImage: `url(${background.src})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        objectFit: "cover",
-      }}
+      className=" min-h-screen flex flex-col justify-center pt-28 pb-12 lg:pt-32 lg:pb-24 "
     >
       <div className="grid items-center gap-12 md:grid-cols-2 container">
         {/* Left Text Section */}
