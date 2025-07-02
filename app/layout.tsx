@@ -16,7 +16,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Elearn",
+  title: "SkillFlow",
   description: "Next.js Elearning Platform",
 };
 
