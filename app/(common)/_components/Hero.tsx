@@ -6,7 +6,6 @@ import home from "@/app/assets/images/home/home.png";
 import Link from "next/link";
 import FadeUp from "@/components/motion/FadeUp";
 import ScaleUp from "@/components/motion/ScaleUp";
-import background from "@/app/assets/images/home/background.jpg";
 
 export function Hero() {
   return (

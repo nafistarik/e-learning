@@ -2,7 +2,6 @@ import Image from "next/image";
 import heroImage from "@/app/assets/images/home/Book-lover-bro.png";
 import FadeUp from "@/components/motion/FadeUp";
 import ScaleUp from "@/components/motion/ScaleUp";
-import background from "@/app/assets/images/home/background.jpg"
 
 export function About() {
   return (
