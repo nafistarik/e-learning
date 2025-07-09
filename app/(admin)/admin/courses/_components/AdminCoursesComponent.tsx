@@ -7,13 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Plus, Trash, Pencil } from "lucide-react";
 import { useGetCoursesQuery, useDeleteCourseMutation } from "@/redux/api/courseApi";
-import { CourseAddForm } from "@/app/(admin)/admin/courses/_admin_course_components/CourseAddForm";
-import { CourseEditForm } from "@/app/(admin)/admin/courses/_admin_course_components/CourseEditForm";
 import { toast } from "sonner";
 import { Course } from "@/lib/data/courses";
 import { motion } from "framer-motion";
+import { CourseAddForm } from "./CourseAddForm";
+import { CourseEditForm } from "./CourseEditForm";
 
-export default function AdminCoursesPage() {
+export default function AdminCoursesComponent() {
   const { data: courses, isLoading } = useGetCoursesQuery({});
   const [deleteCourse] = useDeleteCourseMutation();
   
