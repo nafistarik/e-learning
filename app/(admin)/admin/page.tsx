@@ -1,4 +1,4 @@
-import AdminDashboardHome from "./_admin_home_components/AdminDashboardHome";
+import AdminDashboardHome from "./_components/AdminDashboardHome";
 
 
 
