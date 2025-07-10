@@ -30,7 +30,6 @@ export default function CourseDetails() {
     useEnrollCourseMutation();
 
   const onFavorite = async (courseId: string) => {
-    console.log(`Favorite course ID: ${courseId}`);
     const body = { courseId: courseId };
     try {
       const response = await addToFavourite(body).unwrap();
@@ -44,7 +43,6 @@ export default function CourseDetails() {
   };
 
   const onEnroll = async (courseId: string) => {
-    console.log(`Enrolled in course ID: ${courseId}`);
     const body = { courseId: courseId };
     try {
       const response = await enrollCourse(body).unwrap();

@@ -33,7 +33,6 @@ export function UserList() {
   if (isLoading) return <Loader />;
   if (isError) return <p>Error fetching user data!</p>;
 
-  console.log(data);
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}

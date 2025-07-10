@@ -80,15 +80,12 @@ export function CourseEditForm({
     formData.append("price", data.price);
     formData.append("category", data.category);
 
-    console.log("this si sformdata" ,data)
-
     if (data.image?.length) {
       formData.append("image", data.image[0]);
     }
 
     try {
       await updateCourse({ id: course._id, data: formData }).unwrap();
-      console.log("this is form data", formData);
       onOpenChange(false);
     } catch (err) {
       console.error("Failed to update course:", err);

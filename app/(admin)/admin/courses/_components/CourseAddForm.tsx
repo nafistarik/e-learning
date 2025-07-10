@@ -27,11 +27,9 @@ interface CourseAddFormProps {
 export function CourseAddForm({ open, onOpenChange }: CourseAddFormProps) {
   const { register, handleSubmit, setValue, reset } = useForm<CourseAddFormData>();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-
   const [createCourse, { isLoading, error }] = useCreateCourseMutation();
 
   const handleFormSubmit = async (data: CourseAddFormData) => {
-
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("description", data.description);
@@ -47,11 +45,8 @@ export function CourseAddForm({ open, onOpenChange }: CourseAddFormProps) {
       return;
     }
 
-    console.log("📦 FormData before sending:", Object.fromEntries(formData.entries()));
-
     try {
       await createCourse(formData).unwrap();
-      console.log("✅ Course created successfully!");
       toast("✅ Course created successfully!")
       reset(); // Reset the form fields
       onOpenChange(false); // Close the modal

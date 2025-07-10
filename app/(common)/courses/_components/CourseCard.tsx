@@ -22,7 +22,6 @@ export function CourseCard({ course }: CourseCardProps) {
     useEnrollCourseMutation();
 
   const onFavorite = async (courseId: string) => {
-    console.log(`Favorite course ID: ${courseId}`);
     const body = { courseId: courseId };
 
     try {
@@ -37,7 +36,6 @@ export function CourseCard({ course }: CourseCardProps) {
   };
 
   const onEnroll = async (courseId: string) => {
-    console.log(`Enrolled in course ID: ${courseId}`);
     const body = { courseId: courseId };
 
     try {

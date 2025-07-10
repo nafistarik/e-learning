@@ -29,10 +29,8 @@ export default function LoginPage() {
   const router = useRouter();
 
   const onSubmit = async (data: LoginFormData) => {
-    console.log("data", data);
     try {
       const response = await loginUser(data).unwrap();
-      console.log("API Response:", response);
 
       // Store user & token in Redux and localStorage
       dispatch(setUser({ data: response.user }));
