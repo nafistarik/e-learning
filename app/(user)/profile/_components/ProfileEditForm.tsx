@@ -9,7 +9,7 @@ import type { User } from "@/lib/data/users"
 import { useUpdateUserProfileMutation } from "@/redux/api/userApi"
 import { toast } from "sonner"
 import { useDispatch } from "react-redux"
-import { setUser } from "@/redux/slice/userSlice"
+import { updateUser } from "@/redux/slice/userSlice"
 
 interface ProfileEditFormData {
   name: string
@@ -29,8 +29,6 @@ export function ProfileEditForm({ user, open, onOpenChange }: ProfileEditFormPro
     },
   })
 
-  console.log(user)
-
   const imageFile = watch("image")?.[0]
   const imagePreview = imageFile ? URL.createObjectURL(imageFile) : user?.image
 
@@ -46,9 +44,7 @@ export function ProfileEditForm({ user, open, onOpenChange }: ProfileEditFormPro
     }
     try {
       const response = await updateUserProfile({ userId: user?.id, data: formData }).unwrap();
-      console.log("API Response:", response);
-      dispatch(setUser({ data: response.user }));
-      console.log("Redux State after dispatch:", response.user); // Log the updated state
+      dispatch(updateUser({ data: response.user }));
       toast("✅ Profile updated successfully!");
     } catch (err) {
       console.error("Failed to update profile:", err);

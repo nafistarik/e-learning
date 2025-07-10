@@ -17,14 +17,15 @@ export const userSlice = createSlice({
   reducers: {
     setUser: (state, action) => {
       state.user = action.payload.data;
-      console.log(action.payload.data);
-      // console.log(state.user);
       const accessToken = action.payload.data.accessToken;
 
       // Save accessToken to localStorage (client-side only)
       if (typeof window !== "undefined") {
         localStorage.setItem("accessToken", accessToken);
       }
+    },
+    updateUser: (state, action) => {
+      state.user = action.payload.data;
     },
     removeUser: (state) => {
       state.user = null;
@@ -37,7 +38,7 @@ export const userSlice = createSlice({
   },
 });
 
-export const { setUser, removeUser } = userSlice.actions;
+export const { setUser, updateUser, removeUser } = userSlice.actions;
 
 export const selectUser = (state: RootState) => state.user;
 export const selectIsLoggedIn = (state: RootState) => !!state.user.user;
