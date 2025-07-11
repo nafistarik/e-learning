@@ -8,7 +8,7 @@ interface CategoryCardProps {
 
 export function CategoryCard({ category }: CategoryCardProps) {
   return (
-    <div className="flex flex-col items-center gap-4 rounded-lg p-6">
+    <div className="flex flex-col items-center justify-between h-full gap-4 py-2 rounded-lg text-foreground">
       <Pulse>
         <Image
           src={category.icon || "/placeholder.svg"}
@@ -19,7 +19,7 @@ export function CategoryCard({ category }: CategoryCardProps) {
         />
       </Pulse>
       <div className="text-center">
-        <h3 className="font-semibold">{category.name}</h3>
+        <h3 className="text-lg font-medium">{category.name}</h3>
       </div>
     </div>
   );

@@ -1,15 +1,15 @@
 "use client";
 
-// import { Input } from "@/components/ui/input";
-// import {
-//   Select,
-//   SelectContent,
-//   SelectItem,
-//   SelectTrigger,
-//   SelectValue,
-// } from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { CourseCard } from "./CourseCard";
-// import { categories } from "@/lib/data/categories";
+import { categories } from "@/lib/data/categories";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useGetCoursesQuery } from "@/redux/api/courseApi";
 import { Course } from "@/lib/data/courses";
@@ -34,7 +34,7 @@ export default function CoursesComponent() {
               Browse our collection of courses
             </p>
           </div>
-          {/* <div className="flex flex-col gap-4 sm:flex-row">
+          <div className="flex flex-col gap-4 sm:flex-row">
             <Input
               placeholder="Search courses..."
               className="max-w-xs border border-gray-300 shadow-sm"
@@ -54,7 +54,7 @@ export default function CoursesComponent() {
                 ))}
               </SelectContent>
             </Select>
-          </div> */}
+          </div>
         </div>
       </SlideInRight>
 

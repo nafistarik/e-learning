@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import Image from "next/image";
+import logo from "@/app/assets/images/shared/logo.png";
 
 const socialLinks = [
   { icon: Facebook, href: "#" },
@@ -20,16 +22,19 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer className="bg-secondary text-muted-foreground border-t border-border">
+    <footer className="bg-secondary text-muted-foreground">
       <div className="container py-12">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
-          {/* Logo & Social Links */}
           <div>
-            <Link href="/" className="flex items-center space-x-2">
-              <span className="text-2xl font-semibold text-foreground tracking-wide">
-                E-Learning
-              </span>
-            </Link>
+          <Link href="/" className="flex items-center gap-2">
+            <Image
+              src={logo}
+              width={1000}
+              height={1000}
+              className="h-10 w-auto"
+              alt="logo"
+            />
+          </Link>
             <p className="mt-2 text-sm leading-relaxed">
               Unlock knowledge anytime, anywhere.
             </p>

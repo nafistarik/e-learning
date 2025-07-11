@@ -9,31 +9,34 @@ import ScaleUp from "@/components/motion/ScaleUp";
 
 export function Hero() {
   return (
-    <section
-      className=" min-h-screen flex flex-col justify-center pt-28 pb-12 lg:pt-32 lg:pb-24 "
-    >
-      <div className="grid items-center gap-12 md:grid-cols-2 container">
+    <section className="min-h-screen flex flex-col justify-center pt-28 pb-12 lg:pt-32 lg:pb-24 bg-background text-foreground">
+      <div className="container grid items-center gap-16 md:grid-cols-2">
         {/* Left Text Section */}
-        <div className="flex flex-col gap-2 md:gap-4">
+        <div className="flex flex-col gap-3 md:gap-5">
           <FadeUp>
-            <p className="text-sm font-semibold uppercase tracking-wide text-primary">
-              Online Learning Platform
+            <p className="text-sm font-semibold uppercase tracking-wider text-primary">
+              Learn Anywhere, Anytime
             </p>
           </FadeUp>
+
           <FadeUp delay={0.1}>
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl leading-tight">
-              Online Courses <br />{" "}
-              <span className="text-primary">For All</span>
+            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl leading-tight">
+              Master Skills, <br className="hidden sm:block" />
+              <span className="text-primary">Shape Your Future</span>
             </h1>
           </FadeUp>
+
           <FadeUp delay={0.2}>
-            <p className="text-lg text-gray-600 dark:text-gray-400 md:text-xl">
-              Own your future by learning new skills from expert instructors.
+            <p className="text-lg text-muted-foreground md:text-xl max-w-xl">
+              Explore expert-led courses designed to help you grow your career and reach your goals—no matter where you start.
             </p>
           </FadeUp>
+
           <FadeUp delay={0.3}>
             <Link href="/courses" className="inline-flex">
-              <Button className="px-6 py-3 text-lg">Let&apos;s Start</Button>
+              <Button className="px-6 py-3 text-lg shadow-md hover:shadow-lg transition-all duration-300">
+                Let&apos;s Start
+              </Button>
             </Link>
           </FadeUp>
         </div>
@@ -45,7 +48,7 @@ export function Hero() {
             alt="Learning illustration"
             width={500}
             height={400}
-            className="rounded-lg object-contain"
+            className="object-contain"
           />
         </ScaleUp>
       </div>
