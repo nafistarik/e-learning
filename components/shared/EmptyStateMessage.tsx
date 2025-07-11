@@ -4,8 +4,10 @@ interface EmptyStateMessageProps {
 
 const EmptyStateMessage = ({ message }: EmptyStateMessageProps) => {
   return (
-    <div className="w-full pt-4 pb-6  shadow-md rounded-lg">
-      <p className="text-gray-400 text-center text-xl font-bold">{message}</p>
+    <div className="w-full py-6 px-4 bg-card shadow-md rounded-lg flex items-center justify-center border border-muted">
+      <p className="text-muted-foreground text-center text-lg font-semibold tracking-wide">
+        {message}
+      </p>
     </div>
   );
 };

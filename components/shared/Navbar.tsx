@@ -34,85 +34,82 @@ export default function Navbar() {
   const user = useSelector(selectUser);
 
   return (
-    <nav className="fixed top-0 z-50 w-full   ">
-      <div className="bg-white/20 backdrop-blur-md shadow-md">
-        <div className="container flex h-24 items-center justify-between ">
+    <nav className="fixed top-0 z-50 w-full">
+      <div className="bg-background/80 backdrop-blur-md border-b border-border shadow-sm">
+        <div className="container flex h-20 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <Image
               src={logo}
               width={1000}
               height={1000}
-              className="w-auto h-8 sm:h-12 "
+              className="h-10 w-auto sm:h-12"
               alt="logo"
             />
           </Link>
 
-          {/* Navigation - Desktop */}
-          <div className="hidden lg:flex gap-8 mx-auto ">
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex gap-6">
             {navigation.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "flex items-center gap-2 transition-all duration-300 px-4 py-[6px] rounded-lg relative",
+                  "flex items-center gap-2 text-sm px-4 py-2 rounded-md transition-all duration-300",
                   pathname === item.href
-                    ? "text-black after:absolute after:left-1/2 after:-translate-x-1/2 after:bottom-[1px] after:w-3/4 after:h-[2px] after:bg-black after:rounded-full"
-                    : "text-gray-600 hover:text-black hover:bg-white"
+                    ? "text-primary font-semibold bg-muted"
+                    : "text-muted-foreground hover:text-primary hover:bg-muted/60"
                 )}
               >
-                {item.icon} {item.name}
+                {item.icon}
+                {item.name}
               </Link>
             ))}
           </div>
 
-          {/* User Controls */}
+          {/* User Buttons + Mobile Toggle */}
           <div className="flex items-center gap-4">
             {user?.user?.email === "abc@admin.com" ? (
               <Link href="/admin">
-                <Button className="text-black bg-white/20 backdrop-blur-lg hover:bg-white/30 hover:scale-101 hover:-translate-y-[2px] hover:shadow-xl p-3 rounded-md border-2 border-gray-300/50 hover:border-gray-400/50 shadow-lg transition-all duration-500 ease-in-out">
+                <Button className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all shadow-sm border border-border">
                   Dashboard
                 </Button>
               </Link>
             ) : user?.user ? (
-              <div className="flex items-center justify-center gap-3">
+              <div className="flex items-center gap-2">
                 <Link href="/cart">
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="relative bg-gray-100 hover:bg-white p-3 rounded-md border-2 border-gray-200 shadow-md transition-all duration-300 ease-in-out"
+                    className="bg-muted hover:bg-accent border border-border"
                   >
-                    <ShoppingCart className="h-5 w-5 text-black" />
+                    <ShoppingCart className="h-5 w-5 text-foreground" />
                   </Button>
                 </Link>
                 <Link href="/profile">
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="relative bg-gray-100 hover:bg-white p-3 rounded-md border-2 border-gray-200 shadow-md transition-all duration-300 ease-in-out"
+                    className="bg-muted hover:bg-accent border border-border"
                   >
-                    <User className="h-5 w-5 text-black" />
+                    <User className="h-5 w-5 text-foreground" />
                   </Button>
                 </Link>
               </div>
             ) : (
               <Link href="/login">
-                <Button className="text-black bg-white/20 backdrop-blur-lg hover:bg-white/30 hover:scale-101 hover:-translate-y-[2px] hover:shadow-xl p-3 px-4 rounded-md border-2 border-gray-300/50 hover:border-gray-400/50 shadow-lg transition-all duration-500 ease-in-out">
+                <Button className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm border border-border">
                   Sign In
                 </Button>
               </Link>
             )}
 
-            {/* Mobile Menu Button */}
+            {/* Mobile menu toggle */}
             <button
-              className="lg:hidden p-2 text-black rounded focus:outline-none hover:bg-gray-100 transition-all"
+              className="lg:hidden p-2 rounded-md text-foreground hover:bg-muted"
               onClick={() => setIsOpen(!isOpen)}
             >
-              {isOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           </div>
         </div>
@@ -126,32 +123,35 @@ export default function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-end"
+            className="fixed inset-0 z-50 bg-foreground/20 backdrop-blur-sm flex justify-end"
           >
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.3 }}
-              className="bg-white w-64 h-full shadow-lg p-6 relative"
+              className="bg-background w-72 h-full shadow-xl p-6 relative"
             >
               {/* Close Button */}
               <button
                 onClick={() => setIsOpen(false)}
-                className="absolute top-4 right-4 text-black hover:text-gray-600"
+                className="absolute top-4 right-4 text-foreground hover:text-primary"
               >
                 <X size={28} />
               </button>
 
-              <div className="flex flex-col space-y-6 text-lg text-black text-center mt-12">
+              <div className="mt-16 space-y-6 text-center">
                 {navigation.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="flex items-center justify-center gap-2 py-3 rounded-lg hover:bg-gray-100 transition-all"
+                    className="block text-base py-3 px-4 rounded-md text-muted-foreground hover:text-primary hover:bg-muted/70 transition-all"
                     onClick={() => setIsOpen(false)}
                   >
-                    {item.icon} {item.name}
+                    <div className="flex items-center justify-center gap-2">
+                      {item.icon}
+                      {item.name}
+                    </div>
                   </Link>
                 ))}
               </div>
