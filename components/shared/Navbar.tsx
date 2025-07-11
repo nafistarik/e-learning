@@ -43,7 +43,7 @@ export default function Navbar() {
               src={logo}
               width={1000}
               height={1000}
-              className="h-10 w-auto sm:h-12"
+              className="h-14 w-auto sm:h-14"
               alt="logo"
             />
           </Link>

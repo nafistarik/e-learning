@@ -36,8 +36,7 @@ export default function CourseDetails() {
       if (response) {
         toast.success("Course added to favorite successfully!");
       }
-    } catch (err) {
-      console.error("Failed to add course to favorite:", err);
+    } catch {
       toast.error("Failed to add course to favorite. Please try again.");
     }
   };
@@ -49,69 +48,72 @@ export default function CourseDetails() {
       if (response) {
         toast.success("Course enrolled successfully!");
       }
-    } catch (err) {
-      console.error("Failed to enroll in course:", err);
+    } catch {
       toast.error("Failed to enroll in course. Please try again.");
     }
   };
 
-  if (singleCourseLoading)
+  if (singleCourseLoading) {
     return (
-      <div className="min-h-screen">
+      <div className="min-h-screen flex justify-center items-center">
         <Loader />
       </div>
     );
-  if (singleCourseError)
+  }
+
+  if (singleCourseError) {
     return (
       <div className="pt-32 container min-h-screen">
         <EmptyStateMessage message="Error fetching course data!" />
       </div>
     );
+  }
 
   return (
-    <div className="pt-28 pb-12 lg:pt-32 lg:pb-24 min-h-screen flex flex-col justify-center container">
-      <div className="grid grid-cols-1 lg:grid-cols-2 place-items-center gap-8">
+    <section className="pt-28 pb-12 lg:pt-32 lg:pb-24 min-h-screen bg-background">
+      <div className="container grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        {/* Course Image */}
         <SlideInLeft>
-          <div className="relative overflow-hidden w-full rounded-lg shadow-lg aspect-[16/9]">
+          <div className="relative w-full overflow-hidden rounded-2xl shadow-lg">
             <Image
               src={singleCourseData.image || "/placeholder.svg"}
               alt={singleCourseData.title}
               width={800}
               height={600}
-              className="w-full h-auto object-cover aspect-[16/9] hover:scale-105 transition duration-500 ease-in-out"
+              className="w-full h-auto aspect-video object-cover transition-transform duration-500 hover:scale-[1.03]"
             />
           </div>
         </SlideInLeft>
 
+        {/* Course Details */}
         <SlideInRight>
-          <div className="flex flex-col justify-between">
-            <div>
-              <h1 className="text-2xl sm:text-3xl font-bold mb-2">
+          <div className="flex flex-col justify-between h-full space-y-6">
+            <div className="space-y-3">
+              <h1 className="text-3xl sm:text-4xl font-bold leading-tight tracking-tight text-foreground">
                 {singleCourseData.title}
               </h1>
-              <div className="flex items-center mb-2">
-                <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
+
+              <div className="flex items-center gap-4 text-sm sm:text-base">
+                <span className="bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
                   {singleCourseData.category}
                 </span>
-                {/* <span className="ml-4 text-lg font-bold">
+                <span className="text-lg font-semibold text-foreground">
                   ${singleCourseData.price}
-                </span> */}
+                </span>
               </div>
 
-              <div className="mb-2">
-                <h2 className="text-xl font-semibold">Instructor</h2>
-                <p className="text-lg">{singleCourseData.instructor}</p>
+              <div>
+                <h2 className="text-lg font-semibold text-foreground">Instructor</h2>
+                <p className="text-muted-foreground">{singleCourseData.instructor}</p>
               </div>
 
-              <div className="mb-2">
-                <h2 className="text-xl font-semibold ">Description</h2>
-                <p className="text-gray-700 dark:text-gray-300">
-                  {singleCourseData.description}
-                </p>
+              <div>
+                <h2 className="text-lg font-semibold text-foreground">Description</h2>
+                <p className="text-muted-foreground">{singleCourseData.description}</p>
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 mt-6">
+            <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 onClick={() => onEnroll(singleCourseData._id)}
                 className="flex-1"
@@ -121,26 +123,24 @@ export default function CourseDetails() {
 
               <Button
                 variant="outline"
-                className="flex-1 flex items-center gap-2 border-gray-300 shadow-md transition-all duration-300 hover:bg-gray-100"
+                className="flex-1 flex items-center justify-center gap-2 border-gray-300 shadow-sm transition hover:bg-muted"
                 onClick={() => onFavorite(singleCourseData._id)}
               >
                 <Heart className="h-5 w-5" />
                 {favoriteLoading ? "Adding..." : "Add to Favorites"}
               </Button>
             </div>
-            {favoriteError && (
-              <p className="text-red-500 font-bold pt-2">
-                Failed to favorite course
-              </p>
-            )}
-            {enrollError && (
-              <p className="text-red-500 font-bold pt-2">
-                Failed to enroll in course
+
+            {(favoriteError || enrollError) && (
+              <p className="text-red-500 font-medium pt-2">
+                {favoriteError
+                  ? "Failed to favorite course."
+                  : "Failed to enroll in course."}
               </p>
             )}
           </div>
         </SlideInRight>
       </div>
-    </div>
+    </section>
   );
 }

@@ -22,83 +22,97 @@ export function CourseCard({ course }: CourseCardProps) {
     useEnrollCourseMutation();
 
   const onFavorite = async (courseId: string) => {
-    const body = { courseId: courseId };
-
     try {
-      const response = await addToFavourite(body).unwrap();
+      const response = await addToFavourite({ courseId }).unwrap();
       if (response) {
         toast.success("Course added to favorite successfully!");
       }
     } catch (err) {
-      console.error("Failed to add course to favorite:", err);
-      toast.error("Failed to add course to favorite. Please try again.");
+      console.error("Favorite error:", err);
+      toast.error("Failed to add to favorites. Try again.");
     }
   };
 
   const onEnroll = async (courseId: string) => {
-    const body = { courseId: courseId };
-
     try {
-      const response = await enrollCourse(body).unwrap();
+      const response = await enrollCourse({ courseId }).unwrap();
       if (response) {
         toast.success("Course enrolled successfully!");
       }
     } catch (err) {
-      console.error("Failed to enroll in course:", err);
-      toast.error("Failed to enroll in course. Please try again.");
+      console.error("Enroll error:", err);
+      toast.error("Failed to enroll in course. Try again.");
     }
   };
 
   return (
-    <Card className="overflow-hidden">
-      <div className="relative">
+    <Card className="overflow-hidden rounded-xl shadow-sm border flex flex-col h-full">
+      {/* Image */}
+      <div className="relative group overflow-hidden">
         <Image
           src={course.image || "/placeholder.svg"}
           alt={course.title}
           width={400}
           height={200}
-          className="aspect-video w-full object-cover bg-gray-100 hover:scale-105 transition duration-500 ease-in-out"
+          className="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-105"
         />
+
+        {/* Favorite Button */}
         <Button
           variant="ghost"
           size="icon"
-          className="absolute right-2 top-2 bg-white border border-gray-300"
           onClick={() => onFavorite(course._id)}
+          className="absolute top-3 right-3 bg-white/80 backdrop-blur-sm hover:bg-white border border-gray-300 shadow-sm"
         >
-          <Heart className="h-5 w-5" />
+          <Heart className="h-5 w-5 text-gray-800" />
         </Button>
       </div>
-      <div className="p-4 pt-12">
-        <h3 className="font-semibold">{course.title}</h3>
-        <p className="mt-1 text-sm text-muted-foreground line-clamp-2">
+
+      {/* Content */}
+      <div className="flex flex-col gap-3 p-5 flex-1">
+        <h3 className="font-semibold text-lg text-foreground line-clamp-2">
+          {course.title}
+        </h3>
+        <p className="text-sm text-muted-foreground line-clamp-2">
           {course.description}
         </p>
-        <div>
-          <p className="mt-2 text-lg font-bold">${course.price}</p>
-        </div>
-        <div className="mt-4 flex items-center gap-4 justify-between">
+
+        <p className="text-lg font-bold text-primary mt-1">${course.price}</p>
+
+        {/* Buttons */}
+        <div className="mt-auto flex gap-3">
           <Link href={`/courses/${course._id}`} className="flex-1">
             <Button
               variant="outline"
-              className="w-full flex items-center gap-2 border-gray-300 shadow-md transition-all duration-300 hover:bg-gray-100"
+              className="w-full border-gray-300 shadow-sm hover:bg-gray-100 transition-all"
             >
               View Details
             </Button>
           </Link>
-          <Button className="flex-1" onClick={() => onEnroll(course._id)}>
-            Enroll Now
+          <Button
+            className="flex-1"
+            onClick={() => onEnroll(course._id)}
+            disabled={enrollLoading}
+          >
+            {enrollLoading ? "Enrolling..." : "Enroll"}
           </Button>
         </div>
-        {favoriteLoading && <p className="font-bold pt-2">Loading...</p>}
-        {favoriteError && (
-          <p className="text-red-500 font-bold pt-2">
-            Failed to favorite course
+
+        {/* Status Messages */}
+        {(favoriteLoading || enrollLoading) && (
+          <p className="text-sm text-gray-500 font-medium pt-1 animate-pulse">
+            Processing...
           </p>
         )}
-        {enrollLoading && <p className="font-bold pt-2">Loading...</p>}
+
+        {favoriteError && (
+          <p className="text-sm text-red-500 font-medium pt-1">
+            Could not favorite this course.
+          </p>
+        )}
         {enrollError && (
-          <p className="text-red-500 font-bold pt-2">
-            Failed to enroll in course
+          <p className="text-sm text-red-500 font-medium pt-1">
+            Enrollment failed.
           </p>
         )}
       </div>

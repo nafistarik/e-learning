@@ -1,33 +1,30 @@
 "use client";
 
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import React, { useState } from "react";
 import { CourseCard } from "./CourseCard";
-import { categories } from "@/lib/data/categories";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useGetCoursesQuery } from "@/redux/api/courseApi";
 import { Course } from "@/lib/data/courses";
+import { Input } from "@/components/ui/input";
 
-// Import Animations
 import SlideInRight from "@/components/motion/SlideInRight";
 import ZoomIn from "@/components/motion/ZoomIn";
 import EmptyStateMessage from "@/components/shared/EmptyStateMessage";
 
 export default function CoursesComponent() {
-  
   const { data: courses, isLoading, isError } = useGetCoursesQuery({});
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredCourses =
+    courses?.courses?.filter((course: Course) =>
+      course.title.toLowerCase().includes(searchTerm.toLowerCase())
+    ) || [];
 
   return (
-    <div className="pt-28 pb-12 lg:pt-32 lg:pb-24  min-h-[calc(100vh)] flex flex-col justify-center container">
+    <div className="pt-28 pb-12 lg:pt-32 lg:pb-24 min-h-[calc(100vh)] flex flex-col container">
       {/* Header & Filters */}
       <SlideInRight>
-        <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-center md:justify-between ">
+        <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="space-y-1">
             <h1 className="text-4xl font-bold tracking-tight">All Courses</h1>
             <p className="text-muted-foreground text-lg">
@@ -36,24 +33,13 @@ export default function CoursesComponent() {
           </div>
           <div className="flex flex-col gap-4 sm:flex-row">
             <Input
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search courses..."
               className="max-w-xs border border-gray-300 shadow-sm"
+              type="search"
+              aria-label="Search courses"
             />
-            <Select>
-              <SelectTrigger className="w-[180px] border border-gray-300 shadow-sm">
-                <SelectValue placeholder="Category" />
-              </SelectTrigger>
-              <SelectContent>
-                {categories.map((category) => (
-                  <SelectItem
-                    key={category.name}
-                    value={category.name.toLowerCase()}
-                  >
-                    {category.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
           </div>
         </div>
       </SlideInRight>
@@ -73,6 +59,8 @@ export default function CoursesComponent() {
               strokeWidth="2"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              focusable="false"
             >
               <path
                 strokeLinecap="round"
@@ -80,18 +68,16 @@ export default function CoursesComponent() {
                 d="M12 9v2m0 4h.01M9.172 16.828A4 4 0 1014.83 11.17a4 4 0 00-5.656 5.656z"
               ></path>
             </svg>
-            <p className="font-bold">
-              Failed to load courses. Please try again.
-            </p>
+            <p className="font-bold">Failed to load courses. Please try again.</p>
           </div>
-        ) : courses?.courses?.length > 0 ? (
-          courses.courses.map((course: Course) => (
+        ) : filteredCourses.length > 0 ? (
+          filteredCourses.map((course: Course) => (
             <ZoomIn key={course._id}>
               <CourseCard course={course} />
             </ZoomIn>
           ))
         ) : (
-          <EmptyStateMessage message="No courses are here at the moment" />
+          <EmptyStateMessage message="No courses match your search." />
         )}
       </div>
     </div>
