@@ -9,9 +9,9 @@ export default function MainLayout({
   return (
     <>
       <main className="relative">
-      <div className="absolute top-0 w-full px-0 ">
-      <Navbar />
-      </div>
+        <div className="absolute top-0 w-full px-0 ">
+          <Navbar />
+        </div>
         {children}
       </main>
       <Footer />
