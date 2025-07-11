@@ -1,6 +1,3 @@
-// import { Button } from "@/components/ui/button";
-// import { Input } from "@/components/ui/input";
-// import { Textarea } from "@/components/ui/textarea";
 import { Mail, MapPin, Phone, Clock } from "lucide-react";
 import FadeUp from "@/components/motion/FadeUp";
 import ScaleUp from "@/components/motion/ScaleUp";
@@ -10,80 +7,65 @@ import contactImage from "@/app/assets/images/home/Contact.png";
 
 export function ContactPage() {
   return (
-    <section className=" text-black flex items-center justify-center pt-28 pb-12 lg:pt-32 lg:pb-24 ">
-      <div className="w-full items-center grid gap-12 lg:grid-cols-2">
+    <section className="pt-28 pb-12 lg:pt-32 lg:pb-24 bg-background">
+      <div className=" grid gap-12 lg:grid-cols-2 items-center">
         {/* Contact Info */}
         <FadeUp>
-          <div className="space-y-6">
-            <h2 className="text-4xl font-bold">Get in Touch</h2>
-            {/* <p className="text-gray-600">
-              Have any questions or feedback? We’d love to hear from you!
-              Whether you need assistance, have a suggestion, or just want to
-              say hello, our team is here to help.
-            </p> */}
-            <p className="text-gray-600">
-              You can reach out to us through email, phone, or visit our office.
-              We aim to respond to all inquiries within 24 hours.
+          <div className="space-y-6 text-foreground">
+            <h2 className="text-4xl font-bold tracking-tight leading-tight">
+              Get in <span className="text-primary">Touch</span>
+            </h2>
+
+            <p className="text-muted-foreground text-base">
+              Have any questions or feedback? We’d love to hear from you.
+              Whether you need help, have a suggestion, or just want to say hello—our team is here for you.
             </p>
+
+            <p className="text-muted-foreground text-base">
+              Reach out to us via email, phone, or visit our office.
+              We aim to respond to all inquiries within <strong>24 hours</strong>.
+            </p>
+
             <div className="space-y-4 text-sm">
               <ScaleUp>
-                <div className="flex items-center gap-3">
-                  <Mail className="h-5 w-5 text-black" />
+                <div className="flex items-center gap-3 text-muted-foreground">
+                  <Mail className="h-5 w-5 text-primary" />
                   <span>info@elearning.com</span>
                 </div>
               </ScaleUp>
               <ScaleUp>
-                <div className="flex items-center gap-3">
-                  <Phone className="h-5 w-5 text-black" />
-                  <span>01234567890</span>
+                <div className="flex items-center gap-3 text-muted-foreground">
+                  <Phone className="h-5 w-5 text-primary" />
+                  <span>+880 1234567890</span>
                 </div>
               </ScaleUp>
               <ScaleUp>
-                <div className="flex items-center gap-3">
-                  <MapPin className="h-5 w-5 text-black" />
-                  <span>Dhaka,Bangladesh</span>
+                <div className="flex items-center gap-3 text-muted-foreground">
+                  <MapPin className="h-5 w-5 text-primary" />
+                  <span>Dhaka, Bangladesh</span>
                 </div>
               </ScaleUp>
               <ScaleUp>
-                <div className="flex items-center gap-3">
-                  <Clock className="h-5 w-5 text-black" />
+                <div className="flex items-center gap-3 text-muted-foreground">
+                  <Clock className="h-5 w-5 text-primary" />
                   <span>Sunday - Thursday: 9:00 AM - 6:00 PM</span>
                 </div>
               </ScaleUp>
             </div>
           </div>
         </FadeUp>
-        {/* Contact Form */}
+
+        {/* Right Image */}
         <SlideInRight>
-          {/* <div className="bg-white p-8 rounded-2xl shadow-lg space-y-6 border border-gray-200 bg-white/20 backdrop-blur-md">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <label htmlFor="name">Name</label>
-                <Input id="name" placeholder="Your name" className="border-gray-300" />
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="email">Email</label>
-                <Input id="email" type="email" placeholder="Your email" className="border-gray-300" />
-              </div>
-            </div>
-            <div className="space-y-2">
-              <label htmlFor="subject">Subject</label>
-              <Input id="subject" placeholder="Message subject" className="border-gray-300" />
-            </div>
-            <div className="space-y-2">
-              <label htmlFor="message">Message</label>
-              <Textarea id="message" placeholder="Your message" className="border-gray-300 min-h-[150px]" />
-            </div>
-            <Button className="w-full bg-black text-white hover:bg-gray-800">Send Message</Button>
-          </div> */}
-          <div>
+          <div className="flex justify-center">
             <Image
               src={contactImage}
-              alt="contact image"
+              alt="Contact illustration"
               width={500}
               height={500}
-              className="w-full h-auto"
-            ></Image>
+              className="w-full max-w-md h-auto"
+              priority
+            />
           </div>
         </SlideInRight>
       </div>
