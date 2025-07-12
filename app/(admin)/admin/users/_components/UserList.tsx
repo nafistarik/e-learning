@@ -38,7 +38,7 @@ export function UserList() {
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="rounded-lg border shadow-md bg-white p-4"
+      className="rounded-xl border shadow-md bg-white p-4"
     >
       <Table>
         <TableHeader>

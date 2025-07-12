@@ -74,11 +74,11 @@ export default function MainNavLink({
 
       <div className="px-4 w-full pb-8">
         <Button
-        variant="destructive"
-        className="w-full h-12"
+          variant="destructive"
+          className="w-full h-12 rounded-lg"
           onClick={handleLogout}
         >
-          <IoLogOutOutline className="w-8 h-8" />
+          <IoLogOutOutline className="!w-6 !h-6" />
           <span className="text-lg font-medium">Log Out</span>
         </Button>
       </div>

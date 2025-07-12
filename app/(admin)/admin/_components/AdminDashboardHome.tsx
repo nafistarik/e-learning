@@ -3,7 +3,6 @@ import { StatsCards } from "./StatsCards";
 import { EnrollmentChart } from "./EnrollmentChart";
 
 export default function AdminDashboardHome() {
-
   return (
     <div className="space-y-8">
       <div>
@@ -12,9 +11,7 @@ export default function AdminDashboardHome() {
       </div>
 
       <StatsCards />
-
-      <EnrollmentChart/>
-
+      <EnrollmentChart />
       {/* <RecentEnrollments /> */}
     </div>
   );

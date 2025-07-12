@@ -35,7 +35,7 @@ export default function AdminCoursesComponent() {
   };
 
   return (
-    <motion.div
+ <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -44,23 +44,26 @@ export default function AdminCoursesComponent() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Courses</h1>
-          <p className="text-muted-foreground">Manage your course catalog</p>
+          <h1 className="text-3xl font-bold text-foreground">Courses</h1>
+          <p className="text-muted-foreground">
+            Manage your course catalog
+          </p>
         </div>
-        <Button onClick={() => setIsAddOpen(true)} className="rounded-lg shadow-md">
+        <Button
+          onClick={() => setIsAddOpen(true)}
+          className="rounded-lg shadow-md"
+        >
           <Plus className="mr-2 h-4 w-4" /> Add New Course
         </Button>
       </div>
 
       {/* Table */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
+        initial={{ opacity: 0, scale: 0.97 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="rounded-lg border shadow-md bg-white p-4"
+        className="rounded-2xl border border-border shadow-md bg-card p-4"
       >
-
-        
         {isLoading ? (
           <div className="text-center py-6 animate-pulse">
             <p className="text-muted-foreground">Loading courses...</p>
@@ -68,26 +71,34 @@ export default function AdminCoursesComponent() {
         ) : (
           <Table className="w-full">
             <TableHeader>
-              <TableRow className="bg-gray-100">
-                <TableHead className="font-bold">Course</TableHead>
-                <TableHead className="font-bold">Category</TableHead>
-                {/* <TableHead className="text-right font-bold">Price</TableHead> */}
-                <TableHead className="text-right font-bold">Actions</TableHead>
+              <TableRow className="bg-muted/50 text-muted-foreground">
+                <TableHead className="font-semibold text-sm">Course</TableHead>
+                <TableHead className="font-semibold text-sm">Category</TableHead>
+                <TableHead className="text-right font-semibold text-sm">
+                  Actions
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {courses?.courses?.map((course: Course) => (
+              {courses?.courses?.map((course: Course, idx: number) => (
                 <motion.tr
                   key={course._id}
-                  initial={{ opacity: 0, y: 5 }}
+                  initial={{ opacity: 0, y: 4 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 * courses.courses.indexOf(course), duration: 0.5 }}
-                  className="border-b hover:bg-gray-50 transition-colors"
+                  transition={{
+                    delay: idx * 0.05,
+                    duration: 0.4,
+                    ease: "easeOut",
+                  }}
+                  className="border-b transition-colors hover:bg-muted/30"
                 >
-                  <TableCell className="font-medium">{course.title}</TableCell>
-                  <TableCell>{course.category}</TableCell>
-                  {/* <TableCell className="text-right">${course.price.toFixed(2)}</TableCell> */}
-                  <TableCell className="text-right space-x-2">
+                  <TableCell className="text-foreground font-medium">
+                    {course.title}
+                  </TableCell>
+                  <TableCell className="text-foreground">
+                    {course.category}
+                  </TableCell>
+                  <TableCell className="text-right space-x-1">
                     <Button
                       variant="ghost"
                       size="sm"
@@ -95,7 +106,7 @@ export default function AdminCoursesComponent() {
                         setSelectedCourseId(course._id);
                         setIsEditOpen(true);
                       }}
-                      className="hover:text-gray-600"
+                      className="text-muted-foreground hover:text-foreground"
                     >
                       <Pencil className="h-4 w-4" />
                     </Button>
@@ -103,7 +114,7 @@ export default function AdminCoursesComponent() {
                       variant="ghost"
                       size="sm"
                       onClick={() => handleDelete(course._id)}
-                      className="hover:text-red-600"
+                      className="text-destructive hover:text-destructive-foreground"
                     >
                       <Trash className="h-4 w-4" />
                     </Button>
@@ -117,12 +128,13 @@ export default function AdminCoursesComponent() {
 
       {/* Modals */}
       <CourseAddForm open={isAddOpen} onOpenChange={setIsAddOpen} />
-
       {selectedCourseId && (
         <CourseEditForm
           open={isEditOpen}
           onOpenChange={setIsEditOpen}
-          course={courses?.courses?.find((c: Course) => c._id === selectedCourseId)}
+          course={courses?.courses?.find(
+            (c: Course) => c._id === selectedCourseId
+          )}
         />
       )}
     </motion.div>

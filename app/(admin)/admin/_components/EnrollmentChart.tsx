@@ -27,21 +27,21 @@ export function EnrollmentChart() {
   const enrollmentData =
     allEnrollments?.map((course: CourseEnrollments) => ({
       name:
-        course.title.length > 5
-          ? course.title.substring(0, 5) + ".."
+        course.title.length > 10
+          ? course.title.substring(0, 10) + "..."
           : course.title,
       enrollments: course.enrollmentCount,
     })) || [];
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 2 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      <Card className="p-6 shadow-lg border border-muted rounded-2xl">
-        <h2 className="mb-4 text-xl font-semibold text-foreground">
-          Course Enrollments
+      <Card className="p-6 rounded-2xl border border-border shadow-sm bg-card text-foreground">
+        <h2 className="text-xl font-semibold mb-4">
+          📊 Course Enrollments Overview
         </h2>
         <div className="h-[300px]">
           {enrollmentsLoading ? (
@@ -49,25 +49,52 @@ export function EnrollmentChart() {
           ) : (
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={enrollmentData}>
-                <CartesianGrid strokeDasharray="4 4" strokeOpacity={0.2} />
-                <XAxis dataKey="name" tick={{ fill: "#666" }} />
-                <YAxis tick={{ fill: "#666" }} />
+                <CartesianGrid strokeDasharray="4 4" stroke="var(--border)" />
+                <XAxis
+                  dataKey="name"
+                  tick={{
+                    fill: "var(--muted-foreground)",
+                    fontSize: 12,
+                  }}
+                  axisLine={{ stroke: "var(--border)" }}
+                  tickLine={false}
+                />
+                <YAxis
+                  tick={{
+                    fill: "var(--muted-foreground)",
+                    fontSize: 12,
+                  }}
+                  axisLine={{ stroke: "var(--border)" }}
+                  tickLine={false}
+                />
                 <Tooltip
                   contentStyle={{
-                    background: "#111",
-                    color: "#fff",
+                    background: "var(--popover)",
+                    color: "var(--popover-foreground)",
+                    border: "1px solid var(--border)",
                     borderRadius: "8px",
+                    fontSize: "14px",
                   }}
+                  cursor={{ fill: "var(--muted)" }}
                 />
                 <Bar
                   dataKey="enrollments"
-                  fill="#222"
-                  radius={[10, 10, 0, 0]}
+                  fill="url(#chartGradient)"
+                  radius={[8, 8, 0, 0]}
+                  barSize={40}
                 />
                 <defs>
-                  <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#6366F1" stopOpacity={0.9} />
-                    <stop offset="100%" stopColor="#4F46E5" stopOpacity={0.7} />
+                  <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop
+                      offset="0%"
+                      stopColor="var(--chart-1)"
+                      stopOpacity={0.95}
+                    />
+                    <stop
+                      offset="100%"
+                      stopColor="var(--chart-2)"
+                      stopOpacity={0.7}
+                    />
                   </linearGradient>
                 </defs>
               </BarChart>
