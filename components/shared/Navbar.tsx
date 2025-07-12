@@ -35,7 +35,7 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 z-50 w-full">
-      <div className="bg-background/80 backdrop-blur-md border-b border-border shadow-sm">
+      <div className="bg-background/80 backdrop-blur-md shadow-sm">
         <div className="container flex h-20 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
@@ -71,9 +71,7 @@ export default function Navbar() {
           <div className="flex items-center gap-4">
             {user?.user?.email === "abc@admin.com" ? (
               <Link href="/admin">
-                <Button className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all shadow-sm border border-border">
-                  Dashboard
-                </Button>
+                <Button>Dashboard</Button>
               </Link>
             ) : user?.user ? (
               <div className="flex items-center gap-2">
@@ -98,9 +96,7 @@ export default function Navbar() {
               </div>
             ) : (
               <Link href="/login">
-                <Button className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm border border-border">
-                  Sign In
-                </Button>
+                <Button>Sign In</Button>
               </Link>
             )}
 
@@ -109,7 +105,11 @@ export default function Navbar() {
               className="lg:hidden p-2 rounded-md text-foreground hover:bg-muted"
               onClick={() => setIsOpen(!isOpen)}
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
             </button>
           </div>
         </div>

@@ -52,37 +52,34 @@ export function PopularCourses() {
                     d="M12 9v2m0 4h.01M9.172 16.828A4 4 0 1014.83 11.17a4 4 0 00-5.656 5.656z"
                   />
                 </svg>
-                <span className="font-medium">Failed to load courses. Please try again.</span>
+                <span className="font-medium">
+                  Failed to load courses. Please try again.
+                </span>
               </div>
             </div>
           )}
 
           {/* Courses */}
-          {!isLoading && !isError && courses?.courses?.length > 0 ? (
-            courses.courses.slice(0, 3).map((course: Course) => (
-              <ZoomIn key={course._id}>
-                <div className="h-full">
-                  <CourseCard course={course} />
+          {!isLoading && !isError && courses?.courses?.length > 0
+            ? courses.courses.slice(0, 3).map((course: Course) => (
+                <ZoomIn key={course._id}>
+                  <div className="h-full">
+                    <CourseCard course={course} />
+                  </div>
+                </ZoomIn>
+              ))
+            : !isLoading &&
+              !isError && (
+                <div className="col-span-full">
+                  <EmptyStateMessage message="No courses are here at the moment" />
                 </div>
-              </ZoomIn>
-            ))
-          ) : (
-            !isLoading &&
-            !isError && (
-              <div className="col-span-full">
-                <EmptyStateMessage message="No courses are here at the moment" />
-              </div>
-            )
-          )}
+              )}
         </div>
 
         {/* Button */}
         <ZoomIn>
           <div className="text-center">
-            <Button
-              asChild
-              className="px-6 py-3 text-lg font-semibold rounded-md shadow-sm hover:-translate-y-0.5 transition-all"
-            >
+            <Button>
               <Link href="/courses">View All Courses</Link>
             </Button>
           </div>

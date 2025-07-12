@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import home from "@/app/assets/images/home/home.png";
@@ -28,15 +26,14 @@ export function Hero() {
 
           <FadeUp delay={0.2}>
             <p className="text-lg text-muted-foreground md:text-xl max-w-xl">
-              Explore expert-led courses designed to help you grow your career and reach your goals—no matter where you start.
+              Explore expert-led courses designed to help you grow your career
+              and reach your goals—no matter where you start.
             </p>
           </FadeUp>
 
           <FadeUp delay={0.3}>
             <Link href="/courses" className="inline-flex">
-              <Button className="px-6 py-3 text-lg shadow-md hover:shadow-lg transition-all duration-300">
-                Let&apos;s Start
-              </Button>
+              <Button>Let&apos;s Start</Button>
             </Link>
           </FadeUp>
         </div>

@@ -61,10 +61,10 @@ export function CourseCard({ course }: CourseCardProps) {
         <Button
           variant="ghost"
           size="icon"
+          className="bg-muted hover:bg-accent border border-border absolute top-3 right-3"
           onClick={() => onFavorite(course._id)}
-          className="absolute top-3 right-3 bg-white/80 backdrop-blur-sm hover:bg-white border border-gray-300 shadow-sm"
         >
-          <Heart className="h-5 w-5 text-gray-800" />
+          <Heart className="h-5 w-5 text-primary fill-primary " />
         </Button>
       </div>
 
@@ -82,12 +82,7 @@ export function CourseCard({ course }: CourseCardProps) {
         {/* Buttons */}
         <div className="mt-auto flex gap-3">
           <Link href={`/courses/${course._id}`} className="flex-1">
-            <Button
-              variant="outline"
-              className="w-full border-gray-300 shadow-sm hover:bg-gray-100 transition-all"
-            >
-              View Details
-            </Button>
+            <Button variant="outline">View Details</Button>
           </Link>
           <Button
             className="flex-1"

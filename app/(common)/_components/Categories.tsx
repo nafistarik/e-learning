@@ -37,10 +37,7 @@ export function Categories() {
           </div>
         </StaggerList>
 
-        <Button
-          asChild
-          className="px-6 py-3 text-lg font-semibold rounded shadow-md"
-        >
+        <Button>
           <Link href="/courses">All Courses</Link>
         </Button>
       </div>
