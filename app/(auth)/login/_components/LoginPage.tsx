@@ -86,7 +86,7 @@ export default function LoginPage() {
               {isLoading ? "Signing in..." : "Sign In"}
             </Button>
 
-            <div className="flex justify-between gap-2">
+            <div className="flex justify-between gap-2 flex-col sm:flex-row">
               <Button
                 type="button"
                 variant="outline"

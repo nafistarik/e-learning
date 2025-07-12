@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { CourseCard } from "./CourseCard";
-import { Skeleton } from "@/components/ui/skeleton";
 import { useGetCoursesQuery } from "@/redux/api/courseApi";
 import { Course } from "@/lib/data/courses";
 import { Input } from "@/components/ui/input";
@@ -19,6 +18,7 @@ import EmptyStateMessage from "@/components/shared/EmptyStateMessage";
 import { categories } from "@/lib/data/categories";
 import { LayoutList } from "lucide-react";
 import ErrorMessage from "@/components/shared/ErrorMessage";
+import { CourseCardLoading } from "./CourseCardLoading";
 
 export default function CoursesComponent() {
   const { data: coursesData, isLoading, isError } = useGetCoursesQuery({});
@@ -35,6 +35,18 @@ export default function CoursesComponent() {
           ? course.category.toLowerCase() === filterCategory.toLowerCase()
           : true
       ) || [];
+
+  // Loading skeletons
+  const loadingSkeletons = (
+    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {[...Array(6)].map((_, index) => (
+        <div key={index} className="h-full">
+          <CourseCardLoading/>
+        </div>
+      ))}
+    </div>
+  );
+  
 
   return (
     <div className="pt-28 pb-12 lg:pt-32 lg:pb-24 min-h-[calc(100vh)] flex flex-col container">
@@ -78,12 +90,9 @@ export default function CoursesComponent() {
           </div>
         </div>
       </SlideInRight>
-
       {/* Course Grid with Animations */}
       {isLoading ? (
-        [...Array(6)].map((_, index) => (
-          <Skeleton key={index} className="h-[250px] w-full rounded-lg" />
-        ))
+        loadingSkeletons
       ) : isError ? (
         <ErrorMessage code={404} message="Course not found." />
       ) : filteredCourses.length > 0 ? (
