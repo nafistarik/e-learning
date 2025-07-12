@@ -12,11 +12,13 @@ export default function Hamburger({
 }) {
   return (
     <header className="flex items-center justify-between  relative">
-      <button className="lg:hidden absolute -top-[3px] left-0 bg-customOrange p-3 text-black rounded-br-xl" onClick={() => setIsOpen(!isOpen)}>
-        {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6 " />}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="lg:hidden bg-primary text-primary-foreground p-3 rounded-br-xl shadow-md hover:bg-primary-hover transition"
+      >
+        {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         <span className="sr-only">Toggle menu</span>
       </button>
-
     </header>
   );
 }

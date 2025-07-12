@@ -13,29 +13,26 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null as unknown as HTMLDivElement);
 
-
   useEffect(() => {
     if (typeof document === "undefined") return; // Prevents server-side execution
-  
+
     function handleClickOutside(event: MouseEvent) {
       if (navRef.current && !navRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     }
-  
+
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [navRef]);
 
-
   const navLink = [
     { name: "Dashboard", href: "/admin", icon: MdOutlineDashboard },
     { name: "Courses", href: "/admin/courses", icon: LucideNotepadText },
     { name: "Users", href: "/admin/users", icon: User },
   ];
-  
 
   const additionalRoutes = [
     {
@@ -46,7 +43,6 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     { name: " Help", href: "/dashboard/help", icon: RiCustomerServiceFill },
   ];
 
-
   const user = {
     name: "John Doe",
     role: "admin",
@@ -55,8 +51,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <div className="flex ">
-      <div className="max-h-screen h-full sticky top-0 z-50">
+    <div className="flex min-h-screen bg-background text-foreground">
+      <div className="sticky top-0 h-screen z-50 bg-background">
         <SideBar
           additionalRoutes={additionalRoutes}
           navLink={navLink}
@@ -65,14 +61,15 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
           navRef={navRef}
         />
       </div>
-      <div className="w-full">
-        {/* <div className="sticky top-[3px] z-40">
-          <TopBar setIsOpen={setIsOpen} isOpen={isOpen} />
-        </div> */}
-        <div className="sticky top-[3px] z-40">
+
+      <div className="w-full flex flex-col">
+        {/* Topbar */}
+        <div className="sticky top-0 z-40">
           <Hamburger setIsOpen={setIsOpen} isOpen={isOpen} />
         </div>
-        <div className="min-h-screen p-12">{children}</div>
+
+        {/* Main content */}
+        <main className="flex-1 p-6 md:p-8 lg:p-12">{children}</main>
       </div>
     </div>
   );

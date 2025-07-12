@@ -7,7 +7,9 @@ import { usePathname, useRouter } from "next/navigation";
 import { IoLogOutOutline } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { toast } from "sonner";
-import logo from "@/app/assets/images/shared/Logo_Final.png";
+import logo from "@/app/assets/images/shared/logo.png";
+import { cn } from "@/lib/utils";
+import { Button } from "../ui/button";
 export default function MainNavLink({
   navLink,
 }: {
@@ -40,50 +42,45 @@ export default function MainNavLink({
   };
 
   return (
-    <div className="flex flex-col min-h-screen py-6 bg-customOrange relative bg-gray-100">
-      <Link href="/" id="image" className="rounded-full flex gap-2 p-8 py-2">
+    <div className="flex flex-col min-h-screen py-6 bg-secondary relative">
+      <Link href="/" id="image" className="p-6 flex items-center justify-start">
         <Image
           src={logo}
-          width={1000}
-          height={1000}
-          className="w-auto h-[72px]"
+          width={160}
+          height={40}
           alt="logo"
+          className="object-contain"
         />
       </Link>
-      <nav className="flex-1 p-4">
-        <div className="space-y-3 px-4">
-          {navLink?.map(
-            (link: {
-              name: string;
-              href: string;
-              icon: React.ComponentType<{ className?: string }>;
-            }) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={`flex items-center gap-3 px-4 py-3 font-normal text-base rounded-xl ${
-                  isActive(link.href)
-                    ? "bg-black text-white"
-                    : "hover:bg-[#8B4C84]/10 text-whiteDarker"
-                }`}
-              >
-                <div className="rounded">
-                  <link.icon className="min-w-6 min-h-6" />
-                </div>
-                {link.name}
-              </Link>
-            )
-          )}
-        </div>
+
+      <nav className="flex-1 overflow-y-auto px-4 space-y-2">
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+        {navLink?.map((link: any) => (
+          <Link
+            key={link.name}
+            href={link.href}
+            className={cn(
+              "flex items-center gap-3 px-4 py-3 rounded-lg transition",
+              isActive(link.href)
+                ? "bg-primary text-primary-foreground"
+                : "hover:bg-muted hover:text-foreground text-muted-foreground"
+            )}
+          >
+            <link.icon className="w-5 h-5" />
+            <span className="text-base font-medium">{link.name}</span>
+          </Link>
+        ))}
       </nav>
-      <div className="mt-auto px-8 py-8 space-y-1">
-        <button
+
+      <div className="px-4 w-full pb-8">
+        <Button
+        variant="destructive"
+        className="w-full h-12"
           onClick={handleLogout}
-          className="flex  items-center gap-3 px-4 py-3 rounded-md cursor-pointer text-whiteDarker bg-whiteDarker/10 w-full font-medium text-base"
         >
-          <IoLogOutOutline className="min-w-8 min-h-8" />
-          Log Out
-        </button>
+          <IoLogOutOutline className="w-8 h-8" />
+          <span className="text-lg font-medium">Log Out</span>
+        </Button>
       </div>
     </div>
   );
