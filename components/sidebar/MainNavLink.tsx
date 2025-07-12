@@ -33,9 +33,10 @@ export default function MainNavLink({
   const dispatch = useDispatch();
   const handleLogout = async () => {
     dispatch(removeUser());
-
-    router.push("/login");
     toast.success("User logout successfully");
+    setTimeout(() => {
+      router.push("/login");
+    }, 100);
   };
 
   return (

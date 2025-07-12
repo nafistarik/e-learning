@@ -36,7 +36,9 @@ export default function ProfilePage() {
 
   const handleLogout = () => {
     dispatch(removeUser());
-    router.push("/login");
+    setTimeout(() => {
+      router.push("/login");
+    }, 100);
   };
 
   return (
@@ -65,7 +67,9 @@ export default function ProfilePage() {
                 <p className="text-sm text-muted-foreground">{user?.email}</p>
               </div>
               <div className="flex justify-between w-full gap-3">
-                <Button variant='outline' onClick={() => setIsEditing(true)}>Edit Profile</Button>
+                <Button variant="outline" onClick={() => setIsEditing(true)}>
+                  Edit Profile
+                </Button>
                 <Button onClick={handleLogout}>Logout</Button>
               </div>
             </div>
@@ -74,7 +78,7 @@ export default function ProfilePage() {
 
         <SlideInRight>
           <div className="space-y-6">
-            <h2 className="text-2xl font-semibold">My Courses</h2>
+            <h2 className="text-2xl font-semibold">My Enrolled Courses</h2>
             <div className="grid gap-4">
               {allEnrollmentsData?.enrolledCourses.length > 0 ? (
                 allEnrollmentsData?.enrolledCourses.map((course: Course) => (
