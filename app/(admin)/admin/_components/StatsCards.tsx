@@ -45,7 +45,7 @@ export function StatsCards() {
 
   return (
 <div className="grid gap-6 md:grid-cols-3">
-      {stats.map((stat, index) => {
+      {stats?.map((stat, index) => {
         const Icon = stat.icon;
         return (
           <motion.div
