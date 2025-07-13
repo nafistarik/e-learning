@@ -65,7 +65,7 @@ export function StatsCards() {
                   </p>
                   <motion.p
                     className="text-3xl font-bold text-foreground mt-1"
-                    key={isCoursesLoading ? "loading" : stat.value.toString()}
+                    key={isCoursesLoading || enrollmentsLoading ? "loading" : stat?.value.toString()}
                     initial={{ opacity: 0.5, y: -4 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4 }}
