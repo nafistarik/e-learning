@@ -9,21 +9,25 @@ import { useAddToFavouriteMutation } from "@/redux/api/favouriteApi";
 import { toast } from "sonner";
 import { useEnrollCourseMutation } from "@/redux/api/enrollApi";
 import Link from "next/link";
+import useProtectedAction from "@/hooks/useProtectedAction";
 
 interface CourseCardProps {
   course: Course;
 }
 
 export function CourseCard({ course }: CourseCardProps) {
+
+  const {protect} = useProtectedAction();
+
   const [addToFavourite, { isLoading: favoriteLoading, error: favoriteError }] =
     useAddToFavouriteMutation();
 
   const [enrollCourse, { isLoading: enrollLoading, isError: enrollError }] =
     useEnrollCourseMutation();
 
-  const onFavorite = async (courseId: string) => {
+  const onFavorite = protect(async () => {
     try {
-      const response = await addToFavourite({ courseId }).unwrap();
+      const response = await addToFavourite({ courseId: course._id }).unwrap();
       if (response) {
         toast.success("Course added to favorite successfully!");
       }
@@ -31,11 +35,11 @@ export function CourseCard({ course }: CourseCardProps) {
       console.error("Favorite error:", err);
       toast.error("Failed to add to favorites. Try again.");
     }
-  };
+  });
 
-  const onEnroll = async (courseId: string) => {
+  const onEnroll = protect(async () => {
     try {
-      const response = await enrollCourse({ courseId }).unwrap();
+      const response = await enrollCourse({ courseId: course._id }).unwrap();
       if (response) {
         toast.success("Course enrolled successfully!");
       }
@@ -43,7 +47,7 @@ export function CourseCard({ course }: CourseCardProps) {
       console.error("Enroll error:", err);
       toast.error("Failed to enroll in course. Try again.");
     }
-  };
+  });
 
   return (
     <Card className="overflow-hidden rounded-xl shadow-sm border flex flex-col h-full">
@@ -62,7 +66,7 @@ export function CourseCard({ course }: CourseCardProps) {
           variant="ghost"
           size="icon"
           className="bg-muted hover:bg-accent border border-border absolute top-3 right-3"
-          onClick={() => onFavorite(course._id)}
+          onClick={onFavorite}
         >
           <Heart className="h-5 w-5 text-primary fill-primary " />
         </Button>
@@ -86,7 +90,7 @@ export function CourseCard({ course }: CourseCardProps) {
           </Link>
           <Button
             className="flex-1"
-            onClick={() => onEnroll(course._id)}
+            onClick={onEnroll}
             disabled={enrollLoading}
           >
             {enrollLoading ? "Enrolling..." : "Enroll"}
