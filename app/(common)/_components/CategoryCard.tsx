@@ -13,9 +13,9 @@ export function CategoryCard({ category }: CategoryCardProps) {
         <Image
           src={category.icon || "/placeholder.svg"}
           alt={category.name}
-          width={80}
-          height={80}
-          className="rounded-lg"
+          width={1000}
+          height={1000}
+          className="rounded-lg max-w-24 max-h-24"
         />
       </Pulse>
       <div className="text-center">
