@@ -11,12 +11,6 @@ export function Hero() {
       <div className="container grid items-center gap-16 md:grid-cols-2">
         {/* Left Text Section */}
         <div className="flex flex-col gap-3 md:gap-5">
-          <FadeUp>
-            <p className="text-sm font-semibold uppercase tracking-wider text-primary">
-              Learn Anywhere, Anytime
-            </p>
-          </FadeUp>
-
           <FadeUp delay={0.1}>
             <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl leading-tight">
               Master Skills, <br className="hidden sm:block" />
@@ -38,7 +32,6 @@ export function Hero() {
           </FadeUp>
         </div>
 
-        {/* Right Image Section */}
         <ScaleUp className="flex justify-center">
           <Image
             src={home}
