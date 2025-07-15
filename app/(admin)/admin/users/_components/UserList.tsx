@@ -38,7 +38,7 @@ export function UserList() {
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="rounded-xl border shadow-md bg-white p-4"
+      className="rounded-xl border shadow-md bg-card p-4"
     >
       <Table>
         <TableHeader>
@@ -53,7 +53,7 @@ export function UserList() {
           {data?.map((user: UserType) => (
             <TableRow
               key={user.id}
-              className="transition-all duration-300 hover:bg-gray-100"
+              className="transition-all duration-300 hover:bg-muted"
             >
               <TableCell className="font-medium">{user.name}</TableCell>
               <TableCell>{user.email}</TableCell>
