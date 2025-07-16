@@ -29,23 +29,6 @@ const NotFound = () => {
           <a>Go to home</a>
         </Button>
       </Link>
-
-      {/* Floating icon animation (optional) */}
-      {/* <div className="absolute bottom-12 animate-bounce">
-        <svg
-          className="w-12 h-12 opacity-30 text-primary"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M12 4v16m8-8H4"
-          />
-        </svg>
-      </div> */}
     </div>
   );
 };
