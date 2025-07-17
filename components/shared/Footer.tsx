@@ -33,6 +33,7 @@ export default function Footer() {
               height={1000}
               className="h-10 w-auto"
               alt="logo"
+              priority
             />
           </Link>
             <p className="mt-2 text-sm leading-relaxed">

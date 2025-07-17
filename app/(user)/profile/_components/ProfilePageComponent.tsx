@@ -58,8 +58,10 @@ export default function ProfilePage() {
                 <Image
                   src={user?.image || defaultPropic}
                   alt="Profile"
-                  fill
-                  className="rounded-full object-cover"
+                  width={1000}
+                  height={1000}
+                  priority
+                  className="rounded-full object-cover w-full h-full"
                 />
               </div>
               <div className="text-center">

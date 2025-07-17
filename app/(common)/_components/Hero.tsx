@@ -36,9 +36,10 @@ export function Hero() {
           <Image
             src={home}
             alt="Learning illustration"
-            width={500}
-            height={400}
-            className="object-contain"
+            width={1000}
+            height={1000}
+            className="object-contain w-full h-auto"
+            priority
           />
         </ScaleUp>
       </div>

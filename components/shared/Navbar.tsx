@@ -45,6 +45,7 @@ export default function Navbar() {
               height={1000}
               className="h-14 w-auto sm:h-14"
               alt="logo"
+              priority
             />
           </Link>
 
