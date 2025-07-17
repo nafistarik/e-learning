@@ -13,7 +13,7 @@ const FadeUp = ({
   duration?: number;
 }) => {
   return (
-    <motion.tr
+    <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
@@ -24,7 +24,7 @@ const FadeUp = ({
       className=" transition-colors"
     >
       {children}
-    </motion.tr>
+    </motion.div>
   );
 };
 
