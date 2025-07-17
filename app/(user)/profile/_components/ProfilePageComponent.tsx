@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
-import defaultPropic from "@/app/assets/images/home/profile-picture-vector.jpg";
+import defaultPropic from "@/app/assets/images/home/profile.png";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser, removeUser } from "@/redux/slice/userSlice";
 import { useRouter } from "next/navigation";
@@ -41,6 +41,15 @@ export default function ProfilePage() {
     }, 100);
   };
 
+  console.log(
+    user?.image && user?.image == "/placeholder.svg",
+    "user image in profile page"
+  );
+  const userImage =
+    !user?.image || user.image == "/placeholder.svg"
+      ? defaultPropic
+      : user.image;
+
   return (
     <div className=" pt-28 pb-12 lg:pt-32 lg:pb-24 min-h-screen">
       <SlideInLeft>
@@ -56,7 +65,7 @@ export default function ProfilePage() {
             <div className="flex flex-col items-center gap-4">
               <div className="relative h-36 w-36 rounded-full overflow-hidden bg-gray-200">
                 <Image
-                  src={user?.image || defaultPropic}
+                  src={userImage}
                   alt="Profile"
                   width={1000}
                   height={1000}
@@ -133,6 +142,7 @@ export default function ProfilePage() {
       </div>
 
       <ProfileEditForm
+        userImage={userImage}
         user={user}
         open={isEditing}
         onOpenChange={setIsEditing}

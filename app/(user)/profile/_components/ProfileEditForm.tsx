@@ -18,11 +18,12 @@ interface ProfileEditFormData {
 
 interface ProfileEditFormProps {
   user: User
+  userImage: string
   open: boolean
   onOpenChange: (open: boolean) => void
 }
 
-export function ProfileEditForm({ user, open, onOpenChange }: ProfileEditFormProps) {
+export function ProfileEditForm({ user, userImage, open, onOpenChange }: ProfileEditFormProps) {
   const { register, handleSubmit, watch } = useForm<ProfileEditFormData>({
     defaultValues: {
       name: user?.name,
@@ -30,7 +31,7 @@ export function ProfileEditForm({ user, open, onOpenChange }: ProfileEditFormPro
   })
 
   const imageFile = watch("image")?.[0]
-  const imagePreview = imageFile ? URL.createObjectURL(imageFile) : user?.image
+  const imagePreview = imageFile ? URL.createObjectURL(imageFile) : userImage
 
   const [updateUserProfile, { isLoading }] = useUpdateUserProfileMutation()
 

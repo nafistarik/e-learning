@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { RiCustomerServiceFill } from "react-icons/ri";
 import { IoSettingsSharp } from "react-icons/io5";
 import { MdOutlineDashboard } from "react-icons/md";
-import image from "@/app/assets/images/home/course3.jpg";
+import userImage from "@/app/assets/images/home/profile.png";
 import Hamburger from "./Hamburger";
 import SideBar from "./SideBar";
 import { LucideNotepadText, User } from "lucide-react";
@@ -46,7 +46,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const user = {
     name: "John Doe",
     role: "admin",
-    img: image,
+    img: userImage,
     email: "q4A0Q@example.com",
   };
 
