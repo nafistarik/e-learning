@@ -46,10 +46,11 @@ export default function MainNavLink({
       <Link href="/" id="image" className="p-6 flex items-center justify-start">
         <Image
           src={logo}
-          width={160}
-          height={40}
+          width={1000}
+          height={1000}
           alt="logo"
-          className="object-contain"
+          priority
+          className="object-contain h-16 w-auto"
         />
       </Link>
 
