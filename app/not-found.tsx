@@ -23,10 +23,10 @@ const NotFound = () => {
         moved.
       </p>
 
-      {/* Go Home Button */}
+      {/* Go to Home Button */}
       <Link href="/" passHref>
         <Button asChild>
-          <a>Go to home</a>
+          <a>Go to Home</a>
         </Button>
       </Link>
     </div>

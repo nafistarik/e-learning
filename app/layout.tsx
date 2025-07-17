@@ -5,7 +5,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "SkillFlow",
-  description: "Next.js Elearning Platform",
+  description: "Next.js Online Learning Platform",
 };
 
 export default function RootLayout({
