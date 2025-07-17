@@ -12,10 +12,12 @@ import SlideInLeft from "@/components/motion/SlideInLeft";
 import { useAddToFavouriteMutation } from "@/redux/api/favouriteApi";
 import { useEnrollCourseMutation } from "@/redux/api/enrollApi";
 import { toast } from "sonner";
+import useProtectedAction from "@/hooks/useProtectedAction";
 
 export default function CourseDetails() {
   const pathName = usePathname();
   const courseId = pathName.split("/")[2];
+  const { protect } = useProtectedAction();
 
   const {
     data: singleCourseData,
@@ -29,29 +31,31 @@ export default function CourseDetails() {
   const [enrollCourse, { isLoading: enrollLoading, isError: enrollError }] =
     useEnrollCourseMutation();
 
-  const onFavorite = async (courseId: string) => {
-    const body = { courseId: courseId };
-    try {
-      const response = await addToFavourite(body).unwrap();
-      if (response) {
-        toast.success("Course added to favorite successfully!");
+  const onFavorite = (courseId: string) =>
+    protect(async () => {
+      const body = { courseId: courseId };
+      try {
+        const response = await addToFavourite(body).unwrap();
+        if (response) {
+          toast.success("Course added to favorite successfully!");
+        }
+      } catch {
+        toast.error("Failed to add course to favorite. Please try again.");
       }
-    } catch {
-      toast.error("Failed to add course to favorite. Please try again.");
-    }
-  };
+    })();
 
-  const onEnroll = async (courseId: string) => {
-    const body = { courseId: courseId };
-    try {
-      const response = await enrollCourse(body).unwrap();
-      if (response) {
-        toast.success("Course enrolled successfully!");
+  const onEnroll = (courseId: string) =>
+    protect(async () => {
+      const body = { courseId: courseId };
+      try {
+        const response = await enrollCourse(body).unwrap();
+        if (response) {
+          toast.success("Course enrolled successfully!");
+        }
+      } catch {
+        toast.error("Failed to enroll in course. Please try again.");
       }
-    } catch {
-      toast.error("Failed to enroll in course. Please try again.");
-    }
-  };
+    })();
 
   if (singleCourseLoading) {
     return (
@@ -103,13 +107,21 @@ export default function CourseDetails() {
               </div>
 
               <div>
-                <h2 className="text-lg font-semibold text-foreground">Instructor</h2>
-                <p className="text-muted-foreground">{singleCourseData.instructor}</p>
+                <h2 className="text-lg font-semibold text-foreground">
+                  Instructor
+                </h2>
+                <p className="text-muted-foreground">
+                  {singleCourseData.instructor}
+                </p>
               </div>
 
               <div>
-                <h2 className="text-lg font-semibold text-foreground">Description</h2>
-                <p className="text-muted-foreground">{singleCourseData.description}</p>
+                <h2 className="text-lg font-semibold text-foreground">
+                  Description
+                </h2>
+                <p className="text-muted-foreground">
+                  {singleCourseData.description}
+                </p>
               </div>
             </div>
 
