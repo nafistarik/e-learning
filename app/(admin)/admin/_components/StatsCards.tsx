@@ -9,11 +9,12 @@ import { useGetAllEnrollmentsByAdminQuery } from "@/redux/api/enrollApi";
 import LoadingWave from "@/components/shared/LoadingWave";
 
 export function StatsCards() {
-  const { data: users } = useGetAllUsersQuery({});
+  const { data: users, isLoading: isUsersLoading } = useGetAllUsersQuery({});
 
   const { data: courses, isLoading: isCoursesLoading } = useGetCoursesQuery({});
 
-  const { data: allEnrollments, isLoading : enrollmentsLoading } = useGetAllEnrollmentsByAdminQuery({});
+  const { data: allEnrollments, isLoading: enrollmentsLoading } =
+    useGetAllEnrollmentsByAdminQuery({});
 
   const priceMap: { [key: string]: number } = {};
   courses?.courses?.forEach((course: { _id: string; price: number }) => {
@@ -44,7 +45,7 @@ export function StatsCards() {
   ];
 
   return (
-<div className="grid gap-6 md:grid-cols-3">
+    <div className="grid gap-6 md:grid-cols-3">
       {stats?.map((stat, index) => {
         const Icon = stat.icon;
         return (
@@ -65,12 +66,18 @@ export function StatsCards() {
                   </p>
                   <motion.div
                     className="text-3xl font-bold text-foreground mt-1"
-                    key={isCoursesLoading || enrollmentsLoading ? "loading" : stat?.value?.toString()}
+                    key={
+                      isCoursesLoading || enrollmentsLoading || isUsersLoading
+                        ? "loading"
+                        : stat?.value?.toString()
+                    }
                     initial={{ opacity: 0.5, y: -4 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4 }}
                   >
-                    {isCoursesLoading || enrollmentsLoading ? (
+                    {isCoursesLoading ||
+                    enrollmentsLoading ||
+                    isUsersLoading ? (
                       <LoadingWave />
                     ) : (
                       stat.value

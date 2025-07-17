@@ -12,7 +12,7 @@ import {
 } from "recharts";
 import { motion } from "framer-motion";
 import { useGetAllEnrollmentsByAdminQuery } from "@/redux/api/enrollApi";
-import Loader from "@/components/shared/Loader";
+import LoadingWave from "@/components/shared/LoadingWave";
 
 interface CourseEnrollments {
   title: string;
@@ -45,7 +45,7 @@ export function EnrollmentChart() {
         </h2>
         <div className="h-[300px]">
           {enrollmentsLoading ? (
-            <Loader />
+            <LoadingWave/>
           ) : (
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={enrollmentData}>

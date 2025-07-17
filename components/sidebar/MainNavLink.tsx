@@ -50,7 +50,7 @@ export default function MainNavLink({
           height={1000}
           alt="logo"
           priority
-          className="object-contain h-16 w-auto"
+          className="object-contain h-14 w-auto"
         />
       </Link>
 

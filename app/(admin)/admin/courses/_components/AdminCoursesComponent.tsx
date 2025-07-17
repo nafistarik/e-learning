@@ -62,7 +62,7 @@ export default function AdminCoursesComponent() {
         initial={{ opacity: 0, scale: 0.97 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="rounded-2xl border border-border shadow-md bg-card p-4"
+        className="rounded-2xl border border-border bg-card p-4"
       >
         {isLoading ? (
           <div className="text-center py-6 animate-pulse">
@@ -71,7 +71,7 @@ export default function AdminCoursesComponent() {
         ) : (
           <Table className="w-full">
             <TableHeader>
-              <TableRow className="bg-muted/50 text-muted-foreground">
+              <TableRow className="text-muted-foreground">
                 <TableHead className="font-semibold text-sm">Course</TableHead>
                 <TableHead className="font-semibold text-sm">Category</TableHead>
                 <TableHead className="text-right font-semibold text-sm">
