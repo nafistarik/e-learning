@@ -63,7 +63,7 @@ export function StatsCards() {
                   <p className="text-sm text-muted-foreground tracking-wide">
                     {stat.name}
                   </p>
-                  <motion.p
+                  <motion.div
                     className="text-3xl font-bold text-foreground mt-1"
                     key={isCoursesLoading || enrollmentsLoading ? "loading" : stat?.value?.toString()}
                     initial={{ opacity: 0.5, y: -4 }}
@@ -75,7 +75,7 @@ export function StatsCards() {
                     ) : (
                       stat.value
                     )}
-                  </motion.p>
+                  </motion.div>
                 </div>
               </div>
             </Card>
