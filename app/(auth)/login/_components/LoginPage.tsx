@@ -20,7 +20,7 @@ import { setUser } from "@/redux/slice/userSlice";
 import { toast } from "sonner";
 
 export const metadata: Metadata = {
-  title: "Login - E-Learning Platform",
+  title: "Login - SkillFlow",
   description: "Login to access your courses and profile",
 };
 
@@ -41,7 +41,7 @@ export default function LoginPage() {
   };
 
   const fillUserCredentials = () => {
-    setValue("email", "test@gmail.com");
+    setValue("email", "user@gmail.com");
     setValue("password", "123456");
   };
 
