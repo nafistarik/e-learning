@@ -98,7 +98,7 @@ export default function CourseDetails() {
               </h1>
 
               <div className="flex items-center gap-4 text-sm sm:text-base">
-                <span className="bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
+                <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full font-medium">
                   {singleCourseData.category}
                 </span>
                 <span className="text-lg font-semibold text-foreground">
@@ -106,14 +106,14 @@ export default function CourseDetails() {
                 </span>
               </div>
 
-              <div>
+              {/* <div>
                 <h2 className="text-lg font-semibold text-foreground">
                   Instructor
                 </h2>
                 <p className="text-muted-foreground">
                   {singleCourseData.instructor}
                 </p>
-              </div>
+              </div> */}
 
               <div>
                 <h2 className="text-lg font-semibold text-foreground">
@@ -127,8 +127,9 @@ export default function CourseDetails() {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
-                onClick={() => onEnroll(singleCourseData._id)}
                 className="flex-1"
+                disabled={enrollLoading}
+                onClick={() => onEnroll(singleCourseData._id)}
               >
                 {enrollLoading ? "Enrolling..." : "Enroll Now"}
               </Button>
@@ -136,6 +137,7 @@ export default function CourseDetails() {
               <Button
                 variant="outline"
                 className="flex-1 flex items-center justify-center gap-2 border-gray-300 shadow-sm transition hover:bg-muted"
+                disabled={favoriteLoading}
                 onClick={() => onFavorite(singleCourseData._id)}
               >
                 <Heart className="h-5 w-5" />
