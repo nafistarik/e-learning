@@ -98,7 +98,7 @@ export default function AdminCoursesComponent() {
                   <TableCell className="text-foreground">
                     {course.category}
                   </TableCell>
-                  <TableCell className="text-right space-x-1">
+                  <TableCell className="text-right space-x-1 flex justify-end">
                     <Button
                       variant="ghost"
                       size="sm"
@@ -106,7 +106,7 @@ export default function AdminCoursesComponent() {
                         setSelectedCourseId(course._id);
                         setIsEditOpen(true);
                       }}
-                      className="text-muted-foreground hover:text-foreground"
+                      className="text-muted-foreground hover:text-foreground w-8"
                     >
                       <Pencil className="h-4 w-4" />
                     </Button>
@@ -114,7 +114,7 @@ export default function AdminCoursesComponent() {
                       variant="ghost"
                       size="sm"
                       onClick={() => handleDelete(course._id)}
-                      className="text-destructive hover:text-destructive-foreground"
+                      className="text-destructive hover:text-destructive-foreground w-8"
                     >
                       <Trash className="h-4 w-4" />
                     </Button>

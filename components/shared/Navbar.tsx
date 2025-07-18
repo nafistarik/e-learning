@@ -49,9 +49,9 @@ export default function Navbar() {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "flex items-center gap-2 text-sm px-4 py-2 rounded-md transition-all duration-300",
+                    "flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-md transition-all duration-300",
                     pathname === item.href
-                      ? "text-primary font-semibold bg-muted"
+                      ? "text-primary bg-muted"
                       : "text-muted-foreground hover:text-primary hover:bg-muted/60"
                   )}
                 >
@@ -83,22 +83,16 @@ export default function Navbar() {
                   </Link>
                   <Link
                     href="/profile"
-                    className="flex items-center justify-center"
+                    className="flex items-center justify-center hover:opacity-80 transition-all duration-300"
                   >
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="bg-muted hover:bg-accent border border-border rounded-full overflow-hidden"
-                    >
-                      <Image
-                        src={user?.user?.image || "/placeholder.svg"}
-                        width={1000}
-                        height={1000}
-                        className="w-full h-full object-cover"
-                        alt="logo"
-                        priority
-                      />
-                    </Button>
+                    <Image
+                      src={user?.user?.image || "/placeholder.svg"}
+                      width={1000}
+                      height={1000}
+                      className="w-9 h-auto object-cover overflow-hidden rounded-full"
+                      alt="logo"
+                      priority
+                    />
                   </Link>
                 </div>
               ) : (
