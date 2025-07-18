@@ -76,9 +76,9 @@ export function CourseCard({ course }: CourseCardProps) {
           )}
         >
           {favoriteLoading ? (
-            <Loader2 className="h-4 w-4 animate-spin" />
+            <Loader2 className="h-5 w-5 animate-spin"  />
           ) : (
-            <Heart className="h-4 w-4 text-primary" />
+            <Heart className="h-5 w-5 text-primary" fill="currentColor"/>
           )}
         </Button>
       </div>

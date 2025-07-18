@@ -3,16 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  Menu,
-  X,
-  ShoppingCart,
-  User,
-  Home,
-  BookOpen,
-  Info,
-  Phone,
-} from "lucide-react";
+import { Menu, X, Home, BookOpen, Info, Phone, Heart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -33,6 +24,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const user = useSelector(selectUser);
 
+  console.log(user);
   return (
     <section>
       <nav className="fixed top-0 z-50 w-full">
@@ -81,18 +73,31 @@ export default function Navbar() {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="bg-muted hover:bg-accent border border-border"
+                      className="bg-muted hover:bg-accent border border-border rounded-full"
                     >
-                      <ShoppingCart className="h-5 w-5 text-foreground" />
+                      <Heart
+                        className="h-5 w-5 text-primary"
+                        fill="currentColor"
+                      />
                     </Button>
                   </Link>
-                  <Link href="/profile">
+                  <Link
+                    href="/profile"
+                    className="flex items-center justify-center"
+                  >
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="bg-muted hover:bg-accent border border-border"
+                      className="bg-muted hover:bg-accent border border-border rounded-full overflow-hidden"
                     >
-                      <User className="h-5 w-5 text-foreground" />
+                      <Image
+                        src={user?.user?.image || "/placeholder.svg"}
+                        width={1000}
+                        height={1000}
+                        className="w-full h-full object-cover"
+                        alt="logo"
+                        priority
+                      />
                     </Button>
                   </Link>
                 </div>
