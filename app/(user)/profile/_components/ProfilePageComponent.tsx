@@ -41,10 +41,6 @@ export default function ProfilePage() {
     }, 100);
   };
 
-  console.log(
-    user?.image && user?.image == "/placeholder.svg",
-    "user image in profile page"
-  );
   const userImage =
     !user?.image || user.image == "/placeholder.svg"
       ? defaultPropic

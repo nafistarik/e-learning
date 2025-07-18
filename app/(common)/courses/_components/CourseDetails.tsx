@@ -6,13 +6,14 @@ import { Heart } from "lucide-react";
 import { useGetSingleCourseQuery } from "@/redux/api/courseApi";
 import { usePathname } from "next/navigation";
 import Loader from "@/components/shared/Loader";
-import EmptyStateMessage from "@/components/shared/EmptyStateMessage";
 import SlideInRight from "@/components/motion/SlideInRight";
 import SlideInLeft from "@/components/motion/SlideInLeft";
 import { useAddToFavouriteMutation } from "@/redux/api/favouriteApi";
 import { useEnrollCourseMutation } from "@/redux/api/enrollApi";
 import { toast } from "sonner";
 import useProtectedAction from "@/hooks/useProtectedAction";
+import ErrorMessage from "@/components/shared/ErrorMessage";
+import { cn } from "@/lib/utils";
 
 export default function CourseDetails() {
   const pathName = usePathname();
@@ -25,10 +26,10 @@ export default function CourseDetails() {
     isError: singleCourseError,
   } = useGetSingleCourseQuery(courseId);
 
-  const [addToFavourite, { isLoading: favoriteLoading, error: favoriteError }] =
+  const [addToFavourite, { isLoading: favoriteLoading }] =
     useAddToFavouriteMutation();
 
-  const [enrollCourse, { isLoading: enrollLoading, isError: enrollError }] =
+  const [enrollCourse, { isLoading: enrollLoading }] =
     useEnrollCourseMutation();
 
   const onFavorite = (courseId: string) =>
@@ -68,7 +69,7 @@ export default function CourseDetails() {
   if (singleCourseError) {
     return (
       <div className="pt-32 container min-h-screen">
-        <EmptyStateMessage message="Error fetching course data!" />
+        <ErrorMessage message="Error fetching course data!" />
       </div>
     );
   }
@@ -82,8 +83,9 @@ export default function CourseDetails() {
             <Image
               src={singleCourseData.image || "/placeholder.svg"}
               alt={singleCourseData.title}
-              width={800}
-              height={600}
+              width={1000}
+              height={1000}
+              priority
               className="w-full h-auto aspect-video object-cover transition-transform duration-500 hover:scale-[1.03]"
             />
           </div>
@@ -106,15 +108,6 @@ export default function CourseDetails() {
                 </span>
               </div>
 
-              {/* <div>
-                <h2 className="text-lg font-semibold text-foreground">
-                  Instructor
-                </h2>
-                <p className="text-muted-foreground">
-                  {singleCourseData.instructor}
-                </p>
-              </div> */}
-
               <div>
                 <h2 className="text-lg font-semibold text-foreground">
                   Description
@@ -126,32 +119,38 @@ export default function CourseDetails() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-                className="flex-1"
-                disabled={enrollLoading}
-                onClick={() => onEnroll(singleCourseData._id)}
+              <div
+                className={cn(
+                  "flex-1",
+                  enrollLoading ? "cursor-not-allowed opacity-50" : ""
+                )}
               >
-                {enrollLoading ? "Enrolling..." : "Enroll Now"}
-              </Button>
+                <Button
+                  className="flex-1"
+                  disabled={enrollLoading}
+                  onClick={() => onEnroll(singleCourseData._id)}
+                >
+                  {enrollLoading ? "Enrolling..." : "Enroll Now"}
+                </Button>
+              </div>
 
-              <Button
-                variant="outline"
-                className="flex-1 flex items-center justify-center gap-2 border-gray-300 shadow-sm transition hover:bg-muted"
-                disabled={favoriteLoading}
-                onClick={() => onFavorite(singleCourseData._id)}
+              <div
+                className={cn(
+                  "flex-1",
+                  favoriteLoading ? "cursor-not-allowed opacity-50" : ""
+                )}
               >
-                <Heart className="h-5 w-5" />
-                {favoriteLoading ? "Adding..." : "Add to Favorites"}
-              </Button>
+                <Button
+                  variant="outline"
+                  className="flex-1 flex items-center justify-center gap-2 border-gray-300 shadow-sm transition hover:bg-muted"
+                  disabled={favoriteLoading}
+                  onClick={() => onFavorite(singleCourseData._id)}
+                >
+                  <Heart className="h-5 w-5" />
+                  {favoriteLoading ? "Adding..." : "Add to Favorites"}
+                </Button>
+              </div>
             </div>
-
-            {(favoriteError || enrollError) && (
-              <p className="text-red-500 font-medium pt-2">
-                {favoriteError
-                  ? "Failed to favorite course."
-                  : "Failed to enroll in course."}
-              </p>
-            )}
           </div>
         </SlideInRight>
       </div>

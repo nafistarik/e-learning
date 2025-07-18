@@ -4,25 +4,25 @@ import type { Course } from "@/lib/data/courses";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { Heart } from "lucide-react";
+import { Heart, Loader2 } from "lucide-react";
 import { useAddToFavouriteMutation } from "@/redux/api/favouriteApi";
 import { toast } from "sonner";
 import { useEnrollCourseMutation } from "@/redux/api/enrollApi";
 import Link from "next/link";
 import useProtectedAction from "@/hooks/useProtectedAction";
+import { cn } from "@/lib/utils";
 
 interface CourseCardProps {
   course: Course;
 }
 
 export function CourseCard({ course }: CourseCardProps) {
+  const { protect } = useProtectedAction();
 
-  const {protect} = useProtectedAction();
-
-  const [addToFavourite, { isLoading: favoriteLoading, error: favoriteError }] =
+  const [addToFavourite, { isLoading: favoriteLoading }] =
     useAddToFavouriteMutation();
 
-  const [enrollCourse, { isLoading: enrollLoading, isError: enrollError }] =
+  const [enrollCourse, { isLoading: enrollLoading }] =
     useEnrollCourseMutation();
 
   const onFavorite = protect(async () => {
@@ -58,17 +58,28 @@ export function CourseCard({ course }: CourseCardProps) {
           alt={course.title}
           width={400}
           height={200}
+          priority
           className="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-105"
         />
 
         {/* Favorite Button */}
+
         <Button
           variant="ghost"
           size="icon"
-          className="bg-muted hover:bg-accent border border-border absolute top-3 right-3"
+          disabled={favoriteLoading}
           onClick={onFavorite}
+          className={cn(
+            "bg-muted hover:bg-accent border border-border absolute top-3 right-3",
+            favoriteLoading &&
+              "cursor-not-allowed opacity-50 pointer-events-none"
+          )}
         >
-          <Heart className="h-5 w-5 text-primary fill-primary " />
+          {favoriteLoading ? (
+            <Loader2 className="h-4 w-4 animate-spin" />
+          ) : (
+            <Heart className="h-4 w-4 text-primary" />
+          )}
         </Button>
       </div>
 
@@ -84,36 +95,28 @@ export function CourseCard({ course }: CourseCardProps) {
         <p className="text-lg font-bold text-primary mt-1">${course.price}</p>
 
         {/* Buttons */}
-        <div className="mt-auto flex gap-3">
+        <div className="flex gap-3">
           <Link href={`/courses/${course._id}`} className="flex-1">
             <Button variant="outline">View Details</Button>
           </Link>
-          <Button
-            className="flex-1"
-            onClick={onEnroll}
-            disabled={enrollLoading}
+          <div
+            className={cn(
+              "flex-1",
+              enrollLoading ? "cursor-not-allowed opacity-50" : ""
+            )}
           >
-            {enrollLoading ? "Enrolling..." : "Enroll"}
-          </Button>
+            <Button disabled={enrollLoading} onClick={onEnroll}>
+              {enrollLoading ? (
+                <span className="flex items-center gap-2">
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  Enrolling...
+                </span>
+              ) : (
+                "Enroll"
+              )}
+            </Button>
+          </div>
         </div>
-
-        {/* Status Messages */}
-        {(favoriteLoading || enrollLoading) && (
-          <p className="text-sm text-gray-500 font-medium pt-1 animate-pulse">
-            Processing...
-          </p>
-        )}
-
-        {favoriteError && (
-          <p className="text-sm text-red-500 font-medium pt-1">
-            Could not favorite this course.
-          </p>
-        )}
-        {enrollError && (
-          <p className="text-sm text-red-500 font-medium pt-1">
-            Enrollment failed.
-          </p>
-        )}
       </div>
     </Card>
   );
