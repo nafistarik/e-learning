@@ -74,10 +74,16 @@ export default function ProfilePage() {
                 <p className="text-sm text-muted-foreground">{user?.email}</p>
               </div>
               <div className="flex justify-between w-full gap-3">
-                <Button variant="outline" onClick={() => setIsEditing(true)}>
+                <Button
+                  variant="outline"
+                  onClick={() => setIsEditing(true)}
+                  className="flex-1"
+                >
                   Edit Profile
                 </Button>
-                <Button onClick={handleLogout}>Logout</Button>
+                <Button onClick={handleLogout} className="flex-1">
+                  Logout
+                </Button>
               </div>
             </div>
           </Card>

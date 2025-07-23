@@ -24,7 +24,6 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const user = useSelector(selectUser);
 
-  console.log(user);
   return (
     <section>
       <nav className="fixed top-0 z-50 w-full">
