@@ -95,17 +95,17 @@ export function CourseCard({ course }: CourseCardProps) {
         <p className="text-lg font-bold text-primary mt-1">${course.price}</p>
 
         {/* Buttons */}
-        <div className="flex gap-3">
+        <div className="flex gap-3 ">
           <Link href={`/courses/${course._id}`} className="flex-1">
-            <Button variant="outline">View Details</Button>
+            <Button className="w-full" variant="outline">View Details</Button>
           </Link>
           <div
             className={cn(
-              "flex-1",
+              "flex-1 ",
               enrollLoading ? "cursor-not-allowed opacity-50" : ""
             )}
           >
-            <Button disabled={enrollLoading} onClick={onEnroll}>
+            <Button disabled={enrollLoading} onClick={onEnroll} className="w-full">
               {enrollLoading ? (
                 <span className="flex items-center gap-2">
                   <Loader2 className="h-4 w-4 animate-spin" />
