@@ -12,7 +12,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import SlideInRight from "@/components/motion/SlideInRight";
 import ZoomIn from "@/components/motion/ZoomIn";
 import EmptyStateMessage from "@/components/shared/EmptyStateMessage";
 import { categories } from "@/lib/data/categories";
@@ -50,8 +49,7 @@ export default function CoursesComponent() {
 
   return (
     <div className="pt-28 pb-12 lg:pt-32 lg:pb-24 min-h-[calc(100vh)] flex flex-col container">
-      {/* Header & Filters */}
-      <SlideInRight>
+
         <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="space-y-1">
             <h1 className="text-4xl font-bold tracking-tight">All Courses</h1>
@@ -89,8 +87,6 @@ export default function CoursesComponent() {
             </Select>
           </div>
         </div>
-      </SlideInRight>
-      {/* Course Grid with Animations */}
       {isLoading ? (
         loadingSkeletons
       ) : isError ? (

@@ -1,7 +1,6 @@
 import { Mail, MapPin, Phone, Clock } from "lucide-react";
 import FadeUp from "@/components/motion/FadeUp";
 import ScaleUp from "@/components/motion/ScaleUp";
-import SlideInRight from "@/components/motion/SlideInRight";
 import Image from "next/image";
 import contactImage from "@/app/assets/images/home/Contact.png";
 
@@ -55,8 +54,6 @@ export function ContactPage() {
           </div>
         </FadeUp>
 
-        {/* Right Image */}
-        <SlideInRight>
           <div className="flex justify-center">
             <Image
               src={contactImage}
@@ -67,7 +64,6 @@ export function ContactPage() {
               priority
             />
           </div>
-        </SlideInRight>
       </div>
     </section>
   );

@@ -5,7 +5,6 @@ import { Course } from "@/lib/data/courses";
 import { useGetCoursesQuery } from "@/redux/api/courseApi";
 import Link from "next/link";
 import { CourseCard } from "../courses/_components/CourseCard";
-import SlideInRight from "@/components/motion/SlideInRight";
 import ZoomIn from "@/components/motion/ZoomIn";
 import EmptyStateMessage from "@/components/shared/EmptyStateMessage";
 import { CourseCardLoading } from "../courses/_components/CourseCardLoading";
@@ -17,13 +16,11 @@ export function PopularCourses() {
   return (
     <section className="container py-20">
       <div className="space-y-12">
-        <SlideInRight>
           <div className="text-center">
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
               Explore Popular Courses
             </h2>
           </div>
-        </SlideInRight>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 min-h-[280px]">
           {isLoading &&
