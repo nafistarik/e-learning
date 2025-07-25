@@ -121,7 +121,6 @@ export default function CourseDetails() {
             <div className="flex flex-col sm:flex-row gap-4">
               <div
                 className={cn(
-                  "flex-1",
                   enrollLoading ? "cursor-not-allowed opacity-50" : ""
                 )}
               >
@@ -136,7 +135,6 @@ export default function CourseDetails() {
 
               <div
                 className={cn(
-                  "flex-1",
                   favoriteLoading ? "cursor-not-allowed opacity-50" : ""
                 )}
               >
