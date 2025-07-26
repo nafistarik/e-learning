@@ -78,6 +78,8 @@ export default function CoursesComponent() {
                   <SelectItem
                     key={category.name}
                     value={category.name.toLowerCase()}
+                    className = "hover:cursor-pointer"
+
                   >
                     {category.name}
                   </SelectItem>
