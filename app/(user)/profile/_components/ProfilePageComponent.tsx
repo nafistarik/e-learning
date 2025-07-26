@@ -122,14 +122,14 @@ export default function ProfilePage() {
                               </span>
                             </p>
                           </div>
-                          {/* <div className="flex items-center justify-between">
+                          <div className="flex items-center justify-between">
                             <span className="mt-1 text-sm text-muted-foreground">
                               Price:{" "}
                               <span className="font-normal">
                                 ${course.price}
                               </span>
                             </span>
-                          </div> */}
+                          </div>
                         </div>
                       </div>
                     </Card>
