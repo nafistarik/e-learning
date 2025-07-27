@@ -1,9 +1,10 @@
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import home from "@/app/assets/images/home/home.png";
 import Link from "next/link";
 import FadeUp from "@/components/motion/FadeUp";
 import ScaleUp from "@/components/motion/ScaleUp";
+import { UiButton } from "@/components/ui/ui-button";
+import { PartyPopper } from "lucide-react";
 
 export function Hero() {
   return (
@@ -26,9 +27,17 @@ export function Hero() {
           </FadeUp>
 
           <FadeUp delay={0.3}>
-            <Link href="/courses" className="inline-flex">
-              <Button>Let&apos;s Start</Button>
-            </Link>
+            <div className="inline-block">
+              <UiButton asChild>
+                <Link
+                  href="/courses"
+                  className="inline-flex gap-2 items-center"
+                >
+                  Let&apos;s Start
+                  <PartyPopper className="fill-yellow-300 text-yellow-300 animate-pulse" />
+                </Link>
+              </UiButton>
+            </div>
           </FadeUp>
         </div>
 

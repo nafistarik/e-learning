@@ -2,15 +2,15 @@
 
 import type { Course } from "@/lib/data/courses";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { Heart, Loader2 } from "lucide-react";
+import { Heart, Loader2, ReceiptText, SquareCheckBig } from "lucide-react";
 import { useAddToFavouriteMutation } from "@/redux/api/favouriteApi";
 import { toast } from "sonner";
 import { useEnrollCourseMutation } from "@/redux/api/enrollApi";
 import Link from "next/link";
 import useProtectedAction from "@/hooks/useProtectedAction";
 import { cn } from "@/lib/utils";
+import { UiButton } from "@/components/ui/ui-button";
 
 interface CourseCardProps {
   course: Course;
@@ -64,23 +64,19 @@ export function CourseCard({ course }: CourseCardProps) {
 
         {/* Favorite Button */}
 
-        <Button
+        <UiButton
           variant="ghost"
           size="icon"
           disabled={favoriteLoading}
           onClick={onFavorite}
-          className={cn(
-            "bg-muted hover:bg-accent border border-border absolute top-3 right-3",
-            favoriteLoading &&
-              "cursor-not-allowed opacity-50 pointer-events-none"
-          )}
+          className="bg-muted hover:bg-accent border border-border absolute top-3 right-3"
         >
           {favoriteLoading ? (
-            <Loader2 className="h-5 w-5 animate-spin"  />
+            <Loader2 className="h-5 w-5 animate-spin" />
           ) : (
-            <Heart className="h-5 w-5 text-primary" fill="currentColor"/>
+            <Heart className="h-5 w-5 text-primary" fill="currentColor" />
           )}
-        </Button>
+        </UiButton>
       </div>
 
       {/* Content */}
@@ -97,7 +93,10 @@ export function CourseCard({ course }: CourseCardProps) {
         {/* Buttons */}
         <div className="flex gap-3 ">
           <Link href={`/courses/${course._id}`} className="flex-1">
-            <Button className="w-full" variant="outline">View Details</Button>
+            <UiButton className="w-full" variant="outline">
+              <ReceiptText />
+              View Details
+            </UiButton>
           </Link>
           <div
             className={cn(
@@ -105,16 +104,22 @@ export function CourseCard({ course }: CourseCardProps) {
               enrollLoading ? "cursor-not-allowed opacity-50" : ""
             )}
           >
-            <Button disabled={enrollLoading} onClick={onEnroll} className="w-full">
+            <UiButton
+              disabled={enrollLoading}
+              onClick={onEnroll}
+              className="w-full"
+            >
               {enrollLoading ? (
                 <span className="flex items-center gap-2">
                   <Loader2 className="h-4 w-4 animate-spin" />
                   Enrolling...
                 </span>
               ) : (
-                "Enroll"
+                <span className="flex items-center gap-2">
+                  <SquareCheckBig /> Enroll
+                </span>
               )}
-            </Button>
+            </UiButton>
           </div>
         </div>
       </div>

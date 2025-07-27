@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { Course } from "@/lib/data/courses";
 import { useGetCoursesQuery } from "@/redux/api/courseApi";
 import Link from "next/link";
@@ -9,6 +8,8 @@ import ZoomIn from "@/components/motion/ZoomIn";
 import EmptyStateMessage from "@/components/shared/EmptyStateMessage";
 import { CourseCardLoading } from "../courses/_components/CourseCardLoading";
 import ErrorMessage from "@/components/shared/ErrorMessage";
+import { Wallpaper } from "lucide-react";
+import { UiButton } from "@/components/ui/ui-button";
 
 export function PopularCourses() {
   const { data: courses, isLoading, isError } = useGetCoursesQuery({});
@@ -16,11 +17,11 @@ export function PopularCourses() {
   return (
     <section className="container py-20">
       <div className="space-y-12">
-          <div className="text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
-              Explore Popular Courses
-            </h2>
-          </div>
+        <div className="text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
+            Explore Popular Courses
+          </h2>
+        </div>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 min-h-[280px]">
           {isLoading &&
@@ -48,13 +49,21 @@ export function PopularCourses() {
 
         {isError && <ErrorMessage code={404} message="Course not found." />}
 
-        <ZoomIn>
-          <div className="text-center">
-            <Button>
-              <Link href="/courses">View All Courses</Link>
-            </Button>
-          </div>
-        </ZoomIn>
+        <div className="flex justify-center">
+          <ZoomIn>
+            <div className="inline-block">
+              <UiButton asChild>
+                <Link
+                  href="/courses"
+                  className="inline-flex gap-2 items-center"
+                >
+                  <Wallpaper />
+                  View All Courses
+                </Link>
+              </UiButton>
+            </div>
+          </ZoomIn>
+        </div>
       </div>
     </section>
   );

@@ -1,18 +1,19 @@
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { categories } from "@/lib/data/categories";
 import { CategoryCard } from "./CategoryCard";
 import StaggerList from "@/components/motion/StaggerList";
 import Flip from "@/components/motion/Flip";
 import EmptyStateMessage from "@/components/shared/EmptyStateMessage";
+import { Wallpaper } from "lucide-react";
+import { UiButton } from "@/components/ui/ui-button";
 
 export function Categories() {
   return (
     <section className="container py-16">
       <div className="space-y-10 text-center">
-          <h2 className="text-4xl font-bold tracking-tight text-foreground">
-            Popular Categories
-          </h2>
+        <h2 className="text-4xl font-bold tracking-tight text-foreground">
+          Popular Categories
+        </h2>
 
         <StaggerList>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
@@ -34,9 +35,14 @@ export function Categories() {
           </div>
         </StaggerList>
 
-        <Button>
-          <Link href="/courses">All Courses</Link>
-        </Button>
+        <div className="inline-block">
+          <UiButton asChild>
+            <Link href="/courses" className="inline-flex gap-2 items-center">
+              <Wallpaper />
+              View All Courses
+            </Link>
+          </UiButton>
+        </div>
       </div>
     </section>
   );
