@@ -1,10 +1,6 @@
 import Pulse from "@/components/motion/Pulse";
-import { Category } from "@/types/category-types";
+import { CategoryCardProps } from "@/types/category-types";
 import Image from "next/image";
-
-interface CategoryCardProps {
-  category: Category;
-}
 
 export function CategoryCard({ category }: CategoryCardProps) {
   return (

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import LoginPage from "./_components/LoginPage";
 
 export const metadata: Metadata = {
-  title: "Login - E-Learning Platform",
+  title: "Login - SkillFlow",
   description: "Login to access your courses and profile",
 };
 

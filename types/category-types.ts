@@ -7,3 +7,7 @@ export interface Category {
     icon: string | StaticImageData
     coursesCount: number
   }
+
+export interface CategoryCardProps {
+  category: Category
+}

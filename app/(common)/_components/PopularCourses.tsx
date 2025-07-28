@@ -8,8 +8,8 @@ import EmptyStateMessage from "@/components/shared/EmptyStateMessage";
 import ErrorMessage from "@/components/shared/ErrorMessage";
 import { Wallpaper } from "lucide-react";
 import { UiButton } from "@/components/ui/ui-button";
-import { CourseCardSkeleton } from "../courses/_components/course-card-skeleton";
 import { Course } from "@/types/course-types";
+import CoursesSkeleton from "../courses/_components/courses-skeleton";
 
 export function PopularCourses() {
   const { data: courses, isLoading, isError } = useGetCoursesQuery({});
@@ -23,31 +23,21 @@ export function PopularCourses() {
           </h2>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 min-h-[280px]">
-          {isLoading &&
-            [...Array(3)].map((_, index) => (
-              <div key={index} className="h-full">
-                <CourseCardSkeleton />
-              </div>
+        {isLoading ? (
+          <CoursesSkeleton />
+        ) : isError ? (
+          <ErrorMessage code={404} message="Course not found." />
+        ) : courses.courses.length > 0 ? (
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {courses.courses.slice(0, 3).map((course: Course) => (
+              <ZoomIn key={course._id}>
+                <CourseCard course={course} />
+              </ZoomIn>
             ))}
-
-          {!isLoading && !isError && courses?.courses?.length > 0
-            ? courses.courses.slice(0, 3).map((course: Course) => (
-                <ZoomIn key={course._id}>
-                  <div className="h-full">
-                    <CourseCard course={course} />
-                  </div>
-                </ZoomIn>
-              ))
-            : !isLoading &&
-              !isError && (
-                <div className="col-span-full">
-                  <EmptyStateMessage message="No courses are here at the moment" />
-                </div>
-              )}
-        </div>
-
-        {isError && <ErrorMessage code={404} message="Course not found." />}
+          </div>
+        ) : (
+          <EmptyStateMessage message="No courses match your search." />
+        )}
 
         <div className="flex justify-center">
           <ZoomIn>

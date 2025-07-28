@@ -1,6 +1,5 @@
 import { UserList } from "./UserList";
 
-
 export default function AdminUsersPage() {
   return (
     <div className="space-y-4">
@@ -12,4 +11,3 @@ export default function AdminUsersPage() {
     </div>
   )
 }
-

@@ -10,19 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useState } from "react";
 import { useCreateCourseMutation } from "@/redux/api/courseApi";
 import { toast } from "sonner";
-
-interface CourseAddFormData {
-  title: string;
-  description: string;
-  price: string;
-  category: string;
-  image: FileList;
-}
-
-interface CourseAddFormProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-}
+import { CourseAddFormData, CourseAddFormProps } from "@/types/course-types";
 
 export function CourseAddForm({ open, onOpenChange }: CourseAddFormProps) {
   const { register, handleSubmit, setValue, reset } = useForm<CourseAddFormData>();

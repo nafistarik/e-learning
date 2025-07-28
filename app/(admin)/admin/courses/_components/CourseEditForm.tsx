@@ -21,30 +21,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useUpdateCourseMutation } from "@/redux/api/courseApi";
+import { CourseAddFormData, CourseEditFormProps } from "@/types/course-types";
 
-interface Course {
-  _id: string;
-  title: string;
-  description: string;
-  price: number;
-  categoryId: number;
-  category: string;
-  image?: string;
-}
-
-interface CourseEditFormData {
-  title: string;
-  description: string;
-  price: string;
-  category: string;
-  image?: FileList;
-}
-
-interface CourseEditFormProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  course: Course | null;
-}
 
 export function CourseEditForm({
   open,
@@ -52,7 +30,7 @@ export function CourseEditForm({
   course,
 }: CourseEditFormProps) {
   const { register, handleSubmit, watch, reset, setValue } =
-    useForm<CourseEditFormData>();
+    useForm<CourseAddFormData>();
   const [updateCourse, { isLoading, error }] = useUpdateCourseMutation();
 
   useEffect(() => {
@@ -71,7 +49,7 @@ export function CourseEditForm({
     ? URL.createObjectURL(imageFile)
     : course?.image || "/placeholder.svg";
 
-  const handleFormSubmit = async (data: CourseEditFormData) => {
+  const handleFormSubmit = async (data: CourseAddFormData) => {
     if (!course) return;
 
     const formData = new FormData();

@@ -1,8 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { Metadata } from "next";
-import { useRouter } from "next/navigation"; // ✅ Import useRouter
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
   Card,
@@ -18,16 +17,7 @@ import { useLoginUserMutation } from "@/redux/api/authApi";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/redux/slice/userSlice";
 import { toast } from "sonner";
-
-export const metadata: Metadata = {
-  title: "Login - SkillFlow",
-  description: "Login to access your courses and profile",
-};
-
-interface LoginFormData {
-  email: string;
-  password: string;
-}
+import { LoginFormData } from "@/types/auth-types";
 
 export default function LoginPage() {
   const { register, handleSubmit, setValue } = useForm<LoginFormData>();
@@ -80,7 +70,7 @@ export default function LoginPage() {
             </div>
             <div className="space-y-2">
               <label htmlFor="password">Password</label>
-              <Input id="password" type="password" {...register("password")} />
+              <Input id="password" type="password" placeholder="" {...register("password")} />
             </div>
             <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading ? "Signing in..." : "Sign In"}

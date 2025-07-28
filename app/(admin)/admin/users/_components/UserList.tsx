@@ -10,21 +10,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { extractDate } from "@/lib/utils";
-
-interface CoursesType {
-length:number
-}
-
-interface UserType {
-  id: string;
-  name: string;
-  email: string;
-  createdAt: string;
-  enrolledCourses: CoursesType;
-}
-
 import { useGetAllUsersQuery } from "@/redux/api/userApi";
-
+import { User } from "@/types/user-types";
 import { motion } from "framer-motion";
 
 export function UserList() {
@@ -50,7 +37,7 @@ export function UserList() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data?.map((user: UserType) => (
+          {data?.map((user: User) => (
             <TableRow
               key={user.id}
               className="transition-all duration-300 hover:bg-muted"

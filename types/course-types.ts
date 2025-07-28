@@ -21,3 +21,22 @@ export interface CourseFormProps {
   course?: Course;
   onSubmit: (data: Partial<Course>) => void;
 }
+
+export interface CourseAddFormData {
+  title: string;
+  description: string;
+  price: string;
+  category: string;
+  image: FileList;
+}
+
+export interface CourseAddFormProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}
+
+export interface CourseEditFormProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  course: Course | null;
+}

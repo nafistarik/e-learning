@@ -9,19 +9,8 @@ import { useUpdateUserProfileMutation } from "@/redux/api/userApi"
 import { toast } from "sonner"
 import { useDispatch } from "react-redux"
 import { updateUser } from "@/redux/slice/userSlice"
-import { User } from "@/types/user-types"
+import { ProfileEditFormData, ProfileEditFormProps } from "@/types/user-types"
 
-interface ProfileEditFormData {
-  name: string
-  image: FileList
-}
-
-interface ProfileEditFormProps {
-  user: User
-  userImage: string
-  open: boolean
-  onOpenChange: (open: boolean) => void
-}
 
 export function ProfileEditForm({ user, userImage, open, onOpenChange }: ProfileEditFormProps) {
   const { register, handleSubmit, watch } = useForm<ProfileEditFormData>({
@@ -34,7 +23,6 @@ export function ProfileEditForm({ user, userImage, open, onOpenChange }: Profile
   const imagePreview = imageFile ? URL.createObjectURL(imageFile) : userImage
 
   const [updateUserProfile, { isLoading }] = useUpdateUserProfileMutation()
-
   const dispatch = useDispatch();
 
   const handleFormSubmit = async (data: ProfileEditFormData) => {

@@ -16,8 +16,8 @@ import EmptyStateMessage from "@/components/shared/EmptyStateMessage";
 import { categories } from "@/lib/data/categories";
 import { LayoutList } from "lucide-react";
 import ErrorMessage from "@/components/shared/ErrorMessage";
-import { CourseCardSkeleton } from "./course-card-skeleton";
 import { Course } from "@/types/course-types";
+import CoursesSkeleton from "./courses-skeleton";
 
 export default function CoursesComponent() {
   const { data: coursesData, isLoading, isError } = useGetCoursesQuery({});
@@ -77,13 +77,7 @@ export default function CoursesComponent() {
       </div>
 
       {isLoading ? (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {[...Array(6)].map((_, index) => (
-            <div key={index} className="h-full">
-              <CourseCardSkeleton />
-            </div>
-          ))}
-        </div>
+        <CoursesSkeleton />
       ) : isError ? (
         <ErrorMessage code={404} message="Course not found." />
       ) : filteredCourses.length > 0 ? (

@@ -60,7 +60,6 @@ export function CourseCard({ course }: CourseCardProps) {
         />
 
         {/* Favorite Button */}
-
         <UiButton
           variant="ghost"
           size="icon"
