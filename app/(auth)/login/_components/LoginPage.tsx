@@ -65,12 +65,17 @@ export default function LoginPage() {
                 id="email"
                 type="email"
                 {...register("email")}
-                placeholder="m@example.com"
+                placeholder="user@example.com"
               />
             </div>
             <div className="space-y-2">
               <label htmlFor="password">Password</label>
-              <Input id="password" type="password" placeholder="" {...register("password")} />
+              <Input
+                id="password"
+                type="password"
+                {...register("password")}
+                placeholder="password"
+              />
             </div>
             <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading ? "Signing in..." : "Sign In"}

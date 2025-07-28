@@ -64,12 +64,12 @@ export default function SignUpPage() {
                 id="email"
                 type="email"
                 {...register("email")}
-                placeholder="m@example.com"
+                placeholder="user@example.com"
               />
             </div>
             <div className="space-y-2">
               <label htmlFor="password">Password</label>
-              <Input id="password" type="password" {...register("password")} />
+              <Input id="password" type="password" {...register("password")} placeholder="password" />
             </div>
             <div className="space-y-2">
               <label htmlFor="confirmPassword">Confirm Password</label>
