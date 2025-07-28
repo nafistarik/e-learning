@@ -5,11 +5,11 @@ import { selectUser } from "@/redux/slice/userSlice";
 import { useGetUserFavouritesQuery } from "@/redux/api/favouriteApi";
 import Loader from "@/components/shared/Loader";
 import { CartCourseCard } from "./CartCourseCard";
-import { Course } from "@/lib/data/courses";
 import EmptyStateMessage from "@/components/shared/EmptyStateMessage";
 import FadeUp from "@/components/motion/FadeUp";
 import StaggerList from "@/components/motion/StaggerList";
 import SlideInLeft from "@/components/motion/SlideInLeft";
+import { Course } from "@/types/course-types";
 
 export default function UserCartPage() {
   const {user} = useSelector(selectUser);

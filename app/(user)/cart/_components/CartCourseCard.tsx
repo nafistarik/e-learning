@@ -1,12 +1,12 @@
 "use client";
 
-import type { Course } from "@/lib/data/courses";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useEnrollCourseMutation } from "@/redux/api/enrollApi";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
+import { Course } from "@/types/course-types";
 
 interface CartCourseCardProps {
   course: Course;

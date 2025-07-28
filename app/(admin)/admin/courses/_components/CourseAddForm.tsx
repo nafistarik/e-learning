@@ -83,7 +83,7 @@ export function CourseAddForm({ open, onOpenChange }: CourseAddFormProps) {
               }}
             >
               <SelectTrigger>
-                <SelectValue placeholder="Select category" />
+                <SelectValue placeholder="Select Category" />
               </SelectTrigger>
               <SelectContent>
                 {categories.map((category) => (

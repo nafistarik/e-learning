@@ -7,15 +7,9 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { Course } from "@/lib/data/courses"
+import { Course, CourseFormProps } from "@/types/course-types"
 
 
-interface CourseFormProps {
-  open: boolean
-  onOpenChange: (open: boolean) => void
-  course?: Course
-  onSubmit: (data: Partial<Course>) => void
-}
 
 export function CourseForm({ open, onOpenChange, course, onSubmit }: CourseFormProps) {
 

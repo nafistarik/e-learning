@@ -27,7 +27,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/(common)/courses/_components/SingleCourseComponent.tsx",
-    "app/(common)/courses/_components/CourseDetails.tsx"
+    "app/(common)/courses/_components/course-details.tsx"
   ],
   "exclude": ["node_modules"]
 }

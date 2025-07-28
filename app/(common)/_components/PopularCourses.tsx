@@ -1,15 +1,15 @@
 "use client";
 
-import { Course } from "@/lib/data/courses";
 import { useGetCoursesQuery } from "@/redux/api/courseApi";
 import Link from "next/link";
-import { CourseCard } from "../courses/_components/CourseCard";
+import { CourseCard } from "../courses/_components/course-card";
 import ZoomIn from "@/components/motion/ZoomIn";
 import EmptyStateMessage from "@/components/shared/EmptyStateMessage";
-import { CourseCardLoading } from "../courses/_components/CourseCardLoading";
 import ErrorMessage from "@/components/shared/ErrorMessage";
 import { Wallpaper } from "lucide-react";
 import { UiButton } from "@/components/ui/ui-button";
+import { CourseCardSkeleton } from "../courses/_components/course-card-skeleton";
+import { Course } from "@/types/course-types";
 
 export function PopularCourses() {
   const { data: courses, isLoading, isError } = useGetCoursesQuery({});
@@ -27,7 +27,7 @@ export function PopularCourses() {
           {isLoading &&
             [...Array(3)].map((_, index) => (
               <div key={index} className="h-full">
-                <CourseCardLoading />
+                <CourseCardSkeleton />
               </div>
             ))}
 

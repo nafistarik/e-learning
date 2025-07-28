@@ -3,7 +3,7 @@
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 
-export function CourseCardLoading() {
+export function CourseCardSkeleton() {
   return (
     <Card className="overflow-hidden rounded-xl shadow-sm border flex flex-col h-full animate-pulse">
       {/* Skeleton Image */}

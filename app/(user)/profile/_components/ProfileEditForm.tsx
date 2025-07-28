@@ -5,11 +5,11 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import Image from "next/image"
-import type { User } from "@/lib/data/users"
 import { useUpdateUserProfileMutation } from "@/redux/api/userApi"
 import { toast } from "sonner"
 import { useDispatch } from "react-redux"
 import { updateUser } from "@/redux/slice/userSlice"
+import { User } from "@/types/user-types"
 
 interface ProfileEditFormData {
   name: string

@@ -1,12 +1,9 @@
-import type { Course } from "@/lib/data/courses"
+
 import { Card } from "@/components/ui/card"
+import { CourseCardProps } from "@/types/course-types"
 import Image from "next/image"
 
-interface ProfileCourseCardProps {
-  course: Course
-}
-
-export function ProfileCourseCard({ course }: ProfileCourseCardProps) {
+export function ProfileCourseCard({ course }: CourseCardProps) {
   return (
     <Card className="flex flex-col gap-4 p-4 sm:flex-row">
       <Image
@@ -24,4 +21,3 @@ export function ProfileCourseCard({ course }: ProfileCourseCardProps) {
     </Card>
   )
 }
-

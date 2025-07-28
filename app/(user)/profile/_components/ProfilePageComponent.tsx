@@ -10,13 +10,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectUser, removeUser } from "@/redux/slice/userSlice";
 import { useRouter } from "next/navigation";
 import { useGetAllEnrollmentsQuery } from "@/redux/api/enrollApi";
-import { Course } from "@/lib/data/courses";
 import Loader from "@/components/shared/Loader";
 import EmptyStateMessage from "@/components/shared/EmptyStateMessage";
 import SlideInRight from "@/components/motion/SlideInRight";
 import FadeUp from "@/components/motion/FadeUp";
 import SlideInLeft from "@/components/motion/SlideInLeft";
 import { ProfileEditForm } from "./ProfileEditForm";
+import { Course } from "@/types/course-types";
 
 export default function ProfilePage() {
   const [isEditing, setIsEditing] = useState(false);

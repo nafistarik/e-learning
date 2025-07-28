@@ -1,6 +1,5 @@
 "use client";
 
-import type { Course } from "@/lib/data/courses";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import { Heart, Loader2, ReceiptText, SquareCheckBig } from "lucide-react";
@@ -11,12 +10,10 @@ import Link from "next/link";
 import useProtectedAction from "@/hooks/useProtectedAction";
 import { cn } from "@/lib/utils";
 import { UiButton } from "@/components/ui/ui-button";
-
-interface CourseCardProps {
-  course: Course;
-}
+import { CourseCardProps } from "@/types/course-types";
 
 export function CourseCard({ course }: CourseCardProps) {
+  
   const { protect } = useProtectedAction();
 
   const [addToFavourite, { isLoading: favoriteLoading }] =
@@ -87,7 +84,6 @@ export function CourseCard({ course }: CourseCardProps) {
         <p className="text-sm text-muted-foreground line-clamp-2">
           {course.description}
         </p>
-
         <p className="text-lg font-bold text-primary mt-1">${course.price}</p>
 
         {/* Buttons */}
@@ -116,7 +112,8 @@ export function CourseCard({ course }: CourseCardProps) {
                 </span>
               ) : (
                 <span className="flex items-center gap-2">
-                  <SquareCheckBig /> Enroll
+                  <SquareCheckBig />
+                  Enroll
                 </span>
               )}
             </UiButton>

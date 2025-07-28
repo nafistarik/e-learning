@@ -1,5 +1,5 @@
 import Pulse from "@/components/motion/Pulse";
-import type { Category } from "@/lib/data/categories";
+import { Category } from "@/types/category-types";
 import Image from "next/image";
 
 interface CategoryCardProps {

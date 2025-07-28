@@ -4,25 +4,37 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { Plus, Trash, Pencil } from "lucide-react";
-import { useGetCoursesQuery, useDeleteCourseMutation } from "@/redux/api/courseApi";
+import {
+  useGetCoursesQuery,
+  useDeleteCourseMutation,
+} from "@/redux/api/courseApi";
 import { toast } from "sonner";
-import { Course } from "@/lib/data/courses";
 import { motion } from "framer-motion";
 import { CourseAddForm } from "./CourseAddForm";
 import { CourseEditForm } from "./CourseEditForm";
+import { Course } from "@/types/course-types";
 
 export default function AdminCoursesComponent() {
   const { data: courses, isLoading } = useGetCoursesQuery({});
   const [deleteCourse] = useDeleteCourseMutation();
-  
+
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
 
   const handleDelete = async (courseId: string) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this course?");
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this course?"
+    );
     if (!confirmDelete) return;
 
     try {
@@ -35,7 +47,7 @@ export default function AdminCoursesComponent() {
   };
 
   return (
- <motion.div
+    <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -45,9 +57,7 @@ export default function AdminCoursesComponent() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-foreground">Courses</h1>
-          <p className="text-muted-foreground">
-            Manage your course catalog
-          </p>
+          <p className="text-muted-foreground">Manage your course catalog</p>
         </div>
         <Button
           onClick={() => setIsAddOpen(true)}
@@ -73,7 +83,9 @@ export default function AdminCoursesComponent() {
             <TableHeader>
               <TableRow className="text-muted-foreground">
                 <TableHead className="font-semibold text-sm">Course</TableHead>
-                <TableHead className="font-semibold text-sm">Category</TableHead>
+                <TableHead className="font-semibold text-sm">
+                  Category
+                </TableHead>
                 <TableHead className="text-right font-semibold text-sm">
                   Actions
                 </TableHead>
