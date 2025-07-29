@@ -4,10 +4,10 @@ import { PopularCourses } from "./_components/PopularCourses"
 
 export default function Home() {
   return (
-    <>
+    <div className="container page-stack">
       <Hero />
       <Categories />
       <PopularCourses />
-    </>
+    </div>
   )
 }

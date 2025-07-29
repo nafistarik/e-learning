@@ -8,8 +8,7 @@ import { PartyPopper } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="min-h-screen flex flex-col justify-center pt-28 pb-12 lg:pt-32 lg:pb-24 bg-background text-foreground">
-      <div className="container grid items-center gap-16 md:grid-cols-2">
+    <section className="grid items-center gap-16 md:grid-cols-2">
         {/* Left Text Section */}
         <div className="flex flex-col gap-3 md:gap-5">
           <FadeUp delay={0.1}>
@@ -40,7 +39,7 @@ export function Hero() {
             </div>
           </FadeUp>
         </div>
-
+        {/* Right Image Section */}
         <ScaleUp className="flex justify-center">
           <Image
             src={home}
@@ -51,7 +50,6 @@ export function Hero() {
             priority
           />
         </ScaleUp>
-      </div>
     </section>
   );
 }
