@@ -25,7 +25,7 @@ export default function UserCartPage() {
   if (isError) return <p>Error fetching data!</p>;
 
   return (
-    <>
+    <section>
       {/* Fade up for title & subtitle */}
       <SlideInLeft>
         <div className="mb-8">
@@ -50,6 +50,6 @@ export default function UserCartPage() {
           )}
         </div>
       </StaggerList>
-    </>
+    </section>
   );
 }

@@ -19,7 +19,7 @@ const FadeUp = ({
       transition={{
         delay,
         duration,
-        ease: [0.25, 0.46, 0.45, 0.94], // Smooth ease-out curve
+        ease: [0.25, 0.46, 0.45, 0.94],
       }}
       className=" transition-colors"
     >

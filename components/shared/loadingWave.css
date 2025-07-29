@@ -8,7 +8,7 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: #5C89C7; /* your primary color */
+  background-color: #5C89C7;
   animation: waveBounce 0.9s infinite ease-in-out;
 }
 

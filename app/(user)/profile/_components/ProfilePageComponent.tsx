@@ -46,7 +46,7 @@ export default function ProfilePage() {
       : user.image;
 
   return (
-    <div className=" pt-28 pb-12 lg:pt-32 lg:pb-24 min-h-screen">
+    <section>
       <SlideInLeft>
         <div className="mb-8">
           <h1 className="text-3xl font-bold">My Profile</h1>
@@ -148,6 +148,6 @@ export default function ProfilePage() {
         open={isEditing}
         onOpenChange={setIsEditing}
       />
-    </div>
+    </section>
   );
 }

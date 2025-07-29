@@ -26,7 +26,6 @@ import { Course } from "@/types/course-types";
 export default function AdminCoursesComponent() {
   const { data: courses, isLoading } = useGetCoursesQuery({});
   const [deleteCourse] = useDeleteCourseMutation();
-
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
