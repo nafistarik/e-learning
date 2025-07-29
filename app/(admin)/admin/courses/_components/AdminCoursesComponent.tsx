@@ -72,7 +72,7 @@ export default function AdminCoursesComponent() {
         initial={{ opacity: 0, scale: 0.97 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="rounded-2xl border border-border bg-card p-4"
+        className="rounded-2xl border border-border bg-card text-card p-4"
       >
         {isLoading ? (
           <div className="text-center py-6 animate-pulse">

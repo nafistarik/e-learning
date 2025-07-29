@@ -22,8 +22,8 @@ export function EnrollmentChart() {
   const enrollmentData =
     allEnrollments?.map((course: CourseEnrollments) => ({
       name:
-        course.title.length > 10
-          ? course.title.substring(0, 10) + "..."
+        course.title.length > 20
+          ? course.title.substring(0, 15) + "..."
           : course.title,
       enrollments: course.enrollmentCount,
     })) || [];
@@ -34,13 +34,13 @@ export function EnrollmentChart() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      <Card className="p-6 rounded-2xl border border-border shadow-sm bg-card text-foreground">
+      <Card className="p-6 rounded-2xl border border-border shadow-sm bg-card text-card-foreground">
         <h2 className="text-xl font-semibold mb-4">
           📊 Course Enrollments Overview
         </h2>
         <div className="h-[300px]">
           {enrollmentsLoading ? (
-            <LoadingWave/>
+            <LoadingWave />
           ) : (
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={enrollmentData}>
@@ -66,7 +66,7 @@ export function EnrollmentChart() {
                   contentStyle={{
                     background: "var(--popover)",
                     color: "var(--popover-foreground)",
-                    border: "1px solid var(--border)",
+                    border: "2px solid var(--border)",
                     borderRadius: "8px",
                     fontSize: "14px",
                   }}
@@ -79,7 +79,13 @@ export function EnrollmentChart() {
                   barSize={40}
                 />
                 <defs>
-                  <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                  <linearGradient
+                    id="chartGradient"
+                    x1="0"
+                    y1="0"
+                    x2="0"
+                    y2="1"
+                  >
                     <stop
                       offset="0%"
                       stopColor="var(--chart-1)"

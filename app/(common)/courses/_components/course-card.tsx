@@ -13,7 +13,6 @@ import { UiButton } from "@/components/ui/ui-button";
 import { CourseCardProps } from "@/types/course-types";
 
 export function CourseCard({ course }: CourseCardProps) {
-  
   const { protect } = useProtectedAction();
 
   const [addToFavourite, { isLoading: favoriteLoading }] =

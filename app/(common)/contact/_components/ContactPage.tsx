@@ -17,12 +17,13 @@ export function ContactPage() {
 
             <p className="text-muted-foreground text-base">
               Have any questions or feedback? We’d love to hear from you.
-              Whether you need help, have a suggestion, or just want to say hello—our team is here for you.
+              Whether you need help, have a suggestion, or just want to say
+              hello—our team is here for you.
             </p>
 
             <p className="text-muted-foreground text-base">
-              Reach out to us via email, phone, or visit our office.
-              We aim to respond to all inquiries within <strong>24 hours</strong>.
+              Reach out to us via email, phone, or visit our office. We aim to
+              respond to all inquiries within <strong>24 hours</strong>.
             </p>
 
             <div className="space-y-4 text-sm">
@@ -54,16 +55,16 @@ export function ContactPage() {
           </div>
         </FadeUp>
 
-          <div className="flex justify-center">
-            <Image
-              src={contactImage}
-              alt="Contact illustration"
-              width={500}
-              height={500}
-              className="w-full max-w-md h-auto"
-              priority
-            />
-          </div>
+        <div className="flex justify-center">
+          <Image
+            src={contactImage}
+            alt="Contact illustration"
+            width={500}
+            height={500}
+            className="w-full max-w-md h-auto"
+            priority
+          />
+        </div>
       </div>
     </section>
   );

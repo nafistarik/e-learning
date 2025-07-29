@@ -26,16 +26,16 @@ export default function Footer() {
       <div className="container py-12">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div>
-          <Link href="/" className="flex items-center gap-2">
-            <Image
-              src={logo}
-              width={1000}
-              height={1000}
-              className="h-10 w-auto"
-              alt="logo"
-              priority
-            />
-          </Link>
+            <Link href="/" className="flex items-center gap-2">
+              <Image
+                src={logo}
+                width={1000}
+                height={1000}
+                className="h-10 w-auto"
+                alt="logo"
+                priority
+              />
+            </Link>
             <p className="mt-2 text-sm leading-relaxed">
               Unlock knowledge anytime, anywhere.
             </p>
@@ -63,10 +63,7 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               {footerLinks.Company.map((link) => (
                 <li key={link}>
-                  <Link
-                    href="#"
-                    className="transition hover:text-primary"
-                  >
+                  <Link href="#" className="transition hover:text-primary">
                     {link}
                   </Link>
                 </li>
@@ -82,10 +79,7 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               {footerLinks.Profile.map((link) => (
                 <li key={link}>
-                  <Link
-                    href="#"
-                    className="transition hover:text-primary"
-                  >
+                  <Link href="#" className="transition hover:text-primary">
                     {link}
                   </Link>
                 </li>
@@ -129,16 +123,10 @@ export default function Footer() {
             © 2025 SkillFlow. All rights reserved.
           </p>
           <div className="flex gap-5 justify-center md:justify-end">
-            <Link
-              href="#"
-              className="transition hover:text-primary"
-            >
+            <Link href="#" className="transition hover:text-primary">
               Privacy Policy
             </Link>
-            <Link
-              href="#"
-              className="transition hover:text-primary"
-            >
+            <Link href="#" className="transition hover:text-primary">
               Terms of Service
             </Link>
           </div>

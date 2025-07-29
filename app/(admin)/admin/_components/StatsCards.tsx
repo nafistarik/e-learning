@@ -53,9 +53,9 @@ export function StatsCards() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
           >
-            <Card className="p-6 rounded-2xl border border-border shadow-sm bg-card">
+            <Card className="p-6 rounded-2xl border border-border shadow-sm bg-card text-card">
               <div className="flex items-center gap-5">
-                <div className="h-14 w-14 flex items-center justify-center rounded-xl bg-muted text-foreground">
+                <div className="h-14 w-14 flex items-center justify-center rounded-xl bg-muted text-muted">
                   <Icon className="h-8 w-8" />
                 </div>
                 <div className="flex flex-col">

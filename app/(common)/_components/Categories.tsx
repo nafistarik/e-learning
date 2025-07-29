@@ -21,7 +21,7 @@ export function Categories() {
               categories.slice(0, 4).map((category, index) => (
                 <Flip key={index}>
                   <div className="h-full">
-                    <div className="flex flex-col justify-between h-full p-6 bg-card shadow-md rounded-xl">
+                    <div className="flex flex-col justify-between h-full p-6 bg-card text-card shadow-md rounded-xl">
                       <CategoryCard category={category} />
                     </div>
                   </div>
