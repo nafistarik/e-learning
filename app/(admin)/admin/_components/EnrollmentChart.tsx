@@ -13,12 +13,7 @@ import {
 import { motion } from "framer-motion";
 import { useGetAllEnrollmentsByAdminQuery } from "@/redux/api/enrollApi";
 import LoadingWave from "@/components/shared/LoadingWave";
-
-interface CourseEnrollments {
-  title: string;
-  enrollmentCount: number;
-  courseId: string;
-}
+import { CourseEnrollments } from "@/types/course-types";
 
 export function EnrollmentChart() {
   const { data: allEnrollments, isLoading: enrollmentsLoading } =

@@ -9,8 +9,6 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Course, CourseFormProps } from "@/types/course-types"
 
-
-
 export function CourseForm({ open, onOpenChange, course, onSubmit }: CourseFormProps) {
 
   const [formData, setFormData] = useState<Partial<Course>>(

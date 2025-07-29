@@ -40,3 +40,9 @@ export interface CourseEditFormProps {
   onOpenChange: (open: boolean) => void;
   course: Course | null;
 }
+
+export interface CourseEnrollments {
+  title: string;
+  enrollmentCount: number;
+  courseId: string;
+}

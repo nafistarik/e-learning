@@ -10,9 +10,7 @@ import LoadingWave from "@/components/shared/LoadingWave";
 
 export function StatsCards() {
   const { data: users, isLoading: isUsersLoading } = useGetAllUsersQuery({});
-
   const { data: courses, isLoading: isCoursesLoading } = useGetCoursesQuery({});
-
   const { data: allEnrollments, isLoading: enrollmentsLoading } =
     useGetAllEnrollmentsByAdminQuery({});
 
