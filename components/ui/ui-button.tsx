@@ -14,24 +14,23 @@ import {
 } from "@/components/ui/tooltip"
 
 const uiButtonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all duration-500 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all duration-300 ease-in-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground shadow hover:bg-primary-hover",
-        destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
-        outline: "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
-        secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
-        nav: "bg-transparent text-foreground hover:text-primary hover:bg-muted",
+        default: "bg-primary text-primary-foreground hover:bg-primary-hover",
+        destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive-hover",
+        outline: "border border-input bg-background shadow-sm hover:bg-muted hover:text-accent-foreground",
+        secondary: "bg-secondary text-primary shadow-sm hover:bg-primary hover:text-white",
+        ghost: "hover:bg-muted hover:text-accent-foreground",
+        link: "text-primary hover:underline underline-offset-4 decoration-[1.5px]",
+        nav: "bg-transparent text-foreground hover:text-primary font-bold",
         modal: "bg-muted text-muted-foreground hover:bg-accent",
         card: "bg-card text-card-foreground hover:bg-muted",
         toolbar: "bg-background text-foreground hover:bg-accent",
-        social: "bg-background border text-foreground hover:bg-muted",
-        media: "bg-transparent text-foreground hover:bg-muted",
-        mobileNav: "text-muted-foreground hover:text-foreground hover:bg-muted/30",
-        footer: "bg-muted text-muted-foreground hover:text-foreground hover:bg-muted/70"
+        social: "bg-transparent border text-primary hover:bg-muted rounded-full",
+        mobileNav: "bg-transparent text-foreground hover:text-primary font-bold hover:underline underline-offset-4 decoration-[1.5px]",
+        footer: "text-muted-foreground hover:text-primary"
       },
       size: {
         default: "h-9 px-5 py-2",

@@ -1,6 +1,6 @@
 // Demo section: Use all variants of UiButton
 import { UiButton } from "@/components/ui/ui-button"
-import { HomeIcon, SettingsIcon, LogOutIcon, MenuIcon } from "lucide-react"
+import { HomeIcon, SettingsIcon, LogOutIcon } from "lucide-react"
 
 export function UiButtonShowcase() {
   return (
@@ -19,8 +19,8 @@ export function UiButtonShowcase() {
       {/* Row 2: Navbar & footer buttons */}
       <div className="flex flex-wrap gap-4 bg-muted p-4 rounded">
         <UiButton variant="nav"><HomeIcon /> Nav</UiButton>
-        <UiButton variant="footer"><LogOutIcon /> Footer</UiButton>
-        <UiButton variant="mobileNav"><MenuIcon /> Mobile Nav</UiButton>
+        <UiButton variant="footer">Footer</UiButton>
+        <UiButton variant="mobileNav">Mobile Nav</UiButton>
       </div>
 
       {/* Row 3: Modal, Card, Toolbar, Social, Media */}
@@ -28,8 +28,7 @@ export function UiButtonShowcase() {
         <UiButton variant="modal">Modal</UiButton>
         <UiButton variant="card">Card</UiButton>
         <UiButton variant="toolbar">Toolbar</UiButton>
-        <UiButton variant="social"><SettingsIcon /> Social</UiButton>
-        <UiButton variant="media"><SettingsIcon /> Media</UiButton>
+        <UiButton variant="social" size='icon'><SettingsIcon /></UiButton>
       </div>
 
       {/* Row 4: Tooltip + Icon */}
@@ -47,10 +46,10 @@ export function UiButtonShowcase() {
 
       {/* Row 6: Sizes */}
       <div className="flex flex-wrap gap-4">
-        <UiButton size="sm">Small</UiButton>
+        <UiButton size="sm" disabled>Small</UiButton>
         <UiButton size="default">Default</UiButton>
         <UiButton size="lg">Large</UiButton>
-        <UiButton size="icon"><HomeIcon /></UiButton>
+        <UiButton size="icon" variant="secondary"><HomeIcon /></UiButton>
         <UiButton size="full">Full Width</UiButton>
       </div>
 

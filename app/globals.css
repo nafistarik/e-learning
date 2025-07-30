@@ -32,6 +32,7 @@
 
     --destructive: #ef4444;
     --destructive-foreground: #ffffff;
+    --destructive-hover:#e41414;
 
     --border: #c3d5eb;
     --input: #c3d5eb;
@@ -78,6 +79,7 @@
 
     --destructive: #f87171;
     --destructive-foreground: #1e293b;
+    --destructive-hover:#e41414;
 
     --border: #334155;
     --input: #334155;

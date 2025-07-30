@@ -51,6 +51,7 @@ const config: Config = {
         destructive: {
           DEFAULT: "var(--destructive)",
           foreground: "var(--destructive-foreground)",
+          hover: "var(--destructive-hover)"
         },
         border: "var(--border)",
         input: "var(--input)",
