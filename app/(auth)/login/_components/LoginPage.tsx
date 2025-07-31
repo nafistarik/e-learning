@@ -12,15 +12,19 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { useLoginUserMutation } from "@/redux/api/authApi";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/redux/slice/userSlice";
 import { toast } from "sonner";
-import { LoginFormData } from "@/types/auth-types";
+import { FormInput } from "@/components/ui/form-input";
+
+interface LoginFormData {
+  email: string;
+  password: string;
+}
 
 export default function LoginPage() {
-  const { register, handleSubmit, setValue } = useForm<LoginFormData>();
+  const { register, handleSubmit, setValue, formState: {errors} } = useForm<LoginFormData>();
   const [loginUser, { isLoading }] = useLoginUserMutation();
   const dispatch = useDispatch();
   const router = useRouter();
@@ -59,24 +63,22 @@ export default function LoginPage() {
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <div className="space-y-2">
-              <label htmlFor="email">Email</label>
-              <Input
-                id="email"
-                type="email"
-                {...register("email")}
-                placeholder="user@example.com"
-              />
-            </div>
-            <div className="space-y-2">
-              <label htmlFor="password">Password</label>
-              <Input
-                id="password"
-                type="password"
-                {...register("password")}
-                placeholder="password"
-              />
-            </div>
+            <FormInput 
+              label="Email"
+              name="email"
+              type="email"
+              register={register}
+              error={errors.email?.message}
+              placeholder="user@example.com"
+            />
+            <FormInput
+              label="Password"
+              name="password"
+              type="password"
+              register={register}
+              error={errors.email?.message}
+              placeholder="password"
+             />
             <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading ? "Signing in..." : "Sign In"}
             </Button>
