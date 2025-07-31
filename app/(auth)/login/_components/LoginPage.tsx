@@ -17,14 +17,15 @@ import { useDispatch } from "react-redux";
 import { setUser } from "@/redux/slice/userSlice";
 import { toast } from "sonner";
 import { FormInput } from "@/components/ui/form-input";
-
-interface LoginFormData {
-  email: string;
-  password: string;
-}
+import { LoginFormData } from "@/types/auth-types";
 
 export default function LoginPage() {
-  const { register, handleSubmit, setValue, formState: {errors} } = useForm<LoginFormData>();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<LoginFormData>();
   const [loginUser, { isLoading }] = useLoginUserMutation();
   const dispatch = useDispatch();
   const router = useRouter();
@@ -63,7 +64,7 @@ export default function LoginPage() {
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <FormInput 
+            <FormInput
               label="Email"
               name="email"
               type="email"
@@ -78,7 +79,7 @@ export default function LoginPage() {
               register={register}
               error={errors.email?.message}
               placeholder="password"
-             />
+            />
             <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading ? "Signing in..." : "Sign In"}
             </Button>

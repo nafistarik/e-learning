@@ -1,17 +1,9 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { FormInputProps } from "@/types/auth-types";
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
-import type { Path, FieldValues, UseFormRegister } from "react-hook-form";
-
-interface FormInputProps<T extends FieldValues>
-  extends React.InputHTMLAttributes<HTMLInputElement> {
-  label: string;
-  name: Path<T>;
-  register: UseFormRegister<T>;
-  error?: string;
-  type?: "text" | "email" | "password" | "number";
-}
+import { FieldValues } from "react-hook-form";
 
 export function FormInput<T extends FieldValues>({
   label,
@@ -27,7 +19,10 @@ export function FormInput<T extends FieldValues>({
 
   return (
     <div className="space-y-1 w-full">
-      <Label htmlFor={name} className="text-sm font-medium text-muted-foreground">
+      <Label
+        htmlFor={name}
+        className="text-sm font-medium text-muted-foreground"
+      >
         {label}
       </Label>
 
