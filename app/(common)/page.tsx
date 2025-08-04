@@ -1,6 +1,7 @@
 import { Hero } from "./_components/Hero"
 import { Categories } from "./_components/Categories"
 import { PopularCourses } from "./_components/PopularCourses"
+import FormShowcase from "@/components/ui/form-showcase"
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <Hero />
       <Categories />
       <PopularCourses />
+      <FormShowcase/>
     </div>
   )
 }

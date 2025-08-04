@@ -78,7 +78,7 @@ export default function LoginPage() {
               type="password"
               register={register}
               error={errors.email?.message}
-              placeholder="password"
+              placeholder="••••••••"
             />
             <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading ? "Signing in..." : "Sign In"}
