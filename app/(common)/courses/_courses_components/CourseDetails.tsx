@@ -1,5 +1,5 @@
 "use client";
-
+import DOMPurify from "dompurify";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Heart } from "lucide-react";
@@ -12,6 +12,10 @@ import SlideInLeft from "@/components/motion/SlideInLeft";
 import { useAddToFavouriteMutation } from "@/redux/api/favouriteApi";
 import { useEnrollCourseMutation } from "@/redux/api/enrollApi";
 import { toast } from "sonner";
+
+const sanitizeHtml = (html: string) => {
+  return DOMPurify.sanitize(html);
+};
 
 export default function CourseDetails() {
   const pathName = usePathname();
@@ -105,11 +109,19 @@ export default function CourseDetails() {
                 <p className="text-lg">{singleCourseData.instructor}</p>
               </div>
 
-              <div className="mb-2">
-                <h2 className="text-xl font-semibold ">Description</h2>
-                <p className="text-gray-700 dark:text-gray-300">
-                  {singleCourseData.description}
-                </p>
+              <div className="prose max-w-none dark:prose-invert prose-headings:font-semibold prose-p:text-muted-foreground prose-li:text-muted-foreground prose-a:text-primary hover:prose-a:text-primary/80 prose-strong:text-foreground">
+                <h2 className="text-lg font-semibold text-foreground mb-3">
+                  Description
+                </h2>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: sanitizeHtml(
+                      singleCourseData.description ||
+                        "<p>No description provided</p>"
+                    ),
+                  }}
+                  className="[&>p]:mb-4 [&>ul]:list-disc [&>ul]:pl-6 [&>ol]:list-decimal [&>ol]:pl-6 [&>blockquote]:border-l-4 [&>blockquote]:border-primary [&>blockquote]:pl-4 [&>blockquote]:italic"
+                />
               </div>
             </div>
 
@@ -143,6 +155,88 @@ export default function CourseDetails() {
           </div>
         </SlideInRight>
       </div>
+      {/* PDF Preview Section */}
+      {singleCourseData.pdf && (
+          <div className="mt-8 bg-muted/50 p-4 rounded-xl border container">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-semibold text-foreground">
+                Course Materials
+              </h2>
+              <div className="flex gap-2">
+                <a
+                  href={singleCourseData.pdf}
+                  download
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                  </svg>
+                  Download PDF
+                </a>
+                {/* <a
+                href={singleCourseData.pdf}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                </svg>
+                Open in New Tab
+              </a> */}
+              </div>
+            </div>
+
+            {/* PDF Preview Container */}
+            <div className="relative w-full h-[500px] bg-white rounded-lg border shadow-sm overflow-hidden">
+              <iframe
+                src={`https://docs.google.com/gview?url=${encodeURIComponent(
+                  singleCourseData.pdf
+                )}&embedded=true`}
+                className="absolute inset-0 w-full h-full"
+                frameBorder="0"
+                title="PDF Preview"
+              >
+                <div className="absolute inset-0 flex items-center justify-center bg-muted">
+                  <p className="text-muted-foreground">
+                    Loading PDF preview...
+                  </p>
+                </div>
+              </iframe>
+            </div>
+
+            {/* Fallback message */}
+            <p className="mt-3 text-sm text-muted-foreground">
+              If the PDF doesn&apost load, you can download it using the button
+              above.
+            </p>
+          </div>
+      )}
     </div>
   );
 }

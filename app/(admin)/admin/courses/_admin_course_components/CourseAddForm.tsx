@@ -1,15 +1,17 @@
 "use client";
 
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+// import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { categories } from "@/lib/data/categories";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
 import { useCreateCourseMutation } from "@/redux/api/courseApi";
 import { toast } from "sonner";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 interface CourseAddFormData {
   title: string;
@@ -17,6 +19,7 @@ interface CourseAddFormData {
   price: string;
   category: string;
   image: FileList;
+  pdf: FileList;
 }
 
 interface CourseAddFormProps {
@@ -25,7 +28,7 @@ interface CourseAddFormProps {
 }
 
 export function CourseAddForm({ open, onOpenChange }: CourseAddFormProps) {
-  const { register, handleSubmit, setValue, reset } = useForm<CourseAddFormData>();
+  const { register, handleSubmit, setValue, reset, control } = useForm<CourseAddFormData>();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const [createCourse, { isLoading, error }] = useCreateCourseMutation();
@@ -44,6 +47,13 @@ export function CourseAddForm({ open, onOpenChange }: CourseAddFormProps) {
       formData.append("image", data.image[0]);
     } else {
       console.error("❌ No image selected!");
+      return;
+    }
+
+    if (data.pdf && data.pdf.length > 0) {
+      formData.append("pdf", data.pdf[0]);
+    } else {
+      console.error("❌ No PDF selected!");
       return;
     }
 
@@ -71,9 +81,27 @@ export function CourseAddForm({ open, onOpenChange }: CourseAddFormProps) {
             <label htmlFor="title">Title</label>
             <Input id="title" {...register("title")} required />
           </div>
-          <div className="space-y-2">
+{/* <div className="space-y-2">
             <label htmlFor="description">Description</label>
             <Textarea id="description" {...register("description")} required />
+          </div> */}
+          <div className="space-y-2">
+            <label htmlFor="description">Description</label>
+            <Controller
+              name="description"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <ReactQuill
+                  theme="snow"
+                  value={field.value}
+                  onChange={field.onChange}
+                  onBlur={field.onBlur}
+                  placeholder="Write a detailed course description..."
+                  className="bg-white min-h-[150px]"
+                />
+              )}
+            />
           </div>
           <div className="space-y-2">
             <label htmlFor="price">Price</label>
@@ -101,7 +129,23 @@ export function CourseAddForm({ open, onOpenChange }: CourseAddFormProps) {
           </div>
           <div className="space-y-2">
             <label htmlFor="image">Course Image</label>
-            <Input id="image" type="file" accept="image/*" {...register("image")} required />
+            <Input
+              id="image"
+              type="file"
+              accept="image/*"
+              {...register("image")}
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <label htmlFor="pdf">Course PDF</label>
+            <Input
+              id="pdf"
+              type="file"
+              accept="application/pdf"
+              {...register("pdf")}
+              required
+            />
           </div>
           <Button type="submit" className="w-full" disabled={isLoading}>
             {isLoading ? "Adding Course..." : "Add Course"}
