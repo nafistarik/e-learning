@@ -28,6 +28,7 @@ export interface CourseAddFormData {
   price: string;
   category: string;
   image: FileList;
+  pdf: FileList;
 }
 
 export interface CourseAddFormProps {

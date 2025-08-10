@@ -79,9 +79,9 @@ export function CourseCard({ course }: CourseCardProps) {
         <h3 className="font-semibold text-lg text-foreground line-clamp-2">
           {course.title}
         </h3>
-        <p className="text-sm text-muted-foreground line-clamp-2">
+        {/* <p className="text-sm text-muted-foreground line-clamp-2">
           {course.description}
-        </p>
+        </p> */}
         <p className="text-lg font-bold text-primary mt-1">${course.price}</p>
 
         {/* Buttons */}

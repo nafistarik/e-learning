@@ -1,19 +1,33 @@
 "use client";
 
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+// import { Textarea } from "@/components/ui/textarea";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { categories } from "@/lib/data/categories";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useState } from "react";
 import { useCreateCourseMutation } from "@/redux/api/courseApi";
 import { toast } from "sonner";
 import { CourseAddFormData, CourseAddFormProps } from "@/types/course-types";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 export function CourseAddForm({ open, onOpenChange }: CourseAddFormProps) {
-  const { register, handleSubmit, setValue, reset } = useForm<CourseAddFormData>();
+  const { register, handleSubmit, setValue, reset, control } =
+    useForm<CourseAddFormData>();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [createCourse, { isLoading, error }] = useCreateCourseMutation();
 
@@ -22,10 +36,11 @@ export function CourseAddForm({ open, onOpenChange }: CourseAddFormProps) {
     formData.append("title", data.title);
     formData.append("description", data.description);
     formData.append("price", data.price);
-    formData.append("category", selectedCategory || "Data Science"); 
-    formData.append("categoryId", "1"); 
+    formData.append("category", selectedCategory || "Data Science");
+    formData.append("categoryId", "1");
     formData.append("instructor", "Amisha Nandi");
 
+    // Image file
     if (data.image && data.image.length > 0) {
       formData.append("image", data.image[0]);
     } else {
@@ -33,9 +48,17 @@ export function CourseAddForm({ open, onOpenChange }: CourseAddFormProps) {
       return;
     }
 
+    // // PDF file (must match backend field name, e.g., 'file' or 'pdf')
+    if (data.pdf && data.pdf.length > 0) {
+      formData.append("pdf", data.pdf[0]);
+    } else {
+      console.error("❌ No PDF selected!");
+      return;
+    }
+
     try {
       await createCourse(formData).unwrap();
-      toast("✅ Course created successfully!")
+      toast("✅ Course created successfully!");
       reset(); // Reset the form fields
       onOpenChange(false); // Close the modal
     } catch (err) {
@@ -54,13 +77,37 @@ export function CourseAddForm({ open, onOpenChange }: CourseAddFormProps) {
             <label htmlFor="title">Title</label>
             <Input id="title" {...register("title")} required />
           </div>
-          <div className="space-y-2">
+          {/* <div className="space-y-2">
             <label htmlFor="description">Description</label>
             <Textarea id="description" {...register("description")} required />
+          </div> */}
+          <div className="space-y-2">
+            <label htmlFor="description">Description</label>
+            <Controller
+              name="description"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <ReactQuill
+                  theme="snow"
+                  value={field.value}
+                  onChange={field.onChange}
+                  onBlur={field.onBlur}
+                  placeholder="Write a detailed course description..."
+                  className="bg-white min-h-[150px]"
+                />
+              )}
+            />
           </div>
           <div className="space-y-2">
             <label htmlFor="price">Price</label>
-            <Input id="price" type="number" step="0.01" {...register("price")} required />
+            <Input
+              id="price"
+              type="number"
+              step="0.01"
+              {...register("price")}
+              required
+            />
           </div>
           <div className="space-y-2">
             <label htmlFor="category">Category</label>
@@ -84,14 +131,35 @@ export function CourseAddForm({ open, onOpenChange }: CourseAddFormProps) {
           </div>
           <div className="space-y-2">
             <label htmlFor="image">Course Image</label>
-            <Input id="image" type="file" accept="image/*" {...register("image")} required />
+            <Input
+              id="image"
+              type="file"
+              accept="image/*"
+              {...register("image")}
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <label htmlFor="pdf">Course PDF</label>
+            <Input
+              id="pdf"
+              type="file"
+              accept="application/pdf"
+              {...register("pdf")}
+              required
+            />
           </div>
           <Button type="submit" className="w-full" disabled={isLoading}>
             {isLoading ? "Adding Course..." : "Add Course"}
           </Button>
           {error && (
             <p className="text-red-500">
-              ❌ Error: {"data" in error ? (error.data as { message: string }).message : "error" in error ? error.error : "An unknown error occurred"}
+              ❌ Error:{" "}
+              {"data" in error
+                ? (error.data as { message: string }).message
+                : "error" in error
+                ? error.error
+                : "An unknown error occurred"}
             </p>
           )}
         </form>
