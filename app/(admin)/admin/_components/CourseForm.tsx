@@ -81,7 +81,7 @@ export function CourseForm({ open, onOpenChange, course, onSubmit }: CourseFormP
             />
           </div>
           <Button type="submit" className="w-full">
-            {course ? "Update Course" : "Add Course"}
+            {course ? "Update Course" : "Add New Course"}
           </Button>
         </form>
       </DialogContent>
