@@ -1,50 +1,136 @@
-# E-Learning Platform
+# E-Learning Platform Frontend
 
-A modern e-learning platform that allows users to browse courses, view course details, add courses to favorites, and enroll in them. The platform includes authentication for user login and registration and provides an admin dashboard for managing users and courses.
+[![Live Demo](https://img.shields.io/badge/demo-live-green.svg)](https://elearn-lilac.vercel.app/)
+[![GitHub stars](https://img.shields.io/github/stars/nafistarik/e-learning)](https://github.com/nafistarik/e-learning/stargazers)
+[![GitHub license](https://img.shields.io/github/license/nafistarik/e-learning)](https://github.com/nafistarik/e-learning/blob/main/LICENSE)
 
-## 🚀 Key Features
+A full-featured e-Learning platform built with Next.js 14 that allows users to browse, enroll in courses, and manage their learning journey. Administrators can manage courses, users, and track platform analytics.
 
-- **Course Browsing** – Explore available courses with detailed information.
-- **Course Details Page** – View in-depth course descriptions and content.
-- **Favorite Courses** – Save courses for later reference.
-- **User Authentication** – Secure login and registration system.
-- **Course Enrollment** – Enroll in courses and track progress.
-- **Admin Dashboard** – Manage users and courses with full CRUD functionality.
+## ✨ Features
 
-## 📌 Usage Instructions
+### 👨‍🎓 Learner Experience
+- 🏠 Interactive homepage with featured courses
+- 🔍 Course browsing and search functionality
+- 📚 Detailed course pages with curriculum
+- 💝 Add courses to favorites
+- 🛒 Shopping cart functionality
+- 📱 Fully responsive design
 
-### 1️⃣ Clone the Repository
-```sh
-git clone https://github.com/nafistarik/e-learning.git
-cd e-learning
-```
+### 👨‍🏫 Admin Dashboard
+- 📊 Analytics dashboard with enrollment stats
+- 📝 Course management (CRUD operations)
+- 👥 User management system
+- 📈 Enrollment tracking
+- 🏷️ Category management
 
-### 2️⃣ Install Dependencies
-```sh
-npm install
-```
+### 🔐 Authentication
+- ✉️ Email/password login
+- 📝 User registration
+- 🔑 JWT authentication
+- 🛡️ Protected routes
+- 👤 Profile management
 
-### 3️⃣ Start the Development Server
-```sh
-npm run dev
-```
+## 🛠️ Tech Stack
 
-### 4️⃣ Open in Browser
-Visit: `http://localhost:3000`
-
-## 🛠️ Technologies Used
-
-- **Frontend:** Next.js 14, React.js, TypeScript, Tailwind CSS
-- **Authentication:** JWT Authentication
-- **API Integration:** RTK Query
-- **Deployment:** Vercel
+- **Framework**: [Next.js 14](https://nextjs.org/) (App Router)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **State Management**: [Redux Toolkit](https://redux-toolkit.js.org/) (RTK Query)
+- **UI Components**: [Shadcn/ui](https://ui.shadcn.com/)
+- **Animation**: [Framer Motion](https://www.framer.com/motion/)
+- **Form Handling**: [React Hook Form](https://react-hook-form.com/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Charting**: [Recharts](https://recharts.org/)
 
 ## 📂 Project Structure
-```bash
-📦 e-learning
-├── 📂 components    # Reusable UI components
-├── 📂 pages         # Next.js pages
-├── 📂 styles        # Global and component-specific styles
-├── 📂 utils         # Helper functions
-└── package.json     # Dependencies and scripts
+
+```markdown
+e-learning/
+├── app/                # Next.js 14 App Router
+│   ├── (admin)/        # Admin routes
+│   ├── (auth)/         # Authentication routes
+│   ├── (common)/       # Public routes
+│   ├── (user)/         # User routes
+│   └── assets/         # Static assets
+├── components/         # Reusable components
+│   ├── motion/         # Animation components
+│   ├── shared/         # Common components
+│   ├── sidebar/        # Navigation
+│   └── ui/            # UI primitives
+├── hooks/             # Custom hooks
+├── lib/               # Utilities
+├── redux/             # State management
+│   ├── api/           # RTK Query endpoints
+│   ├── slice/         # Redux slices
+│   └── store.ts       # Redux store
+└── types/             # TypeScript types
 ```
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js v18+
+- npm or yarn
+- Git
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/nafistarik/e-learning.git
+   cd e-learning
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. Run the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 🛠️ Available Scripts
+
+- `dev`: Starts development server
+- `build`: Creates production build
+- `start`: Starts production server
+- `lint`: Runs ESLint
+- `format`: Formats code with Prettier
+- `test`: Runs tests (if configured)
+
+## 🌐 Deployment
+
+The project is deployed on Vercel. To deploy your own instance:
+
+1. Fork this repository
+2. Create a new project on [Vercel](https://vercel.com)
+3. Connect your GitHub repository
+4. Deploy!
+
+## 🤝 Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 📧 Contact
+
+Md. Nafis Tarik - [nafistarik789@gmail.com](mailto:nafistarik789@gmail.com)
+Project Link: [https://github.com/nafistarik/e-learning](https://github.com/nafistarik/e-learning)  
+Live Demo: [https://elearn-lilac.vercel.app/](https://elearn-lilac.vercel.app/)
