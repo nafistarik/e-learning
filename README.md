@@ -1,4 +1,4 @@
-# E-Learning Platform Frontend
+# Online Learning Platform Frontend
 
 [![Live Demo](https://img.shields.io/badge/demo-live-green.svg)](https://elearn-lilac.vercel.app/)
 [![GitHub stars](https://img.shields.io/github/stars/nafistarik/e-learning)](https://github.com/nafistarik/e-learning/stargazers)
